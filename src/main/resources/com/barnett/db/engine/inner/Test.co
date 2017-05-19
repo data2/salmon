@@ -1,0 +1,32 @@
+-- <selectOrderInfo>
+  select  * from 
+  	tablename
+  	
+ -- <insertDemo>
+  insert into tablename (orderid,
+  					    name,
+  					    date
+  						)values(
+  						#orderid#,
+  						#name#,
+  						#date#
+  						)
+  						
+  	 -- <insertUdpPayRisk>					
+  			insert into UDP_PAYRISK( SERVICEORDERID,
+  						   RISKTYPE,
+  						   OCCURTIME,
+  						   RISKDETAIL
+                          )values(
+                           #SERVICEORDERID#,
+                           #RISKTYPE#, 
+                           #OCCURTIME#, 
+                           #RISKDETAIL#  
+                          )
+                          
+ -- <queryUdpPayRisk>
+ 	select SERVICEORDERID,RISKTYPE from UDP_PAYRISK where SERVICEORDERID =#SERVICEORDERID#
+ 	
+-- <selectOrderInfo>
+  select  * from 
+  	tablename
