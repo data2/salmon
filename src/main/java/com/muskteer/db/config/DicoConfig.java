@@ -1,9 +1,7 @@
 package com.muskteer.db.config;
 
-import java.io.IOException;
 import java.util.Properties;
 
-import com.muskteer.db.base.exception.InnerException;
 import com.muskteer.db.util.DicoClassLoader;
 
 public class DicoConfig implements CoConfig {
@@ -27,9 +25,7 @@ public class DicoConfig implements CoConfig {
         Properties properties = new Properties();
         try {
             properties.load(DicoClassLoader.loadFile(file));
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InnerException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return properties;

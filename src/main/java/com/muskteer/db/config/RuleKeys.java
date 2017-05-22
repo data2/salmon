@@ -1,15 +1,15 @@
 package com.muskteer.db.config;
 
 public class RuleKeys {
-    private static String classType = "rule";
-    private static String type = "type";
-    private static String table = "table";
+    private static String RULE_PRE = "rule";
+    private static String TPYE_CONFIG = "type";
+    private static String TABLE_CONFIG = "table";
 
-    public static String getType() {
-        return classType.concat(".").concat(type);
+    public static String getTypeConfig() {
+        return RULE_PRE.concat(".").concat(TPYE_CONFIG);
     }
 
-    public static String getTable() {
-        return classType.concat(".").concat(table);
+    public static String getTableRuleConfig() {
+        return RULE_PRE.concat(".").concat(TABLE_CONFIG);
     }
 }

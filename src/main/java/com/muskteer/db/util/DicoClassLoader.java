@@ -7,8 +7,7 @@ import com.muskteer.db.base.exception.InnerException;
 public class DicoClassLoader {
 
     public static InputStream loadFile(String file) throws InnerException {
-        return Objects.priorityUseFirst(Thread.currentThread().getContextClassLoader(),
-                DicoClassLoader.class.getClassLoader()).getResourceAsStream(file);
+        return getClassLoader().getResourceAsStream(file);
     }
 
     public static ClassLoader getClassLoader() throws InnerException {

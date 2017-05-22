@@ -1,6 +1,3 @@
-/**
- * copyright@com.barnett
- */
 package com.muskteer.db.engine.inner.co.impl;
 
 import java.text.SimpleDateFormat;
@@ -21,23 +18,20 @@ import com.muskteer.db.util.DicoClassLoader;
 
 /**
  * execute engine.
- * 
- * @author wanglei
- * @2016.8.3
  */
 public class Dico implements Co {
 
     protected DicoConfig dicoConfig;
     protected DicoTrans coTrans;
+    protected List<DicoSql> sqlArr = new ArrayList<DicoSql>();
     protected DicoSql currSql;
     protected Map<?, ?> currParams;
-    protected List<DicoSql> sqlArr = new ArrayList<DicoSql>();
     protected String classloaderfile;
     protected Map<String, Object> context;
     protected boolean exception = false;
 
     public Dico() {
-        this.dicoConfig = new DicoConfig(KeysConstant.getSysName());
+        this.dicoConfig = new DicoConfig(KeysConstant.getDefaultDbaseInitFileName());
         initContext();
     }
 

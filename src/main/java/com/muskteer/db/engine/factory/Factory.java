@@ -1,6 +1,3 @@
-/**
- * copyright@com.barnett
- */
 package com.muskteer.db.engine.factory;
 
 import java.lang.reflect.Proxy;
@@ -11,9 +8,6 @@ import com.muskteer.db.engine.inner.co.Co;
 /**
  * impl of co add proxy.
  * 
- * @author wanglei
- * @since 2016.8.3
- *
  */
 public class Factory {
 

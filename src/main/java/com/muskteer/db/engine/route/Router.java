@@ -10,7 +10,7 @@ public class Router {
 
     public static TableRulerBean config(String tableName) {
         TableRulerBean bean = new TableRulerBean();
-        String tabs = ConfigurationFactory.getProperty(RuleKeys.getTable());
+        String tabs = ConfigurationFactory.getProperty(RuleKeys.getTableRuleConfig());
         Map<?, ?> map = TextFunction.contain(tabs, tableName);
         bean.setPartionMethod(((String) map.get("Method")).trim());
         String[] tmp = (String[]) map.get("Ruler");
