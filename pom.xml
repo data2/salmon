@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.muskteer</groupId>
-    <artifactId>muskteer-database-engine</artifactId>
+    <artifactId>quickboot-dico</artifactId>
     <version>1.0.1</version>
     <packaging>jar</packaging>
 
-    <name>muskteer-database-engine</name>
+    <name>quickboot-dico</name>
     <url>http://maven.apache.org</url>
 
     <properties>
@@ -73,5 +73,5 @@
          </plugin> 
         </plugins>    
     </build>    
-    <description>muskteer-database-engine</description>
+    <description>quickboot-dico</description>
 </project>
