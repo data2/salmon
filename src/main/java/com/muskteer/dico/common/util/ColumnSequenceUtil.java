@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.regex.Pattern;
 
 import com.muskteer.dico.base.exception.InnerException;
-import com.muskteer.dico.engine.inner.DicoSql;
+import com.muskteer.dico.inner.DicoSql;
 
 public class ColumnSequenceUtil {
 
