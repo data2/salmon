@@ -10,8 +10,8 @@ import com.muskteer.dico.engine.inner.DicoSql;
 import com.muskteer.dico.engine.parser.Parser;
 import com.muskteer.dico.engine.route.Router;
 import com.muskteer.dico.engine.route.TableRulerConfig;
-import com.muskteer.dico.util.ArrUtils;
-import com.muskteer.dico.util.PatternMatcherUnit;
+import com.muskteer.dico.common.util.ArrUtils;
+import com.muskteer.dico.common.util.PatternMatcherUnit;
 import org.springframework.util.StringUtils;
 
 public class BuildFactory {

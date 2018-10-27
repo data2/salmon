@@ -1,4 +1,4 @@
-package com.muskteer.dico.util;
+package com.muskteer.dico.common.util;
 
 import java.io.IOException;
 import java.io.InputStream;

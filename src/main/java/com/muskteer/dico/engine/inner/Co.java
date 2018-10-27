@@ -2,7 +2,7 @@ package com.muskteer.dico.engine.inner;
 
 import java.util.Map;
 
-import com.muskteer.dico.config.CoConfig;
+import com.muskteer.dico.engine.config.CoConfig;
 
 public interface Co {
 

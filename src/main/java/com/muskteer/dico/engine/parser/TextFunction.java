@@ -8,8 +8,8 @@ import com.google.common.base.Charsets;
 import com.google.common.base.Splitter;
 import com.google.common.io.Resources;
 import com.muskteer.dico.base.exception.InnerException;
-import com.muskteer.dico.util.DicoClassLoader;
-import com.muskteer.dico.util.StringUtils;
+import com.muskteer.dico.common.util.DicoClassLoader;
+import com.muskteer.dico.common.util.StringUtils;
 
 public class TextFunction {
     private static String blank = " ";

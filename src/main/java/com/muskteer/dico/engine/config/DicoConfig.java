@@ -1,8 +1,8 @@
-package com.muskteer.dico.config;
+package com.muskteer.dico.engine.config;
 
 import java.util.Properties;
 
-import com.muskteer.dico.util.DicoClassLoader;
+import com.muskteer.dico.common.util.DicoClassLoader;
 
 public class DicoConfig implements CoConfig {
 

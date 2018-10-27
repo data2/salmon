@@ -1,6 +1,6 @@
 package com.muskteer.dico.engine.cache;
 
-public interface Source {
+public interface Cache {
 
     void remove(String obj);
 

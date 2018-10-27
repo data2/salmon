@@ -6,7 +6,7 @@ import com.alibaba.druid.pool.DruidDataSource;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
-import com.muskteer.dico.config.DBaseKeys;
+import com.muskteer.dico.engine.config.DBaseKeys;
 import com.muskteer.dico.engine.connection.EngineConnection;
 import com.muskteer.dico.engine.factory.ConfigurationFactory;
 

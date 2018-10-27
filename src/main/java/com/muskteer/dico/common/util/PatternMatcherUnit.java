@@ -1,4 +1,4 @@
-package com.muskteer.dico.util;
+package com.muskteer.dico.common.util;
 
 import java.util.ArrayList;
 import java.util.List;

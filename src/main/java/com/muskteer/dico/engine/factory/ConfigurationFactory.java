@@ -3,9 +3,9 @@ package com.muskteer.dico.engine.factory;
 import java.util.Properties;
 
 import com.muskteer.dico.base.exception.InnerException;
-import com.muskteer.dico.config.KeysConstant;
-import com.muskteer.dico.util.DicoClassLoader;
-import com.muskteer.dico.util.PropertiesUtil;
+import com.muskteer.dico.engine.config.KeysConstant;
+import com.muskteer.dico.common.util.DicoClassLoader;
+import com.muskteer.dico.common.util.PropertiesUtil;
 
 public class ConfigurationFactory {
 

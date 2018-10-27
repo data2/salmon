@@ -6,7 +6,7 @@ import java.util.Map;
 import com.muskteer.dico.base.exception.InnerException;
 import com.muskteer.dico.engine.inner.DicoPair;
 import com.muskteer.dico.engine.route.match.MatchBestStrategy;
-import com.muskteer.dico.util.ArrUtils;
+import com.muskteer.dico.common.util.ArrUtils;
 import org.springframework.util.StringUtils;
 
 public abstract class RouteStrategy implements RouteStrategyMaster {

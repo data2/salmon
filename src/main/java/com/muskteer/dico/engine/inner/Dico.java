@@ -7,11 +7,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.muskteer.dico.config.DicoConfig;
-import com.muskteer.dico.config.KeysConstant;
+import com.muskteer.dico.engine.config.DicoConfig;
+import com.muskteer.dico.engine.config.KeysConstant;
 import com.muskteer.dico.engine.parser.ParseConfig;
 import com.muskteer.dico.engine.factory.BuildFactory;
-import com.muskteer.dico.util.DicoClassLoader;
+import com.muskteer.dico.common.util.DicoClassLoader;
 
 /**
  * execute engine.

@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import com.muskteer.dico.util.StringUtils;
+import com.muskteer.dico.common.util.StringUtils;
 
 public class MatchBestStrategy {
 

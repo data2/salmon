@@ -8,10 +8,10 @@ import com.google.common.base.Charsets;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.io.Resources;
-import com.muskteer.dico.engine.cache.FileSource;
-import com.muskteer.dico.util.DicoClassLoader;
+import com.muskteer.dico.engine.cache.FileConfigCache;
+import com.muskteer.dico.common.util.DicoClassLoader;
 
-public class DicoFileSource implements FileSource {
+public class DicoFileConfigCache implements FileConfigCache {
 
     private static Cache<String, Object> cache;
 

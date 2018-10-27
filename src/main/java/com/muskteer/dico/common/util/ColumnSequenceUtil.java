@@ -1,4 +1,4 @@
-package com.muskteer.dico.util;
+package com.muskteer.dico.common.util;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

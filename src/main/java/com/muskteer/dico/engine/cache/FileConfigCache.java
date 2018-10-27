@@ -1,6 +1,6 @@
 package com.muskteer.dico.engine.cache;
 
-public interface FileSource extends Source {
+public interface FileConfigCache extends Cache {
 
     Object getSource(String obj);
 

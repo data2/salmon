@@ -7,9 +7,9 @@ import java.util.List;
 import java.util.Map;
 
 import com.muskteer.dico.base.exception.InnerException;
-import com.muskteer.dico.config.DBaseKeys;
+import com.muskteer.dico.engine.config.DBaseKeys;
 import com.muskteer.dico.engine.inner.DicoSql;
-import com.muskteer.dico.util.ColumnSequenceUtil;
+import com.muskteer.dico.common.util.ColumnSequenceUtil;
 
 public class ConnectFactory {
 

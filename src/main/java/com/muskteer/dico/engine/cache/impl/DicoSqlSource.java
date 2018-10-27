@@ -7,12 +7,11 @@ import com.google.common.base.Charsets;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.io.Resources;
-import com.muskteer.dico.engine.cache.SqlSource;
-import com.muskteer.dico.engine.cache.impl.DicoFileSource;
+import com.muskteer.dico.engine.cache.ExecuteSqlCache;
 import com.muskteer.dico.engine.parser.TextFunction;
-import com.muskteer.dico.util.DicoClassLoader;
+import com.muskteer.dico.common.util.DicoClassLoader;
 
-public class DicoSqlSource implements SqlSource {
+public class DicoSqlSource implements ExecuteSqlCache {
 
     private static Cache<String, Object> cache;
 
@@ -24,7 +23,7 @@ public class DicoSqlSource implements SqlSource {
                 public Object call() throws Exception {
                     String sql = null;
                     try {
-                        String contents = (String) new DicoFileSource().getSource(file);
+                        String contents = (String) new DicoFileConfigCache().getSource(file);
                         if (contents == null) {
                             contents = Resources.toString(DicoClassLoader.getClassLoader().getResource(key),
                                     Charsets.UTF_8);

@@ -1,4 +1,4 @@
-package com.muskteer.dico.config;
+package com.muskteer.dico.engine.config;
 
 public interface CoConfig {
 
