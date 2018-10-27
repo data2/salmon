@@ -1,15 +1,10 @@
 package com.muskteer.dico.parser;
 
-import java.io.IOException;
+import com.google.common.base.Splitter;
+import com.muskteer.dico.common.util.StringUtils;
+
 import java.util.HashMap;
 import java.util.Map;
-
-import com.google.common.base.Charsets;
-import com.google.common.base.Splitter;
-import com.google.common.io.Resources;
-import com.muskteer.dico.common.InnerException;
-import com.muskteer.dico.common.util.DicoClassLoader;
-import com.muskteer.dico.common.util.StringUtils;
 
 public class TextFunction {
     private static String blank = " ";
@@ -43,7 +38,7 @@ public class TextFunction {
 
     /**
      * contain something.
-     * 
+     *
      * @param contents
      * @param key
      * @return
@@ -73,14 +68,6 @@ public class TextFunction {
             ruler[i] = ruler[i].trim();
         }
 
-    }
-
-    public static void main(String[] args) throws IOException, InnerException {
-        String contents = Resources.toString(
-                DicoClassLoader.getClassLoader().getResource("com/barnett/db/engine/inner/Test.co"), Charsets.UTF_8);
-        // System.out.println(contents);
-        String s = excute(contents, "InsertOrderInfo");
-        System.out.println(s);
     }
 
 }

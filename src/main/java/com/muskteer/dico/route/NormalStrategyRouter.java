@@ -2,7 +2,7 @@ package com.muskteer.dico.route;
 
 import java.util.Map;
 
-import com.muskteer.dico.base.exception.InnerException;
+import com.muskteer.dico.common.exception.InnerException;
 import org.springframework.util.StringUtils;
 
 public class NormalStrategyRouter extends RouteStrategy {

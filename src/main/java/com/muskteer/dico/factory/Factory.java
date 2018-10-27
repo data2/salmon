@@ -3,7 +3,7 @@ package com.muskteer.dico.factory;
 import java.lang.reflect.Proxy;
 
 import com.muskteer.dico.proxy.RunColInvocationHandler;
-import com.muskteer.dico.inner.Co;
+import com.muskteer.dico.inner.DatabaseOps;
 
 /**
  * impl of co add proxy.
@@ -11,8 +11,8 @@ import com.muskteer.dico.inner.Co;
  */
 public class Factory {
 
-    public static Co getSource(Object impl) {
-        return (Co) Proxy.newProxyInstance(Co.class.getClassLoader(), new Class<?>[] { Co.class },
+    public static DatabaseOps getSource(Object impl) {
+        return (DatabaseOps) Proxy.newProxyInstance(DatabaseOps.class.getClassLoader(), new Class<?>[] { DatabaseOps.class },
                 new RunColInvocationHandler(impl));
     }
 

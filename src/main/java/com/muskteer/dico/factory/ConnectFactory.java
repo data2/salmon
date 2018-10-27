@@ -1,41 +1,29 @@
 package com.muskteer.dico.factory;
 
+import com.muskteer.dico.common.exception.InnerException;
+import com.muskteer.dico.common.util.ColumnSequenceUtil;
+import com.muskteer.dico.config.DicoDatabseConfig;
+import com.muskteer.dico.inner.DicoExecuteSql;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
-import com.muskteer.dico.common.InnerException;
-import com.muskteer.dico.config.DBaseKeys;
-import com.muskteer.dico.inner.DicoSql;
-import com.muskteer.dico.common.util.ColumnSequenceUtil;
-
+@Component
 public class ConnectFactory {
 
-    private DicoSql dicosql;
+    @Autowired
+    public DicoDatabseConfig dicoDatabseConfig;
 
-    public ConnectFactory(DicoSql sql) {
-        this.dicosql = sql;
-    }
+    private DicoExecuteSql dicosql;
 
-    public DicoSql getDicosql() {
-        return dicosql;
-    }
-
-    public void setDicosql(DicoSql dicosql) {
-        this.dicosql = dicosql;
-    }
-
-    /**
-     * parse connect uri.
-     * 
-     * @param dbId
-     * @return
-     */
     public String doURL(String dbId) {
-        String uri = ConfigurationFactory.getProperty(DBaseKeys.url);
-        String[] mapping = ConfigurationFactory.getProperty(DBaseKeys.mapping).split(",");
+        String uri = dicoDatabseConfig.getUrl();
+        String[] mapping = dicoDatabseConfig.getMapping().split(",");
         String[] tmp = null;
         for (String sub : mapping) {
             tmp = sub.split("\\|");
@@ -50,15 +38,10 @@ public class ConnectFactory {
 
     }
 
-    /**
-     * create sql conn.
-     * 
-     * @param dbId
-     */
     public ConnectFactory makeConnect(String dbId) {
         String uri = doURL(dbId);
-        String username = ConfigurationFactory.getProperty(DBaseKeys.username);
-        String password = ConfigurationFactory.getProperty(DBaseKeys.password);
+        String username = dicoDatabseConfig.getUsername();
+        String password = dicoDatabseConfig.getPassword();
         Connection con = null;
         try {
             con = DriverManager.getConnection(uri, username, password);
@@ -70,12 +53,6 @@ public class ConnectFactory {
         return this;
     }
 
-    /**
-     * prepared stmt.
-     * 
-     * @param params
-     * @throws InnerException
-     */
     public void preparedStmt(Map<?, ?> params) throws InnerException {
         List<Object> sortParms = ColumnSequenceUtil.sort(dicosql, params);
         ColumnSequenceUtil.setValue(dicosql, sortParms);
@@ -89,4 +66,8 @@ public class ConnectFactory {
         }
     }
 
+    public ConnectFactory setSql(DicoExecuteSql currSql) {
+        this.dicosql = currSql;
+        return this;
+    }
 }

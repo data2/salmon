@@ -14,9 +14,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class DicoSql {
+public class DicoExecuteSql {
 
-    public DicoSql(String operation, String sqlID) {
+    public DicoExecuteSql(String operation, String sqlID) {
         this.operation = operation;
         this.sqlId = sqlID;
     }

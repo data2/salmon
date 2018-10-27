@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-import com.muskteer.dico.base.exception.InnerException;
-import com.muskteer.dico.inner.DicoSql;
+import com.muskteer.dico.common.exception.InnerException;
+import com.muskteer.dico.inner.DicoExecuteSql;
 
 public class ColumnSequenceUtil {
 
@@ -23,7 +23,7 @@ public class ColumnSequenceUtil {
      * @return
      * @throws InnerException
      */
-    public static List<Object> sort(DicoSql currSql, Map<?, ?> params) throws InnerException {
+    public static List<Object> sort(DicoExecuteSql currSql, Map<?, ?> params) throws InnerException {
         String sql = currSql.getSql();
         java.util.regex.Matcher m = p.matcher(sql);
         List<Object> keylist = new ArrayList<Object>();
@@ -61,7 +61,7 @@ public class ColumnSequenceUtil {
      * @param currSql
      * @param sortParms
      */
-    public static void setValue(DicoSql currSql, List<Object> sortParms) {
+    public static void setValue(DicoExecuteSql currSql, List<Object> sortParms) {
         Connection conn = currSql.getConn();
         String sql = currSql.getSql();
         PreparedStatement executor = null;

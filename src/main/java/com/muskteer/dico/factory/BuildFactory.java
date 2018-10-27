@@ -1,48 +1,55 @@
 package com.muskteer.dico.factory;
 
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import com.muskteer.dico.common.InnerException;
+import com.muskteer.dico.common.exception.InnerException;
+import com.muskteer.dico.common.util.ArrUtils;
+import com.muskteer.dico.common.util.PatternMatcherUnit;
 import com.muskteer.dico.config.DicoPair;
 import com.muskteer.dico.config.OperationKeys;
-import com.muskteer.dico.inner.DicoSql;
+import com.muskteer.dico.inner.DicoExecuteSql;
 import com.muskteer.dico.parser.Parser;
 import com.muskteer.dico.route.Router;
 import com.muskteer.dico.route.TableRulerConfig;
-import com.muskteer.dico.common.util.ArrUtils;
-import com.muskteer.dico.common.util.PatternMatcherUnit;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
+import java.util.Map;
+
+@Component
 public class BuildFactory {
 
-    public static void build(DicoSql currSql, Map<?, ?> params) throws InnerException {
+    @Autowired
+    public ConnectFactory connectFactory;
+
+    @Autowired
+    public Router router;
+
+    public void build(DicoExecuteSql currSql, Map<?, ?> params) throws InnerException {
         // loading ruler.
         loadFromConfig(currSql);
         // calcu ruler for where data goes.
         TableRulerConfig ruler = currSql.getRuler();
         String dbId = Parser.parse(ruler, params);
         // create connection && prepared sql param.
-        new ConnectFactory(currSql).makeConnect(dbId).preparedStmt(params);
+        connectFactory.setSql(currSql).makeConnect(dbId).preparedStmt(params);
 
     }
 
     /**
      * decorate sql.
-     * 
+     *
      * @param currSql
      */
-    private static void loadFromConfig(DicoSql currSql) {
+    private void loadFromConfig(DicoExecuteSql currSql) {
         currSql.setTableName(calcuTabnameFromSqlStr(currSql.getSql()));
-        TableRulerConfig tabRuler = Router.config(currSql.getTableName());
+        TableRulerConfig tabRuler = router.config(currSql.getTableName());
         currSql.setRuler(tabRuler);
         currSql.setPartionKey(new DicoPair(tabRuler.getColumn(), null));
     }
 
     /**
      * search for tab name.
-     * 
+     *
      * @param sql
      * @return
      */
@@ -62,15 +69,6 @@ public class BuildFactory {
         }
 
         return null;
-    }
-
-    public static void main(String[] args) {
-        Pattern p = Pattern.compile("\\#\\w+\\#");
-        Matcher m = p.matcher("sfssf   #aiW_# sdf  #sd#");
-        while (m.find()) {
-            System.out.println(m.group());
-        }
-
     }
 
 }

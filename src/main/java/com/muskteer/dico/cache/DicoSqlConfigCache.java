@@ -10,7 +10,7 @@ import com.muskteer.dico.parser.TextFunction;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 
-public class DicoSqlSource implements ExecuteSqlCache {
+public class DicoSqlConfigCache implements ExecuteSqlCache {
 
     private static Cache<String, Object> cache;
 
@@ -19,7 +19,7 @@ public class DicoSqlSource implements ExecuteSqlCache {
             return cache.get(key, new Callable<Object>() {
 
                 @Override
-                public Object call() throws Exception {
+                public Object call() {
                     String sql = null;
                     try {
                         String contents = (String) new DicoFileConfigCache().getSource(file);

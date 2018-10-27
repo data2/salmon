@@ -1,4 +1,4 @@
-package com.muskteer.dico.common;
+package com.muskteer.dico.common.exception;
 
 public class InnerException extends Exception {
 

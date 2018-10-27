@@ -2,7 +2,7 @@ package com.muskteer.dico.parser;
 
 import java.util.Map;
 
-import com.muskteer.dico.base.exception.InnerException;
+import com.muskteer.dico.common.exception.InnerException;
 import com.muskteer.dico.route.RouteStrategyMaster;
 import com.muskteer.dico.route.TableRulerConfig;
 import com.muskteer.dico.route.PartitionSet;

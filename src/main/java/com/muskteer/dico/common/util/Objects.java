@@ -1,6 +1,7 @@
 package com.muskteer.dico.common.util;
 
-import com.muskteer.dico.base.exception.InnerException;
+
+import com.muskteer.dico.common.exception.InnerException;
 
 public class Objects {
 

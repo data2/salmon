@@ -2,7 +2,7 @@ package com.muskteer.dico.common.util;
 
 import java.io.InputStream;
 
-import com.muskteer.dico.base.exception.InnerException;
+import com.muskteer.dico.common.exception.InnerException;
 
 public class DicoClassLoader {
 

@@ -1,15 +1,14 @@
 package com.muskteer.dico.cache;
 
-import java.net.URL;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
-
 import com.google.common.base.Charsets;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.io.Resources;
-import com.muskteer.dico.cache.FileConfigCache;
 import com.muskteer.dico.common.util.DicoClassLoader;
+
+import java.net.URL;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
 
 public class DicoFileConfigCache implements FileConfigCache {
 
@@ -20,7 +19,7 @@ public class DicoFileConfigCache implements FileConfigCache {
             return cache.get(key, new Callable<Object>() {
 
                 @Override
-                public Object call() throws Exception {
+                public Object call()  {
                     try {
                         URL URL = DicoClassLoader.getClassLoader().getResource(key);
                         String sqlContents = Resources.toString(URL, Charsets.UTF_8);
