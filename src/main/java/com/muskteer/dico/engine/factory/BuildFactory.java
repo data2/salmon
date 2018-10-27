@@ -5,11 +5,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.muskteer.dico.base.exception.InnerException;
-import com.muskteer.dico.engine.inner.Pair;
-import com.muskteer.dico.engine.inner.sql.DicoSql;
+import com.muskteer.dico.engine.inner.DicoPair;
+import com.muskteer.dico.engine.inner.DicoSql;
 import com.muskteer.dico.engine.parser.Parser;
 import com.muskteer.dico.engine.route.Router;
-import com.muskteer.dico.engine.route.TableRulerBean;
+import com.muskteer.dico.engine.route.TableRulerConfig;
 import com.muskteer.dico.util.ArrUtils;
 import com.muskteer.dico.util.PatternMatcherUnit;
 import org.springframework.util.StringUtils;
@@ -20,7 +20,7 @@ public class BuildFactory {
         // loading ruler.
         loadFromConfig(currSql);
         // calcu ruler for where data goes.
-        TableRulerBean ruler = currSql.getRuler();
+        TableRulerConfig ruler = currSql.getRuler();
         String dbId = Parser.parse(ruler, params);
         // create connection && prepared sql param.
         new ConnectFactory(currSql).makeConnect(dbId).preparedStmt(params);
@@ -34,9 +34,9 @@ public class BuildFactory {
      */
     private static void loadFromConfig(DicoSql currSql) {
         currSql.setTableName(calcuTabnameFromSqlStr(currSql.getSql()));
-        TableRulerBean tabRuler = Router.config(currSql.getTableName());
+        TableRulerConfig tabRuler = Router.config(currSql.getTableName());
         currSql.setRuler(tabRuler);
-        currSql.setPartionKey(new Pair(tabRuler.getColumn(), null));
+        currSql.setPartionKey(new DicoPair(tabRuler.getColumn(), null));
     }
 
     /**

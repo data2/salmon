@@ -1,16 +1,17 @@
 package com.muskteer.dico.engine.route;
 
-import java.util.Map;
-
-import com.muskteer.dico.config.RuleKeys;
 import com.muskteer.dico.engine.factory.ConfigurationFactory;
 import com.muskteer.dico.engine.parser.TextFunction;
 
+import java.util.Map;
+
 public class Router {
 
-    public static TableRulerBean config(String tableName) {
-        TableRulerBean bean = new TableRulerBean();
-        String tabs = ConfigurationFactory.getProperty(RuleKeys.getTableRuleConfig());
+    public final static String RULE_TABLE = "rule.table";
+
+    public static TableRulerConfig config(String tableName) {
+        TableRulerConfig bean = new TableRulerConfig();
+        String tabs = ConfigurationFactory.getProperty(RULE_TABLE);
         Map<?, ?> map = TextFunction.contain(tabs, tableName);
         bean.setPartionMethod(((String) map.get("Method")).trim());
         String[] tmp = (String[]) map.get("Ruler");
@@ -20,11 +21,6 @@ public class Router {
         bean.setColumn(tmp[1].trim());
         bean.setParams(params);
         return bean;
-    }
-
-    public static void main(String[] args) {
-        TableRulerBean bean = config("TF_B_TRADE_LOG");
-        System.out.println(bean.toString());
     }
 
 }

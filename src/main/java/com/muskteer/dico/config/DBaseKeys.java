@@ -1,25 +1,8 @@
 package com.muskteer.dico.config;
 
 public class DBaseKeys {
-    public static String classType = "database";
-    private static String url = "url";
-    private static String mapping = "mapping";
-    private static String username = "username";
-    private static String password = "password";
-
-    public static String getUrl() {
-        return classType.concat(".").concat(url);
-    }
-
-    public static String getUsername() {
-        return classType.concat(".").concat(username);
-    }
-
-    public static String getPassword() {
-        return classType.concat(".").concat(password);
-    }
-
-    public static String getMapping() {
-        return classType.concat(".").concat(mapping);
-    }
+    public final static String url = "database.url";
+    public final static String mapping = "database.mapping";
+    public final static String username = "database.username";
+    public final static String password = "database.password";
 }

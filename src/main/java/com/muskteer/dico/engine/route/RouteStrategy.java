@@ -4,14 +4,14 @@ import java.util.Iterator;
 import java.util.Map;
 
 import com.muskteer.dico.base.exception.InnerException;
-import com.muskteer.dico.engine.inner.Pair;
+import com.muskteer.dico.engine.inner.DicoPair;
 import com.muskteer.dico.engine.route.match.MatchBestStrategy;
 import com.muskteer.dico.util.ArrUtils;
 import org.springframework.util.StringUtils;
 
 public abstract class RouteStrategy implements RouteStrategyMaster {
 
-    protected Pair partionPair = new Pair();
+    protected DicoPair partionPair = new DicoPair();
 
     protected String locatePartionVal(Map<?, ?> map) {
         String partionVal = null;

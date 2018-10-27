@@ -1,4 +1,4 @@
-package com.muskteer.dico.engine.inner.trans;
+package com.muskteer.dico.engine.inner;
 
 public interface Transaction {
 

@@ -6,9 +6,8 @@ import com.google.common.collect.Maps;
 import com.muskteer.dico.engine.route.impl.HashStrategyRouter;
 import com.muskteer.dico.engine.route.impl.NormalStrategyRouter;
 
-public class ThrowDataSet {
+public class PartitionSet {
 
-    @SuppressWarnings("rawtypes")
     static HashMap<String, Class> strategy = Maps.newHashMap();
 
     static {

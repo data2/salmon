@@ -1,6 +1,4 @@
-package com.muskteer.dico.engine.inner.trans.impl;
-
-import com.muskteer.dico.engine.inner.trans.Transaction;
+package com.muskteer.dico.engine.inner;
 
 public class DicoTrans implements Transaction {
 

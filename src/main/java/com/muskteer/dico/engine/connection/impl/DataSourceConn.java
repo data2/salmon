@@ -1,4 +1,4 @@
-package com.muskteer.dico.engine.connection;
+package com.muskteer.dico.engine.connection.impl;
 
 import java.sql.Connection;
 
@@ -7,6 +7,7 @@ import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import com.muskteer.dico.config.DBaseKeys;
+import com.muskteer.dico.engine.connection.EngineConnection;
 import com.muskteer.dico.engine.factory.ConfigurationFactory;
 
 public class DataSourceConn implements EngineConnection {
@@ -22,8 +23,8 @@ public class DataSourceConn implements EngineConnection {
             public DruidDataSource load(String key) throws Exception {
                 DruidDataSource source = new DruidDataSource();
                 // source.setUrl(parseParameter(url, database));
-                source.setUsername(ConfigurationFactory.getProperty(DBaseKeys.getUsername()));
-                source.setPassword(ConfigurationFactory.getProperty(DBaseKeys.getPassword()));
+                source.setUsername(ConfigurationFactory.getProperty(DBaseKeys.username));
+                source.setPassword(ConfigurationFactory.getProperty(DBaseKeys.password));
 
                 // int myInitialSize = parseIntParameter(initialSize, database);
                 // if (myInitialSize > 0)

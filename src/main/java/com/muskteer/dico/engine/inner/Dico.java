@@ -1,4 +1,4 @@
-package com.muskteer.dico.engine.inner.co.impl;
+package com.muskteer.dico.engine.inner;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -11,9 +11,6 @@ import com.muskteer.dico.config.DicoConfig;
 import com.muskteer.dico.config.KeysConstant;
 import com.muskteer.dico.engine.parser.ParseConfig;
 import com.muskteer.dico.engine.factory.BuildFactory;
-import com.muskteer.dico.engine.inner.co.Co;
-import com.muskteer.dico.engine.inner.sql.DicoSql;
-import com.muskteer.dico.engine.inner.trans.impl.DicoTrans;
 import com.muskteer.dico.util.DicoClassLoader;
 
 /**
@@ -31,7 +28,7 @@ public class Dico implements Co {
     protected boolean exception = false;
 
     public Dico() {
-        this.dicoConfig = new DicoConfig(KeysConstant.getDefaultDbaseInitFileName());
+        this.dicoConfig = new DicoConfig(KeysConstant.DEFAULT_DICO_FILE);
         initContext();
     }
 

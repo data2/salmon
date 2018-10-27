@@ -1,4 +1,4 @@
-package com.muskteer.dico.engine.inner.co;
+package com.muskteer.dico.engine.inner;
 
 import java.util.Map;
 

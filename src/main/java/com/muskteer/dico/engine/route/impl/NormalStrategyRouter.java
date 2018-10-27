@@ -3,7 +3,7 @@ package com.muskteer.dico.engine.route.impl;
 import java.util.Map;
 
 import com.muskteer.dico.base.exception.InnerException;
-import com.muskteer.dico.engine.route.TableRulerBean;
+import com.muskteer.dico.engine.route.TableRulerConfig;
 import org.springframework.util.StringUtils;
 
 import com.muskteer.dico.engine.route.RouteStrategy;
@@ -41,7 +41,7 @@ public class NormalStrategyRouter extends RouteStrategy {
     }
 
     @Override
-    public NormalStrategyRouter config(TableRulerBean rule) throws InnerException {
+    public NormalStrategyRouter config(TableRulerConfig rule) throws InnerException {
         String[] params = rule.getParams();
         if (params.length != 3) {
             throw new InnerException("back hash partion route needs three param");

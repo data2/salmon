@@ -1,4 +1,4 @@
-package com.muskteer.dico.engine.cache;
+package com.muskteer.dico.engine.cache.impl;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
@@ -7,6 +7,8 @@ import com.google.common.base.Charsets;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.io.Resources;
+import com.muskteer.dico.engine.cache.SqlSource;
+import com.muskteer.dico.engine.cache.impl.DicoFileSource;
 import com.muskteer.dico.engine.parser.TextFunction;
 import com.muskteer.dico.util.DicoClassLoader;
 

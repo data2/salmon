@@ -8,7 +8,7 @@ import java.util.Map;
 
 import com.muskteer.dico.base.exception.InnerException;
 import com.muskteer.dico.config.DBaseKeys;
-import com.muskteer.dico.engine.inner.sql.DicoSql;
+import com.muskteer.dico.engine.inner.DicoSql;
 import com.muskteer.dico.util.ColumnSequenceUtil;
 
 public class ConnectFactory {
@@ -34,8 +34,8 @@ public class ConnectFactory {
      * @return
      */
     public String doURL(String dbId) {
-        String uri = ConfigurationFactory.getProperty(DBaseKeys.getUrl());
-        String[] mapping = ConfigurationFactory.getProperty(DBaseKeys.getMapping()).split(",");
+        String uri = ConfigurationFactory.getProperty(DBaseKeys.url);
+        String[] mapping = ConfigurationFactory.getProperty(DBaseKeys.mapping).split(",");
         String[] tmp = null;
         for (String sub : mapping) {
             tmp = sub.split("\\|");
@@ -58,8 +58,8 @@ public class ConnectFactory {
      */
     public ConnectFactory makeConnect(String dbId) {
         String uri = doURL(dbId);
-        String username = ConfigurationFactory.getProperty(DBaseKeys.getUsername());
-        String password = ConfigurationFactory.getProperty(DBaseKeys.getPassword());
+        String username = ConfigurationFactory.getProperty(DBaseKeys.username);
+        String password = ConfigurationFactory.getProperty(DBaseKeys.password);
         Connection con = null;
         try {
             con = DriverManager.getConnection(uri, username, password);

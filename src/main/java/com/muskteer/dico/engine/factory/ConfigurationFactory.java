@@ -18,7 +18,7 @@ public class ConfigurationFactory {
     static {
         try {
             PropertiesUtil.loader(properties,
-                DicoClassLoader.loadFile(KeysConstant.getDefaultDbaseInitFileName()));
+                DicoClassLoader.loadFile(KeysConstant.DEFAULT_DICO_FILE));
         } catch (InnerException e) {
             e.printStackTrace();
         }

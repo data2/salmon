@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.muskteer.dico.base.exception.InnerException;
-import com.muskteer.dico.engine.inner.co.impl.Dico;
+import com.muskteer.dico.engine.inner.Dico;
 import com.muskteer.dico.engine.proxy.cutpoint.CutPointInterceptor;
 import com.muskteer.dico.util.DicoClassLoader;
 

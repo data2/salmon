@@ -4,8 +4,8 @@ import java.util.Map;
 
 import com.muskteer.dico.base.exception.InnerException;
 import com.muskteer.dico.engine.route.RouteStrategyMaster;
-import com.muskteer.dico.engine.route.TableRulerBean;
-import com.muskteer.dico.engine.route.ThrowDataSet;
+import com.muskteer.dico.engine.route.TableRulerConfig;
+import com.muskteer.dico.engine.route.PartitionSet;
 
 public class Parser {
 
@@ -18,8 +18,8 @@ public class Parser {
     }
 
     @SuppressWarnings("unchecked")
-    public static String parse(TableRulerBean rule, Map<?, ?> params) throws InnerException {
-        Class<? extends RouteStrategyMaster> cls = (Class<? extends RouteStrategyMaster>) ThrowDataSet
+    public static String parse(TableRulerConfig rule, Map<?, ?> params) throws InnerException {
+        Class<? extends RouteStrategyMaster> cls = (Class<? extends RouteStrategyMaster>) PartitionSet
                 .getParseClass(rule.getPartionMethod());
         RouteStrategyMaster master = (RouteStrategyMaster) (cls != null ? newObject(cls) : null);
         return master.config(rule).route(params);

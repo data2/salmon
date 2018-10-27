@@ -1,4 +1,4 @@
-package com.muskteer.dico.engine.cache;
+package com.muskteer.dico.engine.cache.impl;
 
 import java.net.URL;
 import java.util.concurrent.Callable;
@@ -8,6 +8,7 @@ import com.google.common.base.Charsets;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.io.Resources;
+import com.muskteer.dico.engine.cache.FileSource;
 import com.muskteer.dico.util.DicoClassLoader;
 
 public class DicoFileSource implements FileSource {

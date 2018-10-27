@@ -8,5 +8,5 @@ public interface RouteStrategyMaster {
 
     String route(Map<?, ?> map) throws InnerException;
 
-    RouteStrategyMaster config(TableRulerBean rule) throws InnerException;
+    RouteStrategyMaster config(TableRulerConfig rule) throws InnerException;
 }

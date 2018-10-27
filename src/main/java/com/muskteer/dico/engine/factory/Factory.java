@@ -3,7 +3,7 @@ package com.muskteer.dico.engine.factory;
 import java.lang.reflect.Proxy;
 
 import com.muskteer.dico.engine.proxy.RunColInvocationHandler;
-import com.muskteer.dico.engine.inner.co.Co;
+import com.muskteer.dico.engine.inner.Co;
 
 /**
  * impl of co add proxy.
