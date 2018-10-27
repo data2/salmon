@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.muskteer.dico.engine.config.DicoPair;
 import com.muskteer.dico.engine.route.TableRulerConfig;
 import com.muskteer.dico.engine.factory.SqlFactory;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package com.muskteer.dico.engine.inner;
+package com.muskteer.dico.engine.config;
 
 import lombok.Getter;
 import lombok.Setter;

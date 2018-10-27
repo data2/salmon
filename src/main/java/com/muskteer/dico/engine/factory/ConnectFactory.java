@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
-import com.muskteer.dico.base.exception.InnerException;
+import com.muskteer.dico.common.exception.InnerException;
 import com.muskteer.dico.engine.config.DBaseKeys;
 import com.muskteer.dico.engine.inner.DicoSql;
 import com.muskteer.dico.common.util.ColumnSequenceUtil;
@@ -53,7 +53,6 @@ public class ConnectFactory {
     /**
      * create sql conn.
      * 
-     * @param currSql
      * @param dbId
      */
     public ConnectFactory makeConnect(String dbId) {
@@ -74,7 +73,6 @@ public class ConnectFactory {
     /**
      * prepared stmt.
      * 
-     * @param currSql
      * @param params
      * @throws InnerException
      */

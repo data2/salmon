@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 import com.muskteer.dico.base.exception.InnerException;
-import com.muskteer.dico.engine.inner.DicoPair;
+import com.muskteer.dico.engine.config.DicoPair;
 import com.muskteer.dico.engine.route.match.MatchBestStrategy;
 import com.muskteer.dico.common.util.ArrUtils;
 import org.springframework.util.StringUtils;

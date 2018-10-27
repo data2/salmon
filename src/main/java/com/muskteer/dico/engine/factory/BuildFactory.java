@@ -4,8 +4,8 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.muskteer.dico.base.exception.InnerException;
-import com.muskteer.dico.engine.inner.DicoPair;
+import com.muskteer.dico.common.exception.InnerException;
+import com.muskteer.dico.engine.config.DicoPair;
 import com.muskteer.dico.engine.inner.DicoSql;
 import com.muskteer.dico.engine.parser.Parser;
 import com.muskteer.dico.engine.route.Router;
