@@ -2,8 +2,7 @@ package com.muskteer.dico.engine.factory;
 
 import java.util.Properties;
 
-import com.muskteer.dico.base.exception.InnerException;
-import com.muskteer.dico.engine.config.KeysConstant;
+import com.muskteer.dico.engine.config.DBaseKeys;
 import com.muskteer.dico.common.util.DicoClassLoader;
 import com.muskteer.dico.common.util.PropertiesUtil;
 
@@ -18,8 +17,8 @@ public class ConfigurationFactory {
     static {
         try {
             PropertiesUtil.loader(properties,
-                DicoClassLoader.loadFile(KeysConstant.DEFAULT_DICO_FILE));
-        } catch (InnerException e) {
+                DicoClassLoader.loadFile(DBaseKeys.DEFAULT_DICO_FILE));
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

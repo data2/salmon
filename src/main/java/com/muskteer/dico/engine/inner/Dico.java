@@ -7,8 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.muskteer.dico.engine.config.DBaseKeys;
 import com.muskteer.dico.engine.config.DicoConfig;
-import com.muskteer.dico.engine.config.KeysConstant;
 import com.muskteer.dico.engine.parser.ParseConfig;
 import com.muskteer.dico.engine.factory.BuildFactory;
 import com.muskteer.dico.common.util.DicoClassLoader;
@@ -28,7 +28,7 @@ public class Dico implements Co {
     protected boolean exception = false;
 
     public Dico() {
-        this.dicoConfig = new DicoConfig(KeysConstant.DEFAULT_DICO_FILE);
+        this.dicoConfig = new DicoConfig(DBaseKeys.DEFAULT_DICO_FILE);
         initContext();
     }
 
