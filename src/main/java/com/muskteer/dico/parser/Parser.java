@@ -2,7 +2,7 @@ package com.muskteer.dico.parser;
 
 import java.util.Map;
 
-import com.muskteer.dico.common.exception.InnerException;
+import com.muskteer.dico.common.exception.DicoException;
 import com.muskteer.dico.route.RouteStrategyMaster;
 import com.muskteer.dico.route.TableRulerConfig;
 import com.muskteer.dico.route.PartitionSet;
@@ -18,7 +18,7 @@ public class Parser {
     }
 
     @SuppressWarnings("unchecked")
-    public static String parse(TableRulerConfig rule, Map<?, ?> params) throws InnerException {
+    public static String parse(TableRulerConfig rule, Map<?, ?> params) throws DicoException {
         Class<? extends RouteStrategyMaster> cls = (Class<? extends RouteStrategyMaster>) PartitionSet
                 .getParseClass(rule.getPartionMethod());
         RouteStrategyMaster master = (RouteStrategyMaster) (cls != null ? newObject(cls) : null);

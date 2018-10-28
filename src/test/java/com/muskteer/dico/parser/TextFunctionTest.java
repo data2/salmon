@@ -1,9 +1,6 @@
 package com.muskteer.dico.parser;
 
-import com.google.common.base.Charsets;
-import com.google.common.io.Resources;
-import com.muskteer.dico.common.exception.InnerException;
-import com.muskteer.dico.common.util.DicoClassLoader;
+import com.muskteer.dico.common.exception.DicoException;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -11,11 +8,11 @@ import java.io.IOException;
 public class TextFunctionTest {
 
     @Test
-    public void excute() throws IOException, InnerException {
-        String contents = Resources.toString(
-                DicoClassLoader.getClassLoader().getResource("com/barnett/db/engine/inner/Test.co"), Charsets.UTF_8);
-        // System.out.println(contents);
-        String s = TextFunction.excute(contents, "InsertOrderInfo");
-        System.out.println(s);
+    public void excute() throws IOException, DicoException {
+//        String contents = Resources.toString(
+//                DicoClassLoader.getClassLoader().getResource("com/muskteer/dico/controller/AppControllerTest.co"), Charsets.UTF_8);
+//        // System.out.println(contents);
+//        String s = TextFunction.excute(contents, "InsertOrderInfo");
+//        System.out.println(s);
     }
 }

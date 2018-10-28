@@ -55,5 +55,9 @@ public class DicoExecuteSql {
     private DicoPair partionKey;
     private Object res;
     private TableRulerConfig ruler;
+    public DicoExecuteSql setSql(String sql){
+        this.sql = sql;
+        return this;
+    }
 
 }

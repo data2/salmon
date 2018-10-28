@@ -3,7 +3,7 @@ package com.muskteer.dico.route;
 import java.util.Iterator;
 import java.util.Map;
 
-import com.muskteer.dico.common.exception.InnerException;
+import com.muskteer.dico.common.exception.DicoException;
 import com.muskteer.dico.config.DicoPair;
 import com.muskteer.dico.common.util.ArrUtils;
 import org.springframework.util.StringUtils;
@@ -37,9 +37,9 @@ public abstract class RouteStrategy implements RouteStrategyMaster {
         return map.get(MatchBestStrategy.exec(map, key));
     }
 
-    protected String isNullThrowEX(String str) throws InnerException {
+    protected String isNullThrowEX(String str) throws DicoException {
         if (StringUtils.isEmpty(str)) {
-            throw new InnerException("partion value is null.");
+            throw new DicoException("partion value is null.");
         }
         return str;
     }

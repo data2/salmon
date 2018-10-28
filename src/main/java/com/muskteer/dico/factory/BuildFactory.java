@@ -1,6 +1,6 @@
 package com.muskteer.dico.factory;
 
-import com.muskteer.dico.common.exception.InnerException;
+import com.muskteer.dico.common.exception.DicoException;
 import com.muskteer.dico.common.util.ArrUtils;
 import com.muskteer.dico.common.util.PatternMatcherUnit;
 import com.muskteer.dico.config.DicoPair;
@@ -24,7 +24,7 @@ public class BuildFactory {
     @Autowired
     public Router router;
 
-    public void build(DicoExecuteSql currSql, Map<?, ?> params) throws InnerException {
+    public void build(DicoExecuteSql currSql, Map<?, ?> params) throws DicoException {
         // loading ruler.
         loadFromConfig(currSql);
         // calcu ruler for where data goes.

@@ -6,13 +6,20 @@ import com.google.common.cache.CacheBuilder;
 import com.google.common.io.Resources;
 import com.muskteer.dico.common.util.DicoClassLoader;
 import com.muskteer.dico.parser.TextFunction;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 
+@Component
 public class DicoSqlConfigCache implements ExecuteSqlCache {
 
-    private static Cache<String, Object> cache;
+    private Cache<String, Object> cache = CacheBuilder.newBuilder().build();;
+
+    @Autowired
+    private DicoFileConfigCache dicoFileConfigCache;
+
 
     public Object getSource(final String file, final String key) {
         try {
@@ -22,7 +29,7 @@ public class DicoSqlConfigCache implements ExecuteSqlCache {
                 public Object call() {
                     String sql = null;
                     try {
-                        String contents = (String) new DicoFileConfigCache().getSource(file);
+                        String contents = (String) dicoFileConfigCache.getSource(file);
                         if (contents == null) {
                             contents = Resources.toString(DicoClassLoader.getClassLoader().getResource(key),
                                     Charsets.UTF_8);
@@ -54,10 +61,6 @@ public class DicoSqlConfigCache implements ExecuteSqlCache {
             cache.invalidateAll();
             ;
         }
-    }
-
-    static {
-        cache = CacheBuilder.newBuilder().build();
     }
 
 }

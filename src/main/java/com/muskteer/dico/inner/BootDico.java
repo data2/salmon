@@ -1,8 +1,6 @@
 package com.muskteer.dico.inner;
 
 import com.google.common.collect.Maps;
-import com.muskteer.dico.common.util.DicoClassLoader;
-import com.muskteer.dico.config.DicoDatabseConfig;
 import com.muskteer.dico.config.OperationKeys;
 import com.muskteer.dico.factory.BuildFactory;
 import com.muskteer.dico.parser.ParseConfig;
@@ -21,27 +19,23 @@ import java.util.Map;
 @Component
 @Getter
 @Setter
-public class BootDico extends OriginDico implements DatabaseOps, InitializingBean {
+public class BootDico extends OriginDico implements InitializingBean, Dico {
 
     protected DicoTrans coTrans;
     protected List<DicoExecuteSql> sqlArr = new ArrayList<>();
     protected DicoExecuteSql currSql;
     protected Map<?, ?> currParams;
-    protected String classloaderFile;
     protected Map<String, Object> context;
     protected boolean exception = false;
 
     @Autowired
     public BuildFactory buildFactory;
+    @Autowired
+    private ParseConfig parseConfig;
 
     private void initContext() {
         context = Maps.newConcurrentMap();
         context.put("time", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
-        classloaderFile = getDicoFile();
-    }
-
-    private String getDicoFile() {
-        return DicoClassLoader.getCurrClassName().replaceAll("\\.", "/").concat(".co");
     }
 
     public void getTrans() {
@@ -75,15 +69,16 @@ public class BootDico extends OriginDico implements DatabaseOps, InitializingBea
 
     public Object execute() {
         try {
-            String sql = ParseConfig.parse(classloaderFile, currSql);
-            currSql.setSql(sql);
-            buildFactory.build(currSql, currParams);
+            System.out.println(this.getClass().getField("Dico").getAnnotation(Mapper.class).file());
+            buildFactory.build(currSql.setSql(parseConfig.parse(this.getClass()
+                    .getField("Dico").getAnnotation(Mapper.class).file(), currSql)), currParams);
             sqlArr.add(currSql);
             return currSql.exec();
         } catch (Exception e) {
+            e.printStackTrace();
             exception = true;
         }
-        return classloaderFile;
+        return currSql.getSqlId();
 
     }
 

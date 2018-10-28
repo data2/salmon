@@ -1,14 +1,15 @@
 package com.muskteer.dico.factory;
 
-import com.muskteer.dico.common.exception.InnerException;
+import com.muskteer.dico.common.exception.DicoException;
 import com.muskteer.dico.common.util.ColumnSequenceUtil;
 import com.muskteer.dico.config.DicoDatabseConfig;
 import com.muskteer.dico.inner.DicoExecuteSql;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.stereotype.Component;
 
+import javax.sql.DataSource;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
@@ -42,9 +43,16 @@ public class ConnectFactory {
         String uri = doURL(dbId);
         String username = dicoDatabseConfig.getUsername();
         String password = dicoDatabseConfig.getPassword();
-        Connection con = null;
+        DataSource dataSource = DataSourceBuilder
+                .create()
+                .url(uri)
+                .username(username)
+                .password(password)
+                .driverClassName(uri.contains("jdbc") ? "com.mysql.jdbc.Driver" : "oracle.jdbc.driver.OracleDriver")
+                .build();
         try {
-            con = DriverManager.getConnection(uri, username, password);
+            //con = DriverManager.getConnection(uri, username, password);
+            Connection con = dataSource.getConnection();
             con.setAutoCommit(false);
             dicosql.setConn(con);
         } catch (SQLException e) {
@@ -53,7 +61,7 @@ public class ConnectFactory {
         return this;
     }
 
-    public void preparedStmt(Map<?, ?> params) throws InnerException {
+    public void preparedStmt(Map<?, ?> params) throws DicoException {
         List<Object> sortParms = ColumnSequenceUtil.sort(dicosql, params);
         ColumnSequenceUtil.setValue(dicosql, sortParms);
     }
@@ -61,6 +69,7 @@ public class ConnectFactory {
     static {
         try {
             Class.forName("com.mysql.jdbc.Driver");
+//            Class.forName("oracle.jdbc.driver.OracleDriver");
         } catch (Exception e) {
             e.printStackTrace();
         }

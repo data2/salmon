@@ -2,15 +2,15 @@ package com.muskteer.dico.common.util;
 
 import java.io.InputStream;
 
-import com.muskteer.dico.common.exception.InnerException;
+import com.muskteer.dico.common.exception.DicoException;
 
 public class DicoClassLoader {
 
-    public static InputStream loadFile(String file) throws InnerException {
+    public static InputStream loadFile(String file) throws DicoException {
         return getClassLoader().getResourceAsStream(file);
     }
 
-    public static ClassLoader getClassLoader() throws InnerException {
+    public static ClassLoader getClassLoader() throws DicoException {
         return Objects.priorityUseFirst(Thread.currentThread().getContextClassLoader(),
                 DicoClassLoader.class.getClassLoader());
     }

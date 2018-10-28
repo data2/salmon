@@ -5,14 +5,16 @@ import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.io.Resources;
 import com.muskteer.dico.common.util.DicoClassLoader;
+import org.springframework.stereotype.Component;
 
 import java.net.URL;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 
+@Component
 public class DicoFileConfigCache implements FileConfigCache {
 
-    private static Cache<String, Object> cache;
+    private Cache<String, Object> cache = CacheBuilder.newBuilder().build();;
 
     public Object getSource(final String key) {
         try {
@@ -50,10 +52,6 @@ public class DicoFileConfigCache implements FileConfigCache {
             cache.invalidateAll();
             ;
         }
-    }
-
-    static {
-        cache = CacheBuilder.newBuilder().build();
     }
 
 }

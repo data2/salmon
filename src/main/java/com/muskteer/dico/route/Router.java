@@ -1,6 +1,6 @@
 package com.muskteer.dico.route;
 
-import com.muskteer.dico.config.DicoRuleConfig;
+import com.muskteer.dico.config.DicoDatabseConfig;
 import com.muskteer.dico.parser.TextFunction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -11,11 +11,11 @@ import java.util.Map;
 public class Router {
 
     @Autowired
-    public DicoRuleConfig dicoRuleConfig;
+    public DicoDatabseConfig dicoDatabseConfig;
 
     public TableRulerConfig config(String tableName) {
         TableRulerConfig bean = new TableRulerConfig();
-        String tabs = dicoRuleConfig.getTable();
+        String tabs = dicoDatabseConfig.
         Map<?, ?> map = TextFunction.contain(tabs, tableName);
         bean.setPartionMethod(((String) map.get("Method")).trim());
         String[] tmp = (String[]) map.get("Ruler");
