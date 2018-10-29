@@ -1,4 +1,5 @@
-
+server:
+  port: 8080
 spring :
   dico :
     database :
@@ -6,7 +7,4 @@ spring :
       username : udp
       password : udp2016
       mapping : db0|14,db1|15
-    rule :
-      table : hash(UDP_PAYRISK,SERVICEORDERID,7,4,2) \n hash(TF_B_TEST,ORDER_NO,9,4,2)\n
-server:
-  port: 8080
+      table : hash(UDP_PAYRISK,SERVICEORDERID,7,4,2) ; hash(UDP_ORDERINFO,PAYORDERID,9,4,2)

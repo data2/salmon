@@ -44,7 +44,7 @@ public class TextFunction {
      * @return
      */
     public static Map<String, Object> contain(String contents, String key) {
-        Iterable<String> lines = Splitter.on('\n').trimResults().split(contents);
+        Iterable<String> lines = Splitter.on(';').trimResults().split(contents);
         Map<String, Object> map = new HashMap<String, Object>();
         String[] ruler = null;
         for (String line : lines) {

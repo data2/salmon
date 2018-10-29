@@ -15,6 +15,6 @@ public class DicoDatabseConfig {
     private String username;
     private String password;
     private String mapping;
-        public String table;
+    private String table;
 
 }

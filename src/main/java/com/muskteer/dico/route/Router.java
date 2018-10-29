@@ -15,7 +15,7 @@ public class Router {
 
     public TableRulerConfig config(String tableName) {
         TableRulerConfig bean = new TableRulerConfig();
-        String tabs = dicoDatabseConfig.
+        String tabs = dicoDatabseConfig.getTable();
         Map<?, ?> map = TextFunction.contain(tabs, tableName);
         bean.setPartionMethod(((String) map.get("Method")).trim());
         String[] tmp = (String[]) map.get("Ruler");

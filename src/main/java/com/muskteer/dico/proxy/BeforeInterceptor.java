@@ -1,12 +1,9 @@
 package com.muskteer.dico.proxy;
 
-import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.muskteer.dico.common.exception.DicoException;
-import com.muskteer.dico.inner.BootDico;
-import com.muskteer.dico.common.util.DicoClassLoader;
 
 public class BeforeInterceptor implements CutPointInterceptor {
 
