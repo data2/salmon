@@ -18,4 +18,6 @@ public interface Dico {
 
     Object execute();
 
+    String returnInfo();
+
 }

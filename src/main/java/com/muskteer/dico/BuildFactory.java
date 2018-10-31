@@ -15,14 +15,14 @@ public class BuildFactory {
     @Autowired
     public Router router;
 
-    public void build(DicoExecuteSql currSql, Map<?, ?> params) throws DicoException {
+    public void build(String dbase, DicoExecuteSql currSql, Map<?, ?> params) throws DicoException {
         // loading ruler.
         loadFromConfig(currSql);
         // calcu ruler for where data goes.
         TableRulerConfig ruler = currSql.getRuler();
         String dbId = Parser.parse(ruler, params);
         // create connection && prepared sql param.
-        connectFactory.setSql(currSql).makeConnect(dbId).preparedStmt(params);
+        connectFactory.setSql(currSql).makeConnect(new DataSourceLooker(dbase,dbId)).preparedStmt(params);
 
     }
 

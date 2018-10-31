@@ -67,7 +67,7 @@ public class QuickDicoService extends DicoService implements InitializingBean, D
 
     public Object execute() {
         try {
-            buildFactory.build(currSql.setSql(parseConfig.parse("", currSql)), currParams);
+            buildFactory.build(database,currSql.setSql(parseConfig.parse("", currSql)), currParams);
             System.out.println(currSql);
             sqlArr.add(currSql);
             return currSql.exec();
@@ -85,5 +85,8 @@ public class QuickDicoService extends DicoService implements InitializingBean, D
         initContext();
     }
 
-
+    @Override
+    public String returnInfo() {
+        return name + database + file;
+    }
 }

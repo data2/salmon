@@ -13,6 +13,8 @@ import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.context.ApplicationContextException;
 import org.springframework.stereotype.Component;
 
+import java.lang.reflect.Field;
+
 @Component
 public class ProxyBeanProcessor implements BeanFactoryPostProcessor {
 
@@ -27,7 +29,11 @@ public class ProxyBeanProcessor implements BeanFactoryPostProcessor {
         }
         for (Scanner.Inner inner : Scanner.loadCheckClassMethods(DicoScanUtil.achieveScan())) {
             if (DicoEnum.PARTITION.toString().equalsIgnoreCase(inner.database)) {
-                AbstractBeanDefinition abstractBeanDefinition = BeanDefinitionBuilder.genericBeanDefinition(QuickDicoService.class).getBeanDefinition();
+                BeanDefinitionBuilder beanDefinitionBuilder =  BeanDefinitionBuilder.genericBeanDefinition(QuickDicoService.class);
+                beanDefinitionBuilder.addPropertyValue("name",inner.name);
+                beanDefinitionBuilder.addPropertyValue("database",inner.database);
+                beanDefinitionBuilder.addPropertyValue("file",inner.file);
+                AbstractBeanDefinition abstractBeanDefinition = beanDefinitionBuilder.getBeanDefinition();
                 abstractBeanDefinition.addQualifier(new AutowireCandidateQualifier(inner.name));
                 abstractBeanDefinition.setScope("prototype");
                 defaultListableBeanFactory.registerBeanDefinition(inner.name, abstractBeanDefinition);

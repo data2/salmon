@@ -1,9 +1,8 @@
 package com.muskteer.dico;
 
-import java.sql.Connection;
+import com.alibaba.druid.pool.DruidDataSource;
+import org.springframework.beans.factory.InitializingBean;
 
-public interface EngineConnection {
-    void iniliazation();
-
-    Connection getConnection();
+public interface EngineConnection extends InitializingBean {
+    DruidDataSource getSource(DataSourceLooker looker);
 }
