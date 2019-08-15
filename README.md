@@ -10,9 +10,9 @@ DICO , an easy framework which support distributed db system.
         scan:package
         database:
           jdbc:
-            url: jdbc:mysql://10.40.32.14:3306/udp
-            username: udp
-            password: udp2016
+            url: jdbc:mysql://ip:3306/udp
+            username: username
+            password: pwdd
             
      --<test>
         select 1 from dual
