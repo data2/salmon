@@ -1,5 +1,7 @@
-![](https://img.shields.io/github/license/data2/dico?style=plastic)
-![](https://img.shields.io/github/issues/data2/dico?style=plastic)
+dico
+
+
+[![License](http://img.shields.io/:license-apache-brightgreen.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 
 
 dico , an easy framework which support distributed db system.
