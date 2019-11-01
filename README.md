@@ -2,7 +2,8 @@ dico
 ====
 [![License](http://img.shields.io/:license-apache-brightgreen.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 [![Build Status](https://travis-ci.org/data2/dico.svg?branch=master)](https://travis-ci.org/data2/dico)
-[![Coverage Status](https://coveralls.io/repos/github/bingoohuang/eql/badge.svg?branch=master)]
+[![Coverage Status](https://coveralls.io/repos/github/bingoohuang/eql/badge.svg?branch=master)
+
 dico , an easy framework which support distributed db system.
 ```java
 @Autowired
