@@ -1,3 +1,6 @@
+![](https://img.shields.io/github/license/data2/dico?style=plastic)
+![](https://img.shields.io/github/issues/data2/dico)
+
 
 DICO , an easy framework which support distributed db system.
 ```java
