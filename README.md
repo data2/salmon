@@ -2,7 +2,7 @@
 ![](https://img.shields.io/github/issues/data2/dico?style=plastic)
 
 
-DICO , an easy framework which support distributed db system.
+dico , an easy framework which support distributed db system.
 ```java
 @Autowired
 @Mapper(file = "mapper1", database = "PARTITION")
