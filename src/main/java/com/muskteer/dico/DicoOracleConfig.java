@@ -18,12 +18,11 @@ public class DicoOracleConfig implements DicoConfig {
     private String password;
 
     @Override
-    public DataSource builder() {
+    public DruidDataSource builder(String dbid) {
         DruidDataSource dataSource = new DruidDataSource();
         dataSource.setUrl(url);
         dataSource.setUsername(username);
         dataSource.setPassword(password);
         return null;
     }
-
 }

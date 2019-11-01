@@ -20,7 +20,7 @@ public class DicoJdbcConfig implements DicoConfig {
 
 
     @Override
-    public DataSource builder() {
+    public DruidDataSource builder(String dbid) {
         DruidDataSource dataSource = new DruidDataSource();
         dataSource.setUrl(url);
         dataSource.setUsername(username);
