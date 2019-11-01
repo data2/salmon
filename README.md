@@ -4,7 +4,7 @@ DICO , an easy framework which support distributed db system.
     @Autowired
     @Mapper(file = "mapper1", database = "PARTITION")
     public Dico testDico;
-        
+```        
     spring:
       dico:
         scan:package
@@ -16,4 +16,4 @@ DICO , an easy framework which support distributed db system.
             
      --<test>
         select 1 from dual
-```
+
