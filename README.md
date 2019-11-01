@@ -1,5 +1,5 @@
 ![](https://img.shields.io/github/license/data2/dico?style=plastic)
-![](https://img.shields.io/github/issues/data2/dico)
+![](https://img.shields.io/github/issues/data2/dico?style=plastic)
 
 
 DICO , an easy framework which support distributed db system.
