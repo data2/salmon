@@ -24,11 +24,16 @@ public class ProxyBeanProcessor implements BeanFactoryPostProcessor {
         DefaultListableBeanFactory defaultListableBeanFactory
                 = (DefaultListableBeanFactory) beanFactory;
         if (StringUtils.isEmpty(ScanUtil.achieveScan())) {
-            throw new ApplicationContextException("spring.dico.scan is null ,please configure in spring");
+            throw new ApplicationContextException("spring.salmon.scan is null ,please configure in spring");
         }
+        System.out.println("test---------");
+        System.out.println("test---------");
+
+        System.out.println("test---------");
+
         for (Scanner.Inner inner : Scanner.loadCheckClassMethods(ScanUtil.achieveScan())) {
             if (DataBaseEnum.PARTITION.toString().equalsIgnoreCase(inner.database)) {
-                BeanDefinitionBuilder beanDefinitionBuilder =  BeanDefinitionBuilder.genericBeanDefinition(QuickDicoService.class);
+                BeanDefinitionBuilder beanDefinitionBuilder =  BeanDefinitionBuilder.genericBeanDefinition(QuickService.class);
                 beanDefinitionBuilder.addPropertyValue("name",inner.name);
                 beanDefinitionBuilder.addPropertyValue("database",inner.database);
                 beanDefinitionBuilder.addPropertyValue("file",inner.file);
@@ -36,7 +41,6 @@ public class ProxyBeanProcessor implements BeanFactoryPostProcessor {
                 abstractBeanDefinition.addQualifier(new AutowireCandidateQualifier(inner.name));
                 abstractBeanDefinition.setScope("prototype");
                 defaultListableBeanFactory.registerBeanDefinition(inner.name, abstractBeanDefinition);
-                log.info("regist Salmon success :" + inner.toString());
             }
 
         }

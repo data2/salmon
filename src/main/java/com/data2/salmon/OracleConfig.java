@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Getter
 @Setter
 @Component
-@ConfigurationProperties(prefix = "spring.dico.database.oracle")
+@ConfigurationProperties(prefix = "spring.salmon.database.oracle")
 public class OracleConfig implements Config {
     private String url;
     private String username;

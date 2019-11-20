@@ -20,7 +20,7 @@ public class BuildFactory {
         // loading ruler.
         loadFromConfig(currSql);
         // calcu ruler for where data goes.
-        TableRulerConfig ruler = currSql.getRuler();
+        TableConfig ruler = currSql.getRuler();
         String dbId = Parser.parse(ruler, params);
         // create connection && prepared sql param.
         connectFactory.setSql(currSql).makeConnect(new DataSourceLooker(dbase,dbId)).preparedStmt(params);
@@ -34,9 +34,9 @@ public class BuildFactory {
      */
     private void loadFromConfig(ExecuteSql currSql) {
         currSql.setTableName(calcuTabnameFromSqlStr(currSql.getSql()));
-        TableRulerConfig tabRuler = router.config(currSql.getTableName());
+        TableConfig tabRuler = router.config(currSql.getTableName());
         currSql.setRuler(tabRuler);
-        currSql.setPartionKey(new DicoPair(tabRuler.getColumn(), null));
+        currSql.setPartionKey(new Pair(tabRuler.getColumn(), null));
     }
 
     /**

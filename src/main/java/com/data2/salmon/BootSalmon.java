@@ -9,7 +9,7 @@ import java.lang.annotation.*;
 public @interface BootSalmon {
     String database() default "";
 
-    String name() default  "";
+    String name() default "";
 
-    String file() default  "";
+    String file() default "";
 }

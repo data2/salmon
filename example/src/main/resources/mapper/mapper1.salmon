@@ -1,0 +1,2 @@
+--<test>
+    select * from tm_article_info where articleID = #articleID#

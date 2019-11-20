@@ -12,9 +12,9 @@ public class Selector implements ImportSelector {
                 annotationType.getName(), false));
         String type = attributes.getString("type");
         if ("jdbc".equals(type)) {
-            return new String[] { QuickDicoService.class.getName() };
+            return new String[] { QuickService.class.getName() };
         }  else {
-            return new String[] { DicoService.class.getName() };
+            return new String[] { Service.class.getName() };
         }
     }
 }

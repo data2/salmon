@@ -16,7 +16,7 @@ public class DataSourceConn implements EngineConnection {
     private Cache<DataSourceLooker, DruidDataSource> dataSourceCache = CacheBuilder.newBuilder().build();
 
     @Autowired
-    public DicoPartitionConfig dicoPartitionConfig;
+    public PartitionConfig partitionConfig;
 
     @Autowired
     public JdbcConfig dicoJdbcConfig;
@@ -33,7 +33,7 @@ public class DataSourceConn implements EngineConnection {
                     Config config = null;
                     switch (dataSourceLooker.dbase) {
                         case "PARTITION":
-                            config = dicoPartitionConfig;
+                            config = partitionConfig;
                             break;
                         case "JDBC":
                             config = dicoJdbcConfig;

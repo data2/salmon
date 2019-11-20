@@ -8,7 +8,7 @@ import org.springframework.util.StringUtils;
 
 public abstract class RouteStrategy implements RouteStrategyMaster {
 
-    protected DicoPair partionPair = new DicoPair();
+    protected Pair partionPair = new Pair();
 
     protected String locatePartionVal(Map<?, ?> map) {
         String partionVal = null;

@@ -48,9 +48,9 @@ public class ExecuteSql {
     private String sqlId;
     private String sql;
     private String tableName;
-    private DicoPair partionKey;
+    private Pair partionKey;
     private Object res;
-    private TableRulerConfig ruler;
+    private TableConfig ruler;
     public ExecuteSql setSql(String sql){
         this.sql = sql;
         return this;

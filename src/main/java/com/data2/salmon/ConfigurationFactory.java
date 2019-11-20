@@ -1,6 +1,5 @@
 package com.data2.salmon;
 
-import com.data2.salmon.common.service.ConfigurationLoader;
 import com.data2.salmon.common.util.PropertiesUtil;
 
 import java.util.Properties;
@@ -16,7 +15,7 @@ public class ConfigurationFactory {
     static {
         try {
             PropertiesUtil.loader(properties,
-                ConfigurationLoader.loadFile(DBaseKeys.DEFAULT_DICO_FILE));
+                ConfigurationLoader.loadFile(DBaseKeys.DEFAULT_FILE));
         } catch (Exception e) {
             e.printStackTrace();
         }

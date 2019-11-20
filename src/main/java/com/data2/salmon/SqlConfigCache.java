@@ -1,6 +1,5 @@
 package com.data2.salmon;
 
-import com.data2.salmon.common.service.ConfigurationLoader;
 import com.google.common.base.Charsets;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;

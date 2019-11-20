@@ -13,7 +13,7 @@ import java.util.Map;
 public class ConnectFactory {
 
     @Autowired
-    public DicoPartitionConfig dicoPartitionConfig;
+    public PartitionConfig dicoPartitionConfig;
 
     @Autowired
     public DataSourceConn dataSourceConn;

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Getter
 @Setter
 @Component
-@ConfigurationProperties(prefix = "spring.dico.database.jdbc")
+@ConfigurationProperties(prefix = "spring.salmon.database.jdbc")
 public class JdbcConfig implements Config {
     private String url;
     private String username;

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Getter
 @Setter
 @Component
-@ConfigurationProperties(prefix = "spring.dico.database.partition")
+@ConfigurationProperties(prefix = "spring.salmon.database.partition")
 public class PartitionConfig implements Config {
     private String url;
     private String username;
@@ -31,7 +31,7 @@ public class PartitionConfig implements Config {
     private String doURL(String dbId) {
         String[] tmp = null;
         for (String sub : mapping.split(",")) {
-            tmp = sub.split("\\|");
+            tmp = sub.split(":");
             if (tmp.length == 2) {
                 if (tmp[0].equals("db" + dbId)) {
                     url = url.replace("XXX", tmp[1]);

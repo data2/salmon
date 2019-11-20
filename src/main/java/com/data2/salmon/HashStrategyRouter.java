@@ -28,19 +28,19 @@ public class HashStrategyRouter extends RouteStrategy {
         if ((start + len) > (val.length() + 1)) {
             throw new SalmonException("partion parse exception.");
         }
-        tem = val.substring(start - 1, start - 1 + len);
+        tem = val.substring(start, start + len);
         return (tem.hashCode() % cluster) + "";
     }
 
     @Override
-    public HashStrategyRouter config(TableRulerConfig rule) throws SalmonException {
+    public HashStrategyRouter config(TableConfig rule) throws SalmonException {
         String[] params = rule.getParams();
         if (params.length != 3) {
             throw new SalmonException("back hash partion route needs three param");
         }
         this.start = Integer.parseInt(isNullThrowEX(params[0]));
-        if (start <= 0) {
-            throw new SalmonException("back hash firsr param start should be > 0");
+        if (start < 0) {
+            throw new SalmonException("back hash firsr param start should be >= 0");
         }
         this.len = Integer.parseInt(isNullThrowEX(params[1]));
         if (len <= 0) {

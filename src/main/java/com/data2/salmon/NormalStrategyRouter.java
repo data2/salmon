@@ -37,7 +37,7 @@ public class NormalStrategyRouter extends RouteStrategy {
     }
 
     @Override
-    public NormalStrategyRouter config(TableRulerConfig rule) throws SalmonException {
+    public NormalStrategyRouter config(TableConfig rule) throws SalmonException {
         String[] params = rule.getParams();
         if (params.length != 3) {
             throw new SalmonException("back hash partion route needs three param");
