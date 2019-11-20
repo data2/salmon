@@ -1,6 +1,6 @@
 package com.data2.salmon;
 
-public class DicoTrans implements Transaction {
+public class SalmonTrans implements Transaction {
 
     @Override
     public void start() {

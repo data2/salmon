@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Setter
 @Component
 @ConfigurationProperties(prefix = "spring.dico.database.partition")
-public class DicoPartitionConfig implements DicoConfig {
+public class PartitionConfig implements Config {
     private String url;
     private String username;
     private String password;

@@ -16,7 +16,7 @@ public class BuildFactory {
     @Autowired
     public Router router;
 
-    public void build(String dbase, DicoExecuteSql currSql, Map<?, ?> params) throws SalmonException {
+    public void build(String dbase, ExecuteSql currSql, Map<?, ?> params) throws SalmonException {
         // loading ruler.
         loadFromConfig(currSql);
         // calcu ruler for where data goes.
@@ -32,7 +32,7 @@ public class BuildFactory {
      *
      * @param currSql
      */
-    private void loadFromConfig(DicoExecuteSql currSql) {
+    private void loadFromConfig(ExecuteSql currSql) {
         currSql.setTableName(calcuTabnameFromSqlStr(currSql.getSql()));
         TableRulerConfig tabRuler = router.config(currSql.getTableName());
         currSql.setRuler(tabRuler);

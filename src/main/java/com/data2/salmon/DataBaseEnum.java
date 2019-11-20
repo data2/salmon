@@ -1,5 +1,5 @@
 package com.data2.salmon;
 
-public enum DicoEnum {
+public enum DataBaseEnum {
     JDBC,ORACLE,PARTITION
 }

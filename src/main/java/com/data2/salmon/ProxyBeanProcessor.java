@@ -27,7 +27,7 @@ public class ProxyBeanProcessor implements BeanFactoryPostProcessor {
             throw new ApplicationContextException("spring.dico.scan is null ,please configure in spring");
         }
         for (Scanner.Inner inner : Scanner.loadCheckClassMethods(ScanUtil.achieveScan())) {
-            if (DicoEnum.PARTITION.toString().equalsIgnoreCase(inner.database)) {
+            if (DataBaseEnum.PARTITION.toString().equalsIgnoreCase(inner.database)) {
                 BeanDefinitionBuilder beanDefinitionBuilder =  BeanDefinitionBuilder.genericBeanDefinition(QuickDicoService.class);
                 beanDefinitionBuilder.addPropertyValue("name",inner.name);
                 beanDefinitionBuilder.addPropertyValue("database",inner.database);
@@ -36,7 +36,7 @@ public class ProxyBeanProcessor implements BeanFactoryPostProcessor {
                 abstractBeanDefinition.addQualifier(new AutowireCandidateQualifier(inner.name));
                 abstractBeanDefinition.setScope("prototype");
                 defaultListableBeanFactory.registerBeanDefinition(inner.name, abstractBeanDefinition);
-                log.info("regist Dico success :" + inner.toString());
+                log.info("regist Salmon success :" + inner.toString());
             }
 
         }
@@ -54,7 +54,7 @@ public class ProxyBeanProcessor implements BeanFactoryPostProcessor {
 //            log.info("regist bootdico component : " + entry.getKey()
 //                    + " , name : " + annotation.name()
 //                    + " , database : " + annotation.database());
-//            if (DicoEnum.JDBC.toString().equals(annotation.database())
+//            if (DataBaseEnum.JDBC.toString().equals(annotation.database())
 //                    && true) {
 //                BeanDefinitionBuilder beanDefine = BeanDefinitionBuilder.genericBeanDefinition(DatabaseQuickDicoService.class);
 //                AbstractBeanDefinition bf = beanDefine.getBeanDefinition();

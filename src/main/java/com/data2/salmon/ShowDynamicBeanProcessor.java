@@ -17,7 +17,7 @@ public class ShowDynamicBeanProcessor implements BeanPostProcessor {
 
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-        if (bean instanceof Dico){
+        if (bean instanceof Salmon){
             log.info(beanName);
         }
         return bean;

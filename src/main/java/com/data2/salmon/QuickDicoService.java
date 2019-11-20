@@ -16,11 +16,11 @@ import java.util.Map;
 @Getter
 @Setter
 @Component
-public class QuickDicoService extends DicoService implements InitializingBean, Dico {
+public class QuickDicoService extends DicoService implements InitializingBean, Salmon {
 
     protected DicoTrans coTrans;
-    protected List<DicoExecuteSql> sqlArr = new ArrayList<>();
-    protected DicoExecuteSql currSql;
+    protected List<ExecuteSql> sqlArr = new ArrayList<>();
+    protected ExecuteSql currSql;
     protected Map<?, ?> currParams;
     protected Map<String, Object> context;
     protected boolean exception = false;
@@ -41,22 +41,22 @@ public class QuickDicoService extends DicoService implements InitializingBean, D
     }
 
     public QuickDicoService select(String sqlId) {
-        this.currSql = new DicoExecuteSql(OperationKeys.SELECT, sqlId);
+        this.currSql = new ExecuteSql(OperationKeys.SELECT, sqlId);
         return this;
     }
 
     public QuickDicoService insert(String sqlId) {
-        this.currSql = new DicoExecuteSql(OperationKeys.INSERT, sqlId);
+        this.currSql = new ExecuteSql(OperationKeys.INSERT, sqlId);
         return this;
     }
 
     public QuickDicoService update(String sqlId) {
-        this.currSql = new DicoExecuteSql(OperationKeys.UPDATE, sqlId);
+        this.currSql = new ExecuteSql(OperationKeys.UPDATE, sqlId);
         return this;
     }
 
     public QuickDicoService delete(String sqlId) {
-        this.currSql = new DicoExecuteSql(OperationKeys.DELETE, sqlId);
+        this.currSql = new ExecuteSql(OperationKeys.DELETE, sqlId);
         return this;
     }
 

@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public  class DicoService  {
+public  class Service  {
     public String name;
     public String database;
     public String file;

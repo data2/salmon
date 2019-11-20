@@ -18,7 +18,7 @@ public class ConnectFactory {
     @Autowired
     public DataSourceConn dataSourceConn;
 
-    private DicoExecuteSql dicosql;
+    private ExecuteSql dicosql;
 
     public ConnectFactory makeConnect(DataSourceLooker looker) {
         try {
@@ -45,7 +45,7 @@ public class ConnectFactory {
         }
     }
 
-    public ConnectFactory setSql(DicoExecuteSql currSql) {
+    public ConnectFactory setSql(ExecuteSql currSql) {
         this.dicosql = currSql;
         return this;
     }

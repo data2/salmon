@@ -19,10 +19,10 @@ public class DataSourceConn implements EngineConnection {
     public DicoPartitionConfig dicoPartitionConfig;
 
     @Autowired
-    public DicoJdbcConfig dicoJdbcConfig;
+    public JdbcConfig dicoJdbcConfig;
 
     @Autowired
-    public DicoOracleConfig dicoOracleConfig;
+    public OracleConfig dicoOracleConfig;
 
     @Override
     public DruidDataSource getSource(final DataSourceLooker dataSourceLooker) {
@@ -30,7 +30,7 @@ public class DataSourceConn implements EngineConnection {
             return dataSourceCache.get(dataSourceLooker, new Callable<DruidDataSource>() {
                 @Override
                 public DruidDataSource call() throws Exception {
-                    DicoConfig config = null;
+                    Config config = null;
                     switch (dataSourceLooker.dbase) {
                         case "PARTITION":
                             config = dicoPartitionConfig;

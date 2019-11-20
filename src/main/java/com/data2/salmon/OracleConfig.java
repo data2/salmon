@@ -9,12 +9,11 @@ import org.springframework.stereotype.Component;
 @Getter
 @Setter
 @Component
-@ConfigurationProperties(prefix = "spring.dico.database.jdbc")
-public class DicoJdbcConfig implements DicoConfig {
+@ConfigurationProperties(prefix = "spring.dico.database.oracle")
+public class OracleConfig implements Config {
     private String url;
     private String username;
     private String password;
-
 
     @Override
     public DruidDataSource builder(String dbid) {
@@ -22,6 +21,6 @@ public class DicoJdbcConfig implements DicoConfig {
         dataSource.setUrl(url);
         dataSource.setUsername(username);
         dataSource.setPassword(password);
-        return dataSource;
+        return null;
     }
 }

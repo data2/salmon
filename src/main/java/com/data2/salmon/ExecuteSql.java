@@ -10,9 +10,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class DicoExecuteSql {
+public class ExecuteSql {
 
-    public DicoExecuteSql(String operation, String sqlID) {
+    public ExecuteSql(String operation, String sqlID) {
         this.operation = operation;
         this.sqlId = sqlID;
     }
@@ -51,7 +51,7 @@ public class DicoExecuteSql {
     private DicoPair partionKey;
     private Object res;
     private TableRulerConfig ruler;
-    public DicoExecuteSql setSql(String sql){
+    public ExecuteSql setSql(String sql){
         this.sql = sql;
         return this;
     }

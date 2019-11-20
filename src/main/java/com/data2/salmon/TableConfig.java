@@ -7,14 +7,14 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 @Getter
 @Setter
-public class TableRulerConfig {
+public class TableConfig {
     public String name;
     public String column;
     public String val;
     public String partionMethod;
     public String[] params;
 
-    public TableRulerConfig() {
+    public TableConfig() {
     }
 
     @Override

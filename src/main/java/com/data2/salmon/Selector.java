@@ -4,10 +4,10 @@ import org.springframework.context.annotation.ImportSelector;
 import org.springframework.core.annotation.AnnotationAttributes;
 import org.springframework.core.type.AnnotationMetadata;
 
-public class DicoSelector implements ImportSelector {
+public class Selector implements ImportSelector {
     @Override
     public String[] selectImports(AnnotationMetadata annotationMetadata) {
-        Class<?> annotationType = BootDico.class;
+        Class<?> annotationType = BootSalmon.class;
         AnnotationAttributes attributes = AnnotationAttributes.fromMap(annotationMetadata.getAnnotationAttributes(
                 annotationType.getName(), false));
         String type = attributes.getString("type");

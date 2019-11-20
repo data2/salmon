@@ -5,11 +5,11 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class DicoPair {
+public class Pair {
     private String key;
     private String value;
-    public DicoPair(){}
-    public DicoPair(String key, String value) {
+    public Pair(){}
+    public Pair(String key, String value) {
         super();
         this.key = key;
         this.value = value;

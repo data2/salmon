@@ -8,8 +8,8 @@ import java.lang.reflect.Proxy;
  */
 public class Factory {
 
-    public static Dico getSource(Object impl) {
-        return (Dico) Proxy.newProxyInstance(Dico.class.getClassLoader(), new Class<?>[] { Dico.class },
+    public static Salmon getSource(Object impl) {
+        return (Salmon) Proxy.newProxyInstance(Salmon.class.getClassLoader(), new Class<?>[] { Salmon.class },
                 new RunColInvocationHandler(impl));
     }
 

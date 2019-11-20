@@ -1,7 +1,7 @@
 package com.data2.salmon.common.util;
 
 import com.data2.salmon.SalmonException;
-import com.data2.salmon.DicoExecuteSql;
+import com.data2.salmon.ExecuteSql;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -23,7 +23,7 @@ public class ColumnSequenceUtil {
      * @return
      * @throws SalmonException
      */
-    public static List<Object> sort(DicoExecuteSql currSql, Map<?, ?> params) throws SalmonException {
+    public static List<Object> sort(ExecuteSql currSql, Map<?, ?> params) throws SalmonException {
         String sql = currSql.getSql();
         java.util.regex.Matcher m = p.matcher(sql);
         List<Object> keylist = new ArrayList<Object>();
@@ -61,7 +61,7 @@ public class ColumnSequenceUtil {
      * @param currSql
      * @param sortParms
      */
-    public static void setValue(DicoExecuteSql currSql, List<Object> sortParms) {
+    public static void setValue(ExecuteSql currSql, List<Object> sortParms) {
         Connection conn = currSql.getConn();
         String sql = currSql.getSql();
         PreparedStatement executor = null;

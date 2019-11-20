@@ -5,31 +5,39 @@ import com.google.common.base.Charsets;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.io.Resources;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.net.URL;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 
 @Component
-public class DicoFileConfigCache implements FileConfigCache {
+public class SqlConfigCache implements ExecuteSqlCache {
 
     private Cache<String, Object> cache = CacheBuilder.newBuilder().build();;
 
-    public Object getSource(final String key) {
+    @Autowired
+    private ConfigCache dicoFileConfigCache;
+
+
+    public Object getSource(final String file, final String key) {
         try {
             return cache.get(key, new Callable<Object>() {
 
                 @Override
-                public Object call()  {
+                public Object call() {
+                    String sql = null;
                     try {
-                        URL URL = ConfigurationLoader.getClassLoader().getResource(key);
-                        String sqlContents = Resources.toString(URL, Charsets.UTF_8);
-                        return sqlContents;
+                        String contents = (String) dicoFileConfigCache.getSource(file);
+                        if (contents == null) {
+                            contents = Resources.toString(ConfigurationLoader.getClassLoader().getResource(key),
+                                    Charsets.UTF_8);
+                        }
+                        sql = TextFunction.excute(contents, key);
                     } catch (Exception e) {
                         e.printStackTrace();
-                        return null;
                     }
+                    return sql;
                 }
             });
         } catch (ExecutionException e) {
