@@ -1,0 +1,77 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.data2.salmon.DicoJdbcConfig",
+      "name": "spring.dico.database.jdbc",
+      "type": "com.data2.salmon.DicoJdbcConfig"
+    },
+    {
+      "sourceType": "com.data2.salmon.DicoOracleConfig",
+      "name": "spring.dico.database.oracle",
+      "type": "com.data2.salmon.DicoOracleConfig"
+    },
+    {
+      "sourceType": "com.data2.salmon.DicoPartitionConfig",
+      "name": "spring.dico.database.partition",
+      "type": "com.data2.salmon.DicoPartitionConfig"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.data2.salmon.DicoJdbcConfig",
+      "name": "spring.dico.database.jdbc.password",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.data2.salmon.DicoJdbcConfig",
+      "name": "spring.dico.database.jdbc.url",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.data2.salmon.DicoJdbcConfig",
+      "name": "spring.dico.database.jdbc.username",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.data2.salmon.DicoOracleConfig",
+      "name": "spring.dico.database.oracle.password",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.data2.salmon.DicoOracleConfig",
+      "name": "spring.dico.database.oracle.url",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.data2.salmon.DicoOracleConfig",
+      "name": "spring.dico.database.oracle.username",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.data2.salmon.DicoPartitionConfig",
+      "name": "spring.dico.database.partition.mapping",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.data2.salmon.DicoPartitionConfig",
+      "name": "spring.dico.database.partition.password",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.data2.salmon.DicoPartitionConfig",
+      "name": "spring.dico.database.partition.table",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.data2.salmon.DicoPartitionConfig",
+      "name": "spring.dico.database.partition.url",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.data2.salmon.DicoPartitionConfig",
+      "name": "spring.dico.database.partition.username",
+      "type": "java.lang.String"
+    }
+  ]
+}

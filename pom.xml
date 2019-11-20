@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.data2</groupId>
-    <artifactId>dico</artifactId>
-    <version>2.1.0</version>
+    <artifactId>salmon</artifactId>
+    <version>2.6.0</version>
     <packaging>jar</packaging>
 
-    <name>dico</name>
+    <name>salmon</name>
     <url>http://maven.apache.org</url>
 
     <properties>
@@ -104,5 +104,5 @@
          </plugin> 
         </plugins>    
     </build>    
-    <description>dico</description>
+    <description>salmon</description>
 </project>
