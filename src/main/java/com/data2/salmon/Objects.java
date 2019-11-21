@@ -10,6 +10,6 @@ public class Objects {
     public void testName() throws Exception {
         ClassLoader b = Objects.priorityUseFirst(Thread.currentThread().getContextClassLoader(),
                 ConfigurationLoader.class.getClassLoader());
-        System.out.println(b.getResourceAsStream("dico.properties"));
+        System.out.println(b.getResourceAsStream("salman.properties"));
     }
 }

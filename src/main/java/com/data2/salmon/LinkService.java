@@ -5,8 +5,8 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public  class Service  {
+public  class LinkService  {
     public String name;
-    public String database;
+    public DataBase database;
     public String file;
 }

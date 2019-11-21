@@ -7,11 +7,11 @@ import org.springframework.stereotype.Component;
 public class ParseConfig {
 
     @Autowired
-    private SqlConfigCache dicoSqlConfigCache;
+    private SqlConfigCache sqlConfigCache;
 
-    public String parse(String file, ExecuteSql dicoSql)  {
+    public String parse(String file, ExecuteSql executeSql)  {
         String mapperFile = "mapper/".concat(file).concat(".salmon");
-        return (String) dicoSqlConfigCache.getSource(mapperFile, dicoSql.getSqlId());
+        return (String) sqlConfigCache.getSource(mapperFile, executeSql.getSqlId());
     }
 
 }

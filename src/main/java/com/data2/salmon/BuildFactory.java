@@ -16,14 +16,17 @@ public class BuildFactory {
     @Autowired
     public Router router;
 
-    public void build(String dbase, ExecuteSql currSql, Map<?, ?> params) throws SalmonException {
-        // loading ruler.
-        loadFromConfig(currSql);
-        // calcu ruler for where data goes.
-        TableConfig ruler = currSql.getRuler();
-        String dbId = Parser.parse(ruler, params);
+    public void build(DataBase dbase, ExecuteSql currSql, Map<?, ?> params) throws SalmonException {
+        currSql.setTableName(calcuTabnameFromSqlStr(currSql.getSql()));
+        String dbId = null;
+        if (dbase == DataBase.PARTITION){
+            // loading ruler.
+            loadFromConfig(currSql);
+            // calcu ruler for where data goes.
+            dbId = Parser.parse(currSql.getRuler(), params);
+        }
         // create connection && prepared sql param.
-        connectFactory.setSql(currSql).makeConnect(new DataSourceLooker(dbase,dbId)).preparedStmt(params);
+        connectFactory.setSql(currSql).makeConnect(new DataSourceLooker(dbase, dbId)).preparedStmt(params);
 
     }
 
@@ -33,7 +36,6 @@ public class BuildFactory {
      * @param currSql
      */
     private void loadFromConfig(ExecuteSql currSql) {
-        currSql.setTableName(calcuTabnameFromSqlStr(currSql.getSql()));
         TableConfig tabRuler = router.config(currSql.getTableName());
         currSql.setRuler(tabRuler);
         currSql.setPartionKey(new Pair(tabRuler.getColumn(), null));
@@ -49,7 +51,7 @@ public class BuildFactory {
         String[] res = PatternMatcherUnit.split(sql, "\\s+");
         boolean tag = false;
         for (String sub : res) {
-            if (ArrUtils.inArray(sub.trim(), OperationKeys.INTO, OperationKeys.DELETE, OperationKeys.UPDATE, OperationKeys.FROM)) {
+            if (ArrUtils.inArray(sub.trim().toUpperCase(), OperationKeys.INTO.name(), OperationKeys.DELETE.name(), OperationKeys.UPDATE.name(), OperationKeys.FROM.name())) {
                 tag = true;
                 continue;
             }

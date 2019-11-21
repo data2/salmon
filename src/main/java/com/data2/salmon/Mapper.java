@@ -12,6 +12,6 @@ public @interface Mapper {
 
     String file() ;
 
-    String database() ;
+    DataBase database() ;
 
 }

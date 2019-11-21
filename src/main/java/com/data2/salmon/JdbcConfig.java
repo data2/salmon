@@ -22,6 +22,7 @@ public class JdbcConfig implements Config {
         dataSource.setUrl(url);
         dataSource.setUsername(username);
         dataSource.setPassword(password);
+        dataSource.setDriverClassName(url.contains("jdbc") ? "com.mysql.cj.jdbc.Driver" : "oracle.jdbc.driver.OracleDriver");
         return dataSource;
     }
 }

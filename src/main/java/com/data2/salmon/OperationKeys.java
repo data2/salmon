@@ -1,14 +1,12 @@
 package com.data2.salmon;
 
-public class OperationKeys {
+public enum OperationKeys {
 
-    public static final String INSERT = "insert";
-    public static final String DELETE = "delete";
-    public static final String UPDATE = "update";
-    public static final String SELECT = "select";
-
-    public static final String INTO = "into";
-    public static final String FROM = "from";
-
+    INSERT,
+    DELETE,
+    UPDATE,
+    SELECT,
+    INTO,
+    FROM
 
 }

@@ -4,8 +4,6 @@ import com.google.common.collect.Maps;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -15,8 +13,7 @@ import java.util.Map;
 
 @Getter
 @Setter
-@Component
-public class QuickService extends Service implements InitializingBean, Salmon {
+public abstract class QuickService extends LinkService implements InitializingBean, Salmon, Executor {
 
     protected SalmonTrans coTrans;
     protected List<ExecuteSql> sqlArr = new ArrayList<>();
@@ -25,11 +22,6 @@ public class QuickService extends Service implements InitializingBean, Salmon {
     protected Map<String, Object> context;
     protected boolean exception = false;
 
-
-    @Autowired
-    public BuildFactory buildFactory;
-    @Autowired
-    private ParseConfig parseConfig;
 
     private void initContext() {
         context = Maps.newConcurrentMap();
@@ -63,20 +55,6 @@ public class QuickService extends Service implements InitializingBean, Salmon {
     public QuickService param(Map<?, ?> map) {
         this.currParams = map;
         return this;
-    }
-
-    public Object execute() {
-        try {
-            buildFactory.build(database,currSql.setSql(parseConfig.parse(file, currSql)), currParams);
-            System.out.println(currSql);
-            sqlArr.add(currSql);
-            return currSql.exec();
-        } catch (Exception e) {
-            e.printStackTrace();
-            exception = true;
-        }
-        return currSql.getSqlId();
-
     }
 
 

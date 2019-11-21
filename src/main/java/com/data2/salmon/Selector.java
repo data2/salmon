@@ -14,7 +14,7 @@ public class Selector implements ImportSelector {
         if ("jdbc".equals(type)) {
             return new String[] { QuickService.class.getName() };
         }  else {
-            return new String[] { Service.class.getName() };
+            return new String[] { LinkService.class.getName() };
         }
     }
 }

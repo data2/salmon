@@ -16,7 +16,7 @@ public class SqlConfigCache implements ExecuteSqlCache {
     private Cache<String, Object> cache = CacheBuilder.newBuilder().build();;
 
     @Autowired
-    private ConfigCache dicoFileConfigCache;
+    private ConfigCache configCache;
 
 
     public Object getSource(final String file, final String key) {
@@ -27,7 +27,7 @@ public class SqlConfigCache implements ExecuteSqlCache {
                 public Object call() {
                     String sql = null;
                     try {
-                        String contents = (String) dicoFileConfigCache.getSource(file);
+                        String contents = (String) configCache.getSource(file);
                         if (contents == null) {
                             contents = Resources.toString(ConfigurationLoader.getClassLoader().getResource(key),
                                     Charsets.UTF_8);

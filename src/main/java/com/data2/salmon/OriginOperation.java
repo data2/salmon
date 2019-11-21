@@ -5,15 +5,15 @@ import java.util.Map;
 public interface OriginOperation {
     void getTrans();
 
-    Salmon select(String id);
+    OriginOperation select(String id);
 
-    Salmon insert(String id);
+    OriginOperation insert(String id);
 
-    Salmon update(String id);
+    OriginOperation update(String id);
 
-    Salmon delete(String id);
+    OriginOperation delete(String id);
 
-    Salmon param(Map<?, ?> obj);
+    OriginOperation param(Map<?, ?> obj);
 
     Object execute();
 

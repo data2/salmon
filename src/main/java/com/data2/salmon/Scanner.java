@@ -26,7 +26,7 @@ public class Scanner {
     static class Inner{
         String name ;
         String file;
-        String database;
+        DataBase database;
         public Inner(){
 
         }
@@ -38,7 +38,7 @@ public class Scanner {
             this.file = file;
             return this;
         }
-        public Inner setDatabase(String database){
+        public Inner setDatabase(DataBase database){
             this.database   = database;
             return this;
         }

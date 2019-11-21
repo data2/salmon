@@ -13,37 +13,34 @@ import java.util.concurrent.ExecutionException;
 public class DataSourceConn implements EngineConnection {
 
 
-    private Cache<DataSourceLooker, DruidDataSource> dataSourceCache = CacheBuilder.newBuilder().build();
+    private Cache<String, DruidDataSource> dataSourceCache = CacheBuilder.newBuilder().build();
 
     @Autowired
     public PartitionConfig partitionConfig;
 
     @Autowired
-    public JdbcConfig dicoJdbcConfig;
+    public JdbcConfig jdbcConfig;
 
     @Autowired
-    public OracleConfig dicoOracleConfig;
+    public OracleConfig oracleConfig;
 
     @Override
     public DruidDataSource getSource(final DataSourceLooker dataSourceLooker) {
         try {
-            return dataSourceCache.get(dataSourceLooker, new Callable<DruidDataSource>() {
-                @Override
-                public DruidDataSource call() throws Exception {
-                    Config config = null;
-                    switch (dataSourceLooker.dbase) {
-                        case "PARTITION":
-                            config = partitionConfig;
-                            break;
-                        case "JDBC":
-                            config = dicoJdbcConfig;
-                            break;
-                        case "ORACLE":
-                            config = dicoOracleConfig;
-                            break;
-                    }
-                    return config.builder(dataSourceLooker.dbid);
+            return dataSourceCache.get(dataSourceLooker.toString(), () -> {
+                Config config = null;
+                switch (dataSourceLooker.dbase) {
+                    case PARTITION:
+                        config = partitionConfig;
+                        break;
+                    case JDBC:
+                        config = jdbcConfig;
+                        break;
+                    case ORACLE:
+                        config = oracleConfig;
+                        break;
                 }
+                return config.builder(dataSourceLooker.dbid);
             });
         } catch (ExecutionException e) {
             e.printStackTrace();

@@ -6,14 +6,16 @@ import com.google.common.collect.Maps;
 
 public class PartitionSet {
 
-    static HashMap<String, Class> strategy = Maps.newHashMap();
+    public static Class<?> getParseClass(String name) {
+        return strategy.get(Strategy.valueOf(name.toUpperCase()));
+    }
+
+    static HashMap<Strategy, Class> strategy = Maps.newHashMap();
 
     static {
-        strategy.put("hash", HashStrategyRouter.class);
-        strategy.put("normal", NormalStrategyRouter.class);
+        strategy.put(Strategy.HASH, HashStrategyRouter.class);
+        strategy.put(Strategy.NORMAL, NormalStrategyRouter.class);
     }
 
-    public static Class<?> getParseClass(String name) {
-        return strategy.get(name);
-    }
+
 }

@@ -1,5 +1,6 @@
 package com.data2.salmon;
 
+import com.alibaba.druid.pool.DruidDataSource;
 import com.data2.salmon.common.util.ColumnSequenceUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -13,18 +14,19 @@ import java.util.Map;
 public class ConnectFactory {
 
     @Autowired
-    public PartitionConfig dicoPartitionConfig;
+    public PartitionConfig partitionConfig;
 
     @Autowired
     public DataSourceConn dataSourceConn;
 
-    private ExecuteSql dicosql;
+    private ExecuteSql executeSql;
 
     public ConnectFactory makeConnect(DataSourceLooker looker) {
         try {
-            Connection con = dataSourceConn.getSource(looker).getConnection();
+            DruidDataSource dds = dataSourceConn.getSource(looker);
+            Connection con = dds.getConnection();
             con.setAutoCommit(false);
-            dicosql.setConn(con);
+            executeSql.setConn(con);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -32,21 +34,21 @@ public class ConnectFactory {
     }
 
     public void preparedStmt(Map<?, ?> params) throws SalmonException {
-        List<Object> sortParms = ColumnSequenceUtil.sort(dicosql, params);
-        ColumnSequenceUtil.setValue(dicosql, sortParms);
+        List<Object> sortParms = ColumnSequenceUtil.sort(executeSql, params);
+        ColumnSequenceUtil.setValue(executeSql, sortParms);
     }
 
     static {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-//            Class.forName("oracle.jdbc.driver.OracleDriver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("oracle.jdbc.driver.OracleDriver");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     public ConnectFactory setSql(ExecuteSql currSql) {
-        this.dicosql = currSql;
+        this.executeSql = currSql;
         return this;
     }
 }

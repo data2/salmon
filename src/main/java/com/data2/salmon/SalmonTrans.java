@@ -4,7 +4,6 @@ public class SalmonTrans implements Transaction {
 
     @Override
     public void start() {
-
     }
 
     @Override
