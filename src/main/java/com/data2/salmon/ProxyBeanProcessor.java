@@ -24,7 +24,7 @@ public class ProxyBeanProcessor implements BeanFactoryPostProcessor {
         DefaultListableBeanFactory defaultListableBeanFactory
                 = (DefaultListableBeanFactory) beanFactory;
         if (StringUtils.isEmpty(ScanUtil.achieveScan())) {
-            throw new ApplicationContextException("spring.dico.scan is null ,please configure in spring");
+            throw new ApplicationContextException("spring.salman.scan is null ,please configure in spring");
         }
         for (Scanner.Inner inner : Scanner.loadCheckClassMethods(ScanUtil.achieveScan())) {
             if (DataBase.PARTITION == inner.database || DataBase.JDBC == inner.database) {
