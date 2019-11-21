@@ -4,7 +4,7 @@ Salmon
 [![Build Status](https://travis-ci.org/data2/salmon.svg?branch=master)](https://travis-ci.org/data2/salmon)
 [![Coverage Status](https://coveralls.io/repos/github/data2/salmon/badge.svg)](https://coveralls.io/github/data2/salmon)
 
-salmon , an easy framework which support distributed db system.
+Salmon , an easy framework which support distributed db system.
 ```java
 @Autowired
 @Mapper(file = "mapper1", database = DataBase.PARTITION)
