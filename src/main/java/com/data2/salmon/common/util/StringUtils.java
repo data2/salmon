@@ -1,5 +1,8 @@
 package com.data2.salmon.common.util;
 
+/**
+ * @author leewow
+ */
 public class StringUtils {
 
     public static boolean containAllcharIgnoreCase(String tmp, char[] chars) {

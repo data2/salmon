@@ -1,7 +1,7 @@
 package com.data2.salmon.common.util;
 
-import com.data2.salmon.SalmonException;
 import com.data2.salmon.ExecuteSql;
+import com.data2.salmon.SalmonException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,13 +11,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+/**
+ * @author leewow
+ */
 public class ColumnSequenceUtil {
 
     static Pattern p = Pattern.compile("\\#\\w+\\#");
+    static Pattern p2 = Pattern.compile("\\?");
 
     /**
      * convert params map to sorted list.
-     * 
+     *
      * @param currSql
      * @param params
      * @return
@@ -26,8 +30,8 @@ public class ColumnSequenceUtil {
     public static List<Object> sort(ExecuteSql currSql, Map<?, ?> params) throws SalmonException {
         String sql = currSql.getSql();
         java.util.regex.Matcher m = p.matcher(sql);
-        List<Object> keylist = new ArrayList<Object>();
-        String tmp = null;
+        List<Object> keylist = new ArrayList<>();
+        String tmp;
         while (m.find()) {
             tmp = m.group();
             Object val = params.get(tmp.substring(1, tmp.length() - 1));
@@ -41,10 +45,9 @@ public class ColumnSequenceUtil {
     }
 
     public static void main(String[] args) {
-        Pattern p = Pattern.compile("\\#\\w+\\#");
         java.util.regex.Matcher m = p.matcher("hhskldfk #hHS#SDHF#_s# ");
         List<String> keylist = new ArrayList<String>();
-        String tmp = null;
+        String tmp;
         while (m.find()) {
             tmp = m.group();
             System.out.println(tmp);
@@ -57,17 +60,17 @@ public class ColumnSequenceUtil {
 
     /**
      * preparedstmt set values.
-     * 
+     *
      * @param currSql
      * @param sortParms
      */
     public static void setValue(ExecuteSql currSql, List<Object> sortParms) {
         Connection conn = currSql.getConn();
         String sql = currSql.getSql();
-        PreparedStatement executor = null;
+        PreparedStatement executor;
         try {
             executor = conn.prepareStatement(sql);
-            java.util.regex.Matcher m = Pattern.compile("\\?").matcher(sql);
+            java.util.regex.Matcher m = p2.matcher(sql);
             int count = 1;
             while (m.find()) {
                 Object obj = sortParms.get(count - 1);

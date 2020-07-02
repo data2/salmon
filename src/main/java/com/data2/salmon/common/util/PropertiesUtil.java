@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+/**
+ * @author leewow
+ */
 public class PropertiesUtil {
 
     public static void loader(Properties properties, InputStream in) {

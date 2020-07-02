@@ -7,18 +7,22 @@ import java.io.FileInputStream;
 import java.net.URL;
 import java.util.Map;
 
+/**
+ * @author leewow
+ */
 public class YamlUtil {
-    public static Map<String,Object> yaml(String file){
-        Map<String,Object> maps = Maps.newHashMap();
-        try{
+    public static Map<String, Object> yaml(String file) {
+        Map<String, Object> maps = Maps.newHashMap();
+        try {
             Yaml yaml = new Yaml();
             URL url = YamlUtil.class.getClassLoader().getResource(file);
             if (url != null) {
-                maps =(Map)yaml.load(new FileInputStream(url.getFile()));
+                maps = (Map) yaml.load(new FileInputStream(url.getFile()));
                 System.out.println(maps);
             }
 
-        }catch (Exception e){}
+        } catch (Exception e) {
+        }
         return maps;
     }
 
