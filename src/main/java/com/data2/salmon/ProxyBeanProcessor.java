@@ -14,6 +14,9 @@ import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.context.ApplicationContextException;
 import org.springframework.stereotype.Component;
 
+/**
+ * @author leewow
+ */
 @Component
 public class ProxyBeanProcessor implements BeanFactoryPostProcessor {
 
@@ -36,7 +39,7 @@ public class ProxyBeanProcessor implements BeanFactoryPostProcessor {
                 abstractBeanDefinition.addQualifier(new AutowireCandidateQualifier(inner.name));
                 abstractBeanDefinition.setScope("prototype");
                 defaultListableBeanFactory.registerBeanDefinition(inner.name, abstractBeanDefinition);
-                log.info("regist Salmon success :" + inner.toString());
+                log.info("register salmon success :" + inner.toString());
             }
 
         }

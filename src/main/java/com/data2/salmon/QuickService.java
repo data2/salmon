@@ -2,7 +2,6 @@ package com.data2.salmon;
 
 import com.google.common.collect.Maps;
 import lombok.Data;
-import org.springframework.beans.factory.InitializingBean;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
