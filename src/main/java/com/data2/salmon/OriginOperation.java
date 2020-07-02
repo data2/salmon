@@ -2,6 +2,9 @@ package com.data2.salmon;
 
 import java.util.Map;
 
+/**
+ * @author leewow
+ */
 public interface OriginOperation {
     void getTrans();
 

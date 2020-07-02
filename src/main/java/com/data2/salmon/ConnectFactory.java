@@ -10,15 +10,25 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author leewow
+ */
 @Component
 public class ConnectFactory {
 
+    static {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @Autowired
     public PartitionConfig partitionConfig;
-
     @Autowired
     public DataSourceConn dataSourceConn;
-
     private ExecuteSql executeSql;
 
     public ConnectFactory makeConnect(DataSourceLooker looker) {
@@ -36,15 +46,6 @@ public class ConnectFactory {
     public void preparedStmt(Map<?, ?> params) throws SalmonException {
         List<Object> sortParms = ColumnSequenceUtil.sort(executeSql, params);
         ColumnSequenceUtil.setValue(executeSql, sortParms);
-    }
-
-    static {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Class.forName("oracle.jdbc.driver.OracleDriver");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     public ConnectFactory setSql(ExecuteSql currSql) {

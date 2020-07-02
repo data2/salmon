@@ -1,5 +1,9 @@
 package com.data2.salmon;
 
-public enum  Strategy {
+/**
+ * @author leewow
+ */
+
+public enum Strategy {
     HASH, NORMAL
 }

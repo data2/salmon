@@ -3,6 +3,9 @@ package com.data2.salmon;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * @author leewow
+ */
 public class ResultOutputInterceptor implements CutPointInterceptor {
 
     @Override

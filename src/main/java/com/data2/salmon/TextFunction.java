@@ -6,6 +6,9 @@ import com.google.common.base.Splitter;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author leewow
+ */
 public class TextFunction {
     private static String blank = " ";
 

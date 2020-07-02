@@ -1,9 +1,12 @@
 package com.data2.salmon;
 
-import java.lang.reflect.Method;
-
 import org.springframework.aop.MethodBeforeAdvice;
 
+import java.lang.reflect.Method;
+
+/**
+ * @author leewow
+ */
 public class RunColMethodBefore implements MethodBeforeAdvice {
 
     @Override

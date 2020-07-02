@@ -7,6 +7,9 @@ import org.springframework.util.StringUtils;
 
 import java.util.Map;
 
+/**
+ * @author leewow
+ */
 @Component
 public class BuildFactory {
 
@@ -15,31 +18,6 @@ public class BuildFactory {
 
     @Autowired
     public Router router;
-
-    public void build(DataBase dbase, ExecuteSql currSql, Map<?, ?> params) throws SalmonException {
-        currSql.setTableName(calcuTabnameFromSqlStr(currSql.getSql()));
-        String dbId = null;
-        if (dbase == DataBase.PARTITION){
-            // loading ruler.
-            loadFromConfig(currSql);
-            // calcu ruler for where data goes.
-            dbId = Parser.parse(currSql.getRuler(), params);
-        }
-        // create connection && prepared sql param.
-        connectFactory.setSql(currSql).makeConnect(new DataSourceLooker(dbase, dbId)).preparedStmt(params);
-
-    }
-
-    /**
-     * decorate sql.
-     *
-     * @param currSql
-     */
-    private void loadFromConfig(ExecuteSql currSql) {
-        TableConfig tabRuler = router.config(currSql.getTableName());
-        currSql.setRuler(tabRuler);
-        currSql.setPartionKey(new Pair(tabRuler.getColumn(), null));
-    }
 
     /**
      * search for tab name.
@@ -63,6 +41,31 @@ public class BuildFactory {
         }
 
         return null;
+    }
+
+    public void build(DataBase dbase, ExecuteSql currSql, Map<?, ?> params) throws SalmonException {
+        currSql.setTableName(calcuTabnameFromSqlStr(currSql.getSql()));
+        String dbId = null;
+        if (dbase == DataBase.PARTITION) {
+            // loading ruler.
+            loadFromConfig(currSql);
+            // calcu ruler for where data goes.
+            dbId = Parser.parse(currSql.getRuler(), params);
+        }
+        // create connection && prepared sql param.
+        connectFactory.setSql(currSql).makeConnect(new DataSourceLooker(dbase, dbId)).preparedStmt(params);
+
+    }
+
+    /**
+     * decorate sql.
+     *
+     * @param currSql
+     */
+    private void loadFromConfig(ExecuteSql currSql) {
+        TableConfig tabRuler = router.config(currSql.getTableName());
+        currSql.setRuler(tabRuler);
+        currSql.setPartionKey(new Pair(tabRuler.getColumn(), null));
     }
 
 }

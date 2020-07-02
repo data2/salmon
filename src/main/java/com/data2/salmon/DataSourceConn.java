@@ -6,23 +6,22 @@ import com.google.common.cache.CacheBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 
+/**
+ * @author leewow
+ */
 @Component
 public class DataSourceConn implements EngineConnection {
 
 
-    private Cache<String, DruidDataSource> dataSourceCache = CacheBuilder.newBuilder().build();
-
     @Autowired
     public PartitionConfig partitionConfig;
-
     @Autowired
     public JdbcConfig jdbcConfig;
-
     @Autowired
     public OracleConfig oracleConfig;
+    private Cache<String, DruidDataSource> dataSourceCache = CacheBuilder.newBuilder().build();
 
     @Override
     public DruidDataSource getSource(final DataSourceLooker dataSourceLooker) {

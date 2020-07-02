@@ -1,9 +1,12 @@
 package com.data2.salmon;
 
-import java.util.Map;
-
 import org.springframework.util.StringUtils;
 
+import java.util.Map;
+
+/**
+ * @author leewow
+ */
 public class NormalStrategyRouter extends RouteStrategy {
     private int start;
     private int len;

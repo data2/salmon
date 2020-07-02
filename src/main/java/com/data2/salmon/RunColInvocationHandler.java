@@ -6,6 +6,8 @@ import java.lang.reflect.Method;
 public class RunColInvocationHandler implements InvocationHandler {
 
     private Object impl;
+    private ParamsInterceptor before;
+    private ResultOutputInterceptor after;
 
     public RunColInvocationHandler(Object impl) {
         this.impl = impl;
@@ -20,9 +22,5 @@ public class RunColInvocationHandler implements InvocationHandler {
         after.execute(impl);
         return obj;
     }
-
-    private ParamsInterceptor before;
-
-    private ResultOutputInterceptor after;
 
 }

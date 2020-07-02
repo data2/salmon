@@ -2,6 +2,9 @@ package com.data2.salmon;
 
 import java.lang.annotation.*;
 
+/**
+ * @author leewow
+ */
 @Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited
@@ -10,8 +13,8 @@ public @interface Mapper {
 
     String name() default "";
 
-    String file() ;
+    String file();
 
-    DataBase database() ;
+    DataBase database();
 
 }

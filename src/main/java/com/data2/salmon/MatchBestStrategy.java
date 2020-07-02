@@ -7,6 +7,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author leewow
+ */
 public class MatchBestStrategy {
 
     public static String exec(@SuppressWarnings("rawtypes") Map map, String key) {

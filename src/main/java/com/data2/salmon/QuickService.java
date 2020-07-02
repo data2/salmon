@@ -1,6 +1,7 @@
 package com.data2.salmon;
 
 import com.google.common.collect.Maps;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.InitializingBean;
@@ -11,8 +12,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-@Getter
-@Setter
+/**
+ * @author leewow
+ */
+@Data
 public abstract class QuickService extends LinkService implements InitializingBean, Salmon, Executor {
 
     protected SalmonTrans coTrans;

@@ -18,36 +18,14 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.HashSet;
 
+/**
+ * @author leewow
+ */
 @Component
 public class Scanner {
-    private static final Logger log = LoggerFactory.getLogger(Scanner.class);
     protected static final String DEFAULT_RESOURCE_PATTERN = "**/*.class";
+    private static final Logger log = LoggerFactory.getLogger(Scanner.class);
 
-    static class Inner{
-        String name ;
-        String file;
-        DataBase database;
-        public Inner(){
-
-        }
-        public Inner setName(String name){
-            this.name = name;
-            return this;
-        }
-        public Inner setFile(String file){
-            this.file = file;
-            return this;
-        }
-        public Inner setDatabase(DataBase database){
-            this.database   = database;
-            return this;
-        }
-
-        @Override
-        public String toString() {
-            return name + "," + database + "," + file;
-        }
-    }
     public static HashSet<Inner> loadCheckClassMethods(String scanPackages) {
         HashSet<Inner> set = Sets.newHashSet();
         String[] scanPackageArr = scanPackages.split(",");
@@ -103,5 +81,35 @@ public class Scanner {
         } catch (Exception e) {
         }
         return set;
+    }
+
+    static class Inner {
+        String name;
+        String file;
+        DataBase database;
+
+        public Inner() {
+
+        }
+
+        public Inner setName(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Inner setFile(String file) {
+            this.file = file;
+            return this;
+        }
+
+        public Inner setDatabase(DataBase database) {
+            this.database = database;
+            return this;
+        }
+
+        @Override
+        public String toString() {
+            return name + "," + database + "," + file;
+        }
     }
 }

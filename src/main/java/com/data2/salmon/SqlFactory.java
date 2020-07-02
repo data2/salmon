@@ -1,13 +1,12 @@
 package com.data2.salmon;
 
-import java.sql.Blob;
-import java.sql.Clob;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author leewow
+ */
 public class SqlFactory {
 
     public static Map<String, Object> turnRsToMap(ResultSet res) throws SQLException {

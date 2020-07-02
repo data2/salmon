@@ -28,10 +28,10 @@ public class ProxyBeanProcessor implements BeanFactoryPostProcessor {
         }
         for (Scanner.Inner inner : Scanner.loadCheckClassMethods(ScanUtil.achieveScan())) {
             if (DataBase.PARTITION == inner.database || DataBase.JDBC == inner.database) {
-                BeanDefinitionBuilder beanDefinitionBuilder =  BeanDefinitionBuilder.genericBeanDefinition(SingleWorker.class);
-                beanDefinitionBuilder.addPropertyValue("name",inner.name);
-                beanDefinitionBuilder.addPropertyValue("database",inner.database);
-                beanDefinitionBuilder.addPropertyValue("file",inner.file);
+                BeanDefinitionBuilder beanDefinitionBuilder = BeanDefinitionBuilder.genericBeanDefinition(SingleWorker.class);
+                beanDefinitionBuilder.addPropertyValue("name", inner.name);
+                beanDefinitionBuilder.addPropertyValue("database", inner.database);
+                beanDefinitionBuilder.addPropertyValue("file", inner.file);
                 AbstractBeanDefinition abstractBeanDefinition = beanDefinitionBuilder.getBeanDefinition();
                 abstractBeanDefinition.addQualifier(new AutowireCandidateQualifier(inner.name));
                 abstractBeanDefinition.setScope("prototype");

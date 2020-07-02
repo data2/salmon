@@ -1,11 +1,14 @@
 package com.data2.salmon;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
-@Getter
-public  class LinkService  {
+/**
+ * @author leewow
+ */
+@Data
+public class LinkService {
     public String name;
     public DataBase database;
     public String file;

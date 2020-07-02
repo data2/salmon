@@ -1,10 +1,10 @@
 package com.data2.salmon;
 
-import java.util.Iterator;
-import java.util.Map;
-
 import com.data2.salmon.common.util.ArrUtils;
 import org.springframework.util.StringUtils;
+
+import java.util.Iterator;
+import java.util.Map;
 
 public abstract class RouteStrategy implements RouteStrategyMaster {
 

@@ -4,6 +4,9 @@ import org.springframework.context.annotation.ImportSelector;
 import org.springframework.core.annotation.AnnotationAttributes;
 import org.springframework.core.type.AnnotationMetadata;
 
+/**
+ * @author leewow
+ */
 public class Selector implements ImportSelector {
     @Override
     public String[] selectImports(AnnotationMetadata annotationMetadata) {
@@ -12,9 +15,9 @@ public class Selector implements ImportSelector {
                 annotationType.getName(), false));
         String type = attributes.getString("type");
         if ("jdbc".equals(type)) {
-            return new String[] { QuickService.class.getName() };
-        }  else {
-            return new String[] { LinkService.class.getName() };
+            return new String[]{QuickService.class.getName()};
+        } else {
+            return new String[]{LinkService.class.getName()};
         }
     }
 }

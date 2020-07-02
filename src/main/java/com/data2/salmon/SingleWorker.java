@@ -3,8 +3,16 @@ package com.data2.salmon;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ * @author leewow
+ */
 @Component
 public class SingleWorker extends QuickService {
+    @Autowired
+    public BuildFactory buildFactory;
+    @Autowired
+    private ParseConfig parseConfig;
+
     @Override
     public Object execute() {
         try {
@@ -19,10 +27,4 @@ public class SingleWorker extends QuickService {
         return currSql.getSqlId();
 
     }
-
-
-    @Autowired
-    public BuildFactory buildFactory;
-    @Autowired
-    private ParseConfig parseConfig;
 }

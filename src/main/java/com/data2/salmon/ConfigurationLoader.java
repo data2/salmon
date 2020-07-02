@@ -2,13 +2,16 @@ package com.data2.salmon;
 
 import java.io.InputStream;
 
+/**
+ * @author leewow
+ */
 public class ConfigurationLoader {
 
-    public static InputStream loadFile(String file) throws SalmonException {
+    public static InputStream loadFile(String file) {
         return getClassLoader().getResourceAsStream(file);
     }
 
-    public static ClassLoader getClassLoader() throws SalmonException {
+    public static ClassLoader getClassLoader()  {
         return Objects.priorityUseFirst(Thread.currentThread().getContextClassLoader(),
                 ConfigurationLoader.class.getClassLoader());
     }

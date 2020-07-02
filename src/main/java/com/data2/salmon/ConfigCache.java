@@ -10,25 +10,26 @@ import java.net.URL;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 
+/**
+ * @author leewow
+ */
 @Component
 public class ConfigCache implements FileConfigCache {
 
-    private Cache<String, Object> cache = CacheBuilder.newBuilder().build();;
+    private Cache<String, Object> cache = CacheBuilder.newBuilder().build();
+    ;
 
+    @Override
     public Object getSource(final String key) {
         try {
-            return cache.get(key, new Callable<Object>() {
-
-                @Override
-                public Object call()  {
-                    try {
-                        URL URL = ConfigurationLoader.getClassLoader().getResource(key);
-                        String sqlContents = Resources.toString(URL, Charsets.UTF_8);
-                        return sqlContents;
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        return null;
-                    }
+            return cache.get(key, () -> {
+                try {
+                    URL URL = ConfigurationLoader.getClassLoader().getResource(key);
+                    String sqlContents = Resources.toString(URL, Charsets.UTF_8);
+                    return sqlContents;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    return null;
                 }
             });
         } catch (ExecutionException e) {
@@ -49,7 +50,6 @@ public class ConfigCache implements FileConfigCache {
     public void removeAll() {
         if (cache != null) {
             cache.invalidateAll();
-            ;
         }
     }
 

@@ -3,8 +3,12 @@ package com.data2.salmon;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * @author leewow
+ */
 public class ParamsInterceptor implements CutPointInterceptor {
 
+    @Override
     public void execute(Object obj) throws SalmonException {
 //        BootDico col = (BootDico) obj;
 //        InputStream colFile = DicoClassLoader.getContextLoader().getResourceAsStream(col.getClassloaderFile());

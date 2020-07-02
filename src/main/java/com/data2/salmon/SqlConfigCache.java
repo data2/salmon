@@ -10,10 +10,14 @@ import org.springframework.stereotype.Component;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 
+/**
+ * @author leewow
+ */
 @Component
 public class SqlConfigCache implements ExecuteSqlCache {
 
-    private Cache<String, Object> cache = CacheBuilder.newBuilder().build();;
+    private Cache<String, Object> cache = CacheBuilder.newBuilder().build();
+    ;
 
     @Autowired
     private ConfigCache configCache;

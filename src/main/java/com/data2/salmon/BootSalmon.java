@@ -2,6 +2,9 @@ package com.data2.salmon;
 
 import java.lang.annotation.*;
 
+/**
+ * @author leewow
+ */
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited

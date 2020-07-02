@@ -6,6 +6,9 @@ import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
+/**
+ * @author leewow
+ */
 @Getter
 @Setter
 @Component

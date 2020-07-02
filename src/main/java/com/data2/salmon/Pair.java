@@ -1,14 +1,20 @@
 package com.data2.salmon;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
+/**
+ * @author leewow
+ */
+@Data
 public class Pair {
     private String key;
     private String value;
-    public Pair(){}
+
+    public Pair() {
+    }
+
     public Pair(String key, String value) {
         super();
         this.key = key;

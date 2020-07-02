@@ -1,5 +1,6 @@
 package com.data2.salmon;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,10 +9,21 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-@Getter
-@Setter
+/**
+ * @author leewow
+ */
+@Data
 public class ExecuteSql {
 
+    private Connection conn;
+    private PreparedStatement executor;
+    private OperationKeys operation;
+    private String sqlId;
+    private String sql;
+    private String tableName;
+    private Pair partionKey;
+    private Object res;
+    private TableConfig ruler;
     public ExecuteSql(OperationKeys operation, String sqlID) {
         this.operation = operation;
         this.sqlId = sqlID;
@@ -41,16 +53,6 @@ public class ExecuteSql {
         conn.close();
         return res;
     }
-
-    private Connection conn;
-    private PreparedStatement executor;
-    private OperationKeys operation;
-    private String sqlId;
-    private String sql;
-    private String tableName;
-    private Pair partionKey;
-    private Object res;
-    private TableConfig ruler;
 
     public ExecuteSql setSql(String sql) {
         this.sql = sql;
