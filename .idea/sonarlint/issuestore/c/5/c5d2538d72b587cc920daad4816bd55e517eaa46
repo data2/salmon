@@ -1,0 +1,11 @@
+
+k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ìõ©øÿÿÿÿ
+>
+java:S1148$"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+y
+java:S1488"cImmediately return this expression instead of assigning it to the temporary variable "sqlContents".(ôÂóþ
+U
+java:S1128
+":Remove this unused import 'java.util.concurrent.Callable'.(¾×¶îûÿÿÿÿ
+7
+java:S1116"Remove this empty statement.(Åñ­õþÿÿÿÿ
