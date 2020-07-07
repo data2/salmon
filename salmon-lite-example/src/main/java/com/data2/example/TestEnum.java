@@ -1,5 +1,8 @@
 package com.data2.example;
 
+/**
+ * @author leewow
+ */
 public class TestEnum {
     enum A {
         AA , AAA
