@@ -25,3 +25,16 @@ Ksalmon-lite-example/src/main/java/com/data2/example/ExampleApplication.java,1/
 	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 7
 pom.xml,4/4/442292b8a7efeabbe4cc176709b833b1792140ec
+\
+,.idea/inspectionProfiles/Project_Default.xml,4/9/496a238a6afa168dbaf6efd37bb459331589579c
+U
+%salmon-lite-core/salmon-lite-core.iml,6/f/6f54026e0bd68f26c5bd5080fa56ace23276bdcb
+:
+
+salmon.ipr,8/c/8c1dbe0208190fc8de614af641bfc5422995854c
+:
+
+salmon.iws,5/7/57013584311003f7dcf2e86f4a6fdd03e65c1477
+:
+
+salmon.iml,1/5/1580888bfcf86a66821e92d21ff18367057aeab5
