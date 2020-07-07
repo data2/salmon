@@ -1,5 +1,6 @@
 package com.data2.salmon.core;
 
+import com.data2.salmon.core.engine.AbstractService;
 import lombok.Data;
 
 /**

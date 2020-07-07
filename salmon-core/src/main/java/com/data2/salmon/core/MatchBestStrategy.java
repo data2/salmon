@@ -1,6 +1,6 @@
 package com.data2.salmon.core;
 
-import com.data2.salmon.core.util.StringUtils;
+import com.data2.salmon.core.common.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.Iterator;

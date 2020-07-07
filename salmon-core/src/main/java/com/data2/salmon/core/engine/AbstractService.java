@@ -1,5 +1,7 @@
-package com.data2.salmon.core;
+package com.data2.salmon.core.engine;
 
+import com.data2.salmon.core.Executor;
+import com.data2.salmon.core.Salmon;
 import org.springframework.beans.factory.InitializingBean;
 
 /**

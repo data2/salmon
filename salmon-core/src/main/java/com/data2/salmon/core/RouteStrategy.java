@@ -1,6 +1,6 @@
 package com.data2.salmon.core;
 
-import com.data2.salmon.core.util.ArrUtils;
+import com.data2.salmon.core.common.util.ArrUtils;
 import org.springframework.util.StringUtils;
 
 import java.util.Iterator;

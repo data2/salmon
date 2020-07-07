@@ -5,5 +5,6 @@ package com.data2.salmon.core;
  */
 
 public enum DataBase {
+    // TODO
     JDBC, ORACLE, PARTITION
 }

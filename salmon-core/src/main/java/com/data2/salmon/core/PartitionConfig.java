@@ -23,6 +23,7 @@ public class PartitionConfig implements Config {
         dataSource.setUrl(doURL(dbId));
         dataSource.setUsername(username);
         dataSource.setPassword(password);
+        // TODO
         dataSource.setDriverClassName(url.contains("jdbc") ? "com.mysql.cj.jdbc.Driver" : "oracle.jdbc.driver.OracleDriver");
         dataSource.setInitialSize(5);
         return dataSource;

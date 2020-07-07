@@ -1,4 +1,4 @@
-package com.data2.salmon.core.util;
+package com.data2.salmon.core.common.util;
 
 import com.data2.salmon.core.ExecuteSql;
 import com.data2.salmon.core.SalmonException;

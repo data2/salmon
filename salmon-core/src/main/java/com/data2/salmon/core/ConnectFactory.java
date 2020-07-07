@@ -1,7 +1,7 @@
 package com.data2.salmon.core;
 
 import com.alibaba.druid.pool.DruidDataSource;
-import com.data2.salmon.core.util.ColumnSequenceUtil;
+import com.data2.salmon.core.common.util.ColumnSequenceUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,6 +18,7 @@ public class ConnectFactory {
 
     static {
         try {
+            // TODO 按需加载驱动 根据配置数据库url
             Class.forName("com.mysql.cj.jdbc.Driver");
             Class.forName("oracle.jdbc.driver.OracleDriver");
         } catch (Exception e) {
@@ -33,8 +34,8 @@ public class ConnectFactory {
 
     public ConnectFactory makeConnect(DataSourceLooker looker) {
         try {
-            DruidDataSource dds = dataSourceConn.getSource(looker);
-            Connection con = dds.getConnection();
+            DruidDataSource druidDataSource = dataSourceConn.getSource(looker);
+            Connection con = druidDataSource.getConnection();
             con.setAutoCommit(false);
             executeSql.setConn(con);
         } catch (SQLException e) {

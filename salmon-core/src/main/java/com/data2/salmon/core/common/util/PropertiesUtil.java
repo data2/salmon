@@ -1,4 +1,4 @@
-package com.data2.salmon.core.util;
+package com.data2.salmon.core.common.util;
 
 import java.io.IOException;
 import java.io.InputStream;

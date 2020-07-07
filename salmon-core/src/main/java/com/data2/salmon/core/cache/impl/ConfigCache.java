@@ -1,5 +1,7 @@
-package com.data2.salmon.core;
+package com.data2.salmon.core.cache.impl;
 
+import com.data2.salmon.core.ConfigurationLoader;
+import com.data2.salmon.core.cache.FileConfigCache;
 import com.google.common.base.Charsets;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
@@ -16,7 +18,6 @@ import java.util.concurrent.ExecutionException;
 public class ConfigCache implements FileConfigCache {
 
     private Cache<String, Object> cache = CacheBuilder.newBuilder().build();
-    ;
 
     @Override
     public Object getSource(final String key) {

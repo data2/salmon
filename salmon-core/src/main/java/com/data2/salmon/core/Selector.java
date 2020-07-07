@@ -14,6 +14,7 @@ public class Selector implements ImportSelector {
         AnnotationAttributes attributes = AnnotationAttributes.fromMap(annotationMetadata.getAnnotationAttributes(
                 annotationType.getName(), false));
         String type = attributes.getString("type");
+        // TODO
         if ("jdbc".equals(type)) {
             return new String[]{QuickService.class.getName()};
         } else {

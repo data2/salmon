@@ -1,6 +1,6 @@
 package com.data2.salmon.core;
 
-import com.data2.salmon.core.util.StringUtils;
+import com.data2.salmon.core.common.util.StringUtils;
 import com.google.common.base.Splitter;
 
 import java.util.HashMap;
@@ -18,8 +18,9 @@ public class TextFunction {
         boolean tag = false;
         for (String line : lines) {
             line = line.trim();
-            if (line.length() == 0)
+            if (line.length() == 0) {
                 continue;
+            }
             if (line.startsWith("--") && line.contains(addDecorate(key))) {
                 tag = true;
                 continue;
@@ -53,8 +54,9 @@ public class TextFunction {
         for (String line : lines) {
             line = line.trim();
             ruler = line.substring(line.indexOf("(") + 1, line.length() - 1).split(",");
-            if (line.length() == 0)
+            if (line.length() == 0) {
                 continue;
+            }
             if (line.contains(key) || line.contains(key.toUpperCase())
                     || StringUtils.containAllcharIgnoreCase(key, ruler[0].toCharArray())) {
                 clearBlank(ruler);

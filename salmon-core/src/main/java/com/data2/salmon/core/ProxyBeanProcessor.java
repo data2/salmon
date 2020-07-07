@@ -1,6 +1,6 @@
 package com.data2.salmon.core;
 
-import com.data2.salmon.core.util.ScanUtil;
+import com.data2.salmon.core.common.util.ScanUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

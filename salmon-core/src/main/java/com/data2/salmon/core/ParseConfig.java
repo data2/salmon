@@ -1,5 +1,6 @@
 package com.data2.salmon.core;
 
+import com.data2.salmon.core.cache.impl.SqlConfigCache;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

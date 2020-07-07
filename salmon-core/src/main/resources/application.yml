@@ -1,0 +1,14 @@
+spring:
+  salmon:
+    scan: com.data2.example
+    database:
+      jdbc:
+        url: jdbc:mysql://localhost:3306/talkmovie?characterEncoding=UTF-8
+        username: root
+        password: QAZwdv123
+      partition:
+        url: jdbc:mysql://XXX:3306/talkmovie?characterEncoding=UTF-8
+        username: root
+        password: QAZwdv123
+        mapping: db0:127.0.0.1,db1:127.0.0.1
+        table: hash(tm_article_info, articleID, 0, 2, 2)

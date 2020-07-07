@@ -1,4 +1,4 @@
-package com.data2.salmon.core;
+package com.data2.salmon.core.cache;
 
 /**
  * @author leewow

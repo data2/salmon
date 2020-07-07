@@ -1,4 +1,4 @@
-package com.data2.salmon.core.util;
+package com.data2.salmon.core.common.util;
 
 /**
  * @author leewow
@@ -11,7 +11,6 @@ public class ArrUtils {
                 return true;
             }
         }
-
         return false;
     }
 

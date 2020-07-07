@@ -24,6 +24,8 @@ public class OracleConfig implements Config {
         dataSource.setUrl(url);
         dataSource.setUsername(username);
         dataSource.setPassword(password);
+        // TODO
+        dataSource.setDriverClassName(null);
         return null;
     }
 }

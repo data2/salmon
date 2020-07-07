@@ -1,6 +1,6 @@
 package com.data2.salmon.core;
 
-import com.data2.salmon.core.util.ArrUtils;
+import com.data2.salmon.core.common.util.ArrUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -25,7 +25,7 @@ public class BuildFactory {
      * @param sql
      * @return
      */
-    private static String calcuTabnameFromSqlStr(String sql) {
+    private String calcuTabnameFromSqlStr(String sql) {
         String[] res = PatternMatcherUnit.split(sql, "\\s+");
         boolean tag = false;
         for (String sub : res) {
