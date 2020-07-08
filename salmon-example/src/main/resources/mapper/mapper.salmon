@@ -1,0 +1,9 @@
+
+--<easy>
+    select 1 from dual
+
+--<single>
+   select * from tm_article_info where articleID = #articleID#
+
+--<single2>
+   select * from tm_article_info where articleID = ##

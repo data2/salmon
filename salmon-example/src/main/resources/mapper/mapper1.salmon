@@ -1,5 +1,0 @@
---<test>
-    select * from tm_article_info where articleID = #articleID#
-
---<easy>
-    select 1 from dual
