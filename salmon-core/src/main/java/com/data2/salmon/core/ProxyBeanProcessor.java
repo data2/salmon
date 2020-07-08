@@ -1,7 +1,6 @@
 package com.data2.salmon.core;
 
 import com.data2.salmon.core.common.util.ScanUtil;
-import com.data2.salmon.core.engine.enums.DataBase;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +14,9 @@ import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.context.ApplicationContextException;
 import org.springframework.stereotype.Component;
 
+import static com.data2.salmon.core.engine.enums.DataBase.JDBC;
+import static com.data2.salmon.core.engine.enums.DataBase.PARTITION;
+
 /**
  * @author leewow
  */
@@ -27,11 +29,12 @@ public class ProxyBeanProcessor implements BeanFactoryPostProcessor {
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
         DefaultListableBeanFactory defaultListableBeanFactory
                 = (DefaultListableBeanFactory) beanFactory;
-        if (StringUtils.isEmpty(ScanUtil.achieveScan())) {
+        String pack = ScanUtil.achieveScan();
+        if (StringUtils.isEmpty(pack)) {
             throw new ApplicationContextException("spring.salman.scan is null ,please configure in spring");
         }
-        for (Scanner.Inner inner : Scanner.loadCheckClassMethods(ScanUtil.achieveScan())) {
-            if (DataBase.PARTITION == inner.database || DataBase.JDBC == inner.database) {
+        for (Scanner.Inner inner : Scanner.loadCheckClassMethods(pack)) {
+            if (PARTITION == inner.database || JDBC == inner.database) {
                 BeanDefinitionBuilder beanDefinitionBuilder = BeanDefinitionBuilder.genericBeanDefinition(SingleWorker.class);
                 beanDefinitionBuilder.addPropertyValue("name", inner.name);
                 beanDefinitionBuilder.addPropertyValue("database", inner.database);
