@@ -27,20 +27,26 @@ public class ColumnSequenceUtil {
      * @return
      * @throws SalmonException
      */
-    public static List<Object> sort(ExecuteSql currSql, Map<?, ?> params) throws SalmonException {
-        String sql = currSql.getSql();
-        java.util.regex.Matcher m = p.matcher(sql);
+    public static List<Object> sort(ExecuteSql currSql, Object params) throws SalmonException {
         List<Object> keylist = new ArrayList<>();
-        String tmp;
-        while (m.find()) {
-            tmp = m.group();
-            Object val = params.get(tmp.substring(1, tmp.length() - 1));
-            if (val == null) {
-                throw new SalmonException("column value" + tmp + " is null.");
+        if (params instanceof Map) {
+            Map paramMap = (Map) params;
+            String sql = currSql.getSql();
+            java.util.regex.Matcher m = p.matcher(sql);
+            String tmp;
+            while (m.find()) {
+                tmp = m.group();
+                Object val = paramMap.get(tmp.substring(1, tmp.length() - 1));
+                if (val == null) {
+                    throw new SalmonException("column value" + tmp + " is null.");
+                }
+                keylist.add(val);
             }
-            keylist.add(val);
+            currSql.setSql(currSql.getSql().replaceAll("\\#\\w+\\#", " ? "));
+        } else {
+            currSql.setSql(currSql.getSql().replaceAll("\\#\\#", " ? "));
+            keylist.add(params);
         }
-        currSql.setSql(currSql.getSql().replaceAll("\\#\\w+\\#", " ? "));
         return keylist;
     }
 

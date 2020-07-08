@@ -4,8 +4,6 @@ import com.data2.salmon.core.engine.config.TableConfig;
 import com.data2.salmon.core.engine.except.SalmonException;
 import org.springframework.util.StringUtils;
 
-import java.util.Map;
-
 /**
  * @author leewow
  */
@@ -15,12 +13,12 @@ public class HashStrategyRouter extends RouteStrategy {
     private int cluster;
 
     @Override
-    public String route(Map<?, ?> map) throws SalmonException {
-        String val = locatePartionVal(map);
+    public String route(Object params) throws SalmonException {
+        String val = locatePartionVal(params);
         if (StringUtils.isEmpty(val)) {
             throw new SalmonException("do not find partion val.");
         }
-        String tem = null;
+        String tem;
         if (start > val.length()) {
             throw new SalmonException("partion parse exception.");
         }

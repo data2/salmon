@@ -21,7 +21,7 @@ public abstract class QuickService extends LinkService {
     protected SalmonTrans coTrans;
     protected List<ExecuteSql> sqlArr = new ArrayList<>();
     protected ExecuteSql currSql;
-    protected Map<?, ?> currParams;
+    protected Object currParams;
     protected Map<String, Object> context;
     protected boolean exception = false;
 
@@ -61,8 +61,14 @@ public abstract class QuickService extends LinkService {
     }
 
     @Override
-    public QuickService param(Map<?, ?> map) {
+    public QuickService param(Map<String, Object> map) {
         this.currParams = map;
+        return this;
+    }
+
+    @Override
+    public QuickService param(Object object) {
+        this.currParams = object;
         return this;
     }
 

@@ -15,8 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
-import java.util.Map;
-
 /**
  * @author leewow
  */
@@ -53,7 +51,7 @@ public class BuildFactory {
         return null;
     }
 
-    public void build(DataBase dbase, ExecuteSql currSql, Map<?, ?> params) throws SalmonException {
+    public void build(DataBase dbase, ExecuteSql currSql, Object params) throws SalmonException {
         currSql.setTableName(calcuTabnameFromSqlStr(currSql.getSql()));
         String dbId = null;
         if (dbase == DataBase.PARTITION) {

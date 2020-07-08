@@ -16,7 +16,9 @@ public interface OriginOperation {
 
     OriginOperation delete(String id);
 
-    OriginOperation param(Map<?, ?> obj);
+    OriginOperation param(Map<String, Object> obj);
+
+    OriginOperation param(Object obj);
 
     Object execute();
 

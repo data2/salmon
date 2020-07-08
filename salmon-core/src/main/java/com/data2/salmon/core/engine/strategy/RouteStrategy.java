@@ -12,9 +12,9 @@ public abstract class RouteStrategy implements RouteStrategyMaster {
 
     protected Pair partionPair = new Pair();
 
-    protected String locatePartionVal(Map<?, ?> map) {
+    protected String locatePartionVal(Object params) {
         String partionVal = null;
-        Object obj = getValueIgnoreCase(map, partionPair.getKey());
+        Object obj = getValueIgnoreCase(params, partionPair.getKey());
         if (obj != null) {
             partionVal = (String) obj;
         }
@@ -23,18 +23,21 @@ public abstract class RouteStrategy implements RouteStrategyMaster {
 
     }
 
-    private Object getValueIgnoreCase(Map<?, ?> map, String key) {
-        @SuppressWarnings("unchecked")
-        Iterator<String> it = (Iterator<String>) map.keySet().iterator();
-        String keyTmp = null;
-        while (it.hasNext()) {
-            keyTmp = (String) it.next();
-            if (ArrUtils.inArray(key, keyTmp.toUpperCase(), keyTmp)) {
-                return map.get(keyTmp);
+    private Object getValueIgnoreCase(Object params, String key) {
+        if (params instanceof Map) {
+            Map paramMap = (Map) params;
+            Iterator<String> it = (Iterator<String>) paramMap.keySet().iterator();
+            String keyTmp;
+            while (it.hasNext()) {
+                keyTmp = it.next();
+                if (ArrUtils.inArray(key, keyTmp.toUpperCase(), keyTmp)) {
+                    return paramMap.get(keyTmp);
+                }
             }
+            return paramMap.get(MatchBestStrategy.exec(paramMap, key));
+        } else {
+            return params;
         }
-
-        return map.get(MatchBestStrategy.exec(map, key));
     }
 
     protected String isNullThrowEX(String str) throws SalmonException {

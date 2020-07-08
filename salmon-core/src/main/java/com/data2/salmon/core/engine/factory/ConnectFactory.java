@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -39,7 +38,7 @@ public class ConnectFactory {
         return this;
     }
 
-    public void preparedStmt(Map<?, ?> params) throws SalmonException {
+    public void preparedStmt(Object params) throws SalmonException {
         List<Object> sortParms = ColumnSequenceUtil.sort(executeSql, params);
         ColumnSequenceUtil.setValue(executeSql, sortParms);
     }
