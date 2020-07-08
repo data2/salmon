@@ -2,9 +2,8 @@ package com.data2.salmon.core.engine.factory;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.data2.salmon.core.common.util.ColumnSequenceUtil;
-import com.data2.salmon.core.engine.config.PartitionConfig;
 import com.data2.salmon.core.engine.domain.ExecuteSql;
-import com.data2.salmon.core.engine.druid.DataSourceConn;
+import com.data2.salmon.core.engine.druid.DataSourceFactory;
 import com.data2.salmon.core.engine.druid.DataSourceLooker;
 import com.data2.salmon.core.engine.except.SalmonException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +13,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 /**
  * @author leewow
@@ -21,29 +21,19 @@ import java.util.Map;
 @Component
 public class ConnectFactory {
 
-    static {
-        try {
-            // TODO 按需加载驱动 根据配置数据库url
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Class.forName("oracle.jdbc.driver.OracleDriver");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     @Autowired
-    public PartitionConfig partitionConfig;
-    @Autowired
-    public DataSourceConn dataSourceConn;
+    public DataSourceFactory dataSourceFactory;
     private ExecuteSql executeSql;
 
     public ConnectFactory makeConnect(DataSourceLooker looker) {
         try {
-            DruidDataSource druidDataSource = dataSourceConn.getSource(looker);
+            DruidDataSource druidDataSource = dataSourceFactory.getSource(looker);
             Connection con = druidDataSource.getConnection();
             con.setAutoCommit(false);
             executeSql.setConn(con);
         } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
             e.printStackTrace();
         }
         return this;

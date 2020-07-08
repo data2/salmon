@@ -34,13 +34,16 @@ public class SalmonExampleApplication {
     @RequestMapping("/")
     public void test() {
         System.out.println("test....");
-//        Object obj = salmon.select("test")
-//                .param(Collections.singletonMap("articleID","243992049376706560")).execute();
-//        System.out.println(obj);
-
         Object obj2 = salmon2.select("test")
                 .param(Collections.singletonMap("articleID", "243992049376706560")).execute();
         System.out.println(obj2);
+    }
+
+    @RequestMapping("/test2")
+    public void test2() {
+        System.out.println("test2....");
+        Object obj = salmon2.select("easy").execute();
+        System.out.println(obj);
     }
 
 

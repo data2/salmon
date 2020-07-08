@@ -6,34 +6,35 @@ import com.google.common.base.Charsets;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.io.Resources;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-import java.net.URL;
 import java.util.concurrent.ExecutionException;
 
 /**
  * @author leewow
  */
 @Component
+@Slf4j
 public class ConfigCache implements FileConfigCache {
 
-    private Cache<String, Object> cache = CacheBuilder.newBuilder().build();
+    private Cache<String, String> cache = CacheBuilder.newBuilder().build();
 
     @Override
-    public Object getSource(final String key) {
+    public String getSource(final String key) {
         try {
             return cache.get(key, () -> {
                 try {
-                    URL URL = ConfigurationLoader.getClassLoader().getResource(key);
-                    String sqlContents = Resources.toString(URL, Charsets.UTF_8);
-                    return sqlContents;
+                    return Resources.toString(ConfigurationLoader.getClassLoader().getResource(key), Charsets.UTF_8);
                 } catch (Exception e) {
                     e.printStackTrace();
+                    log.error("get configcache err:{}", e.getMessage());
                     return null;
                 }
             });
         } catch (ExecutionException e) {
             e.printStackTrace();
+            log.error("get configcache ExecutionException:{}", e.getMessage());
             return null;
         }
     }

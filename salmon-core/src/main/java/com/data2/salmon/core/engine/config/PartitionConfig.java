@@ -2,13 +2,19 @@ package com.data2.salmon.core.engine.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.data2.salmon.core.engine.druid.Config;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
-@Getter
-@Setter
+import static com.data2.salmon.core.engine.enums.DataBase.JDBC;
+
+/**
+ * @author leewow
+ */
+@Slf4j
+@Data
 @Component
 @ConfigurationProperties(prefix = "spring.salmon.database.partition")
 public class PartitionConfig implements Config {
@@ -20,18 +26,22 @@ public class PartitionConfig implements Config {
 
     @Override
     public DruidDataSource builder(String dbId) {
+        if (StringUtils.isEmpty(url) || StringUtils.isEmpty(username) || StringUtils.isEmpty(password)
+                || StringUtils.isEmpty(mapping) || StringUtils.isEmpty(table)) {
+            log.info("partition config not right, url or username or passwd or mapping or table is null!");
+            return null;
+        }
         DruidDataSource dataSource = new DruidDataSource();
         dataSource.setUrl(doURL(dbId));
         dataSource.setUsername(username);
         dataSource.setPassword(password);
-        // TODO
-        dataSource.setDriverClassName(url.contains("jdbc") ? "com.mysql.cj.jdbc.Driver" : "oracle.jdbc.driver.OracleDriver");
+        dataSource.setDriverClassName(url.contains(JDBC.getCode()) ? "com.mysql.cj.jdbc.Driver" : "oracle.jdbc.driver.OracleDriver");
         dataSource.setInitialSize(5);
         return dataSource;
     }
 
     private String doURL(String dbId) {
-        String[] tmp = null;
+        String[] tmp;
         for (String sub : mapping.split(",")) {
             tmp = sub.split(":");
             if (tmp.length == 2) {

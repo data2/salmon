@@ -50,7 +50,7 @@ public class TextFunction {
     public static Map<String, Object> contain(String contents, String key) {
         Iterable<String> lines = Splitter.on(';').trimResults().split(contents);
         Map<String, Object> map = new HashMap<String, Object>();
-        String[] ruler = null;
+        String[] ruler;
         for (String line : lines) {
             line = line.trim();
             ruler = line.substring(line.indexOf("(") + 1, line.length() - 1).split(",");

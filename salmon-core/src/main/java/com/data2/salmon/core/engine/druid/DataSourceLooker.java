@@ -1,11 +1,13 @@
 package com.data2.salmon.core.engine.druid;
 
 import com.data2.salmon.core.engine.enums.DataBase;
+import lombok.Data;
 import org.springframework.util.StringUtils;
 
 /**
  * @author leewow
  */
+@Data
 public class DataSourceLooker {
     public DataBase dbase;
     public String dbid;
@@ -17,6 +19,6 @@ public class DataSourceLooker {
 
     @Override
     public String toString() {
-        return dbase.name().concat(StringUtils.isEmpty(dbid) ? "" : dbid);
+        return dbase.getCode().concat(StringUtils.isEmpty(dbid) ? "" : dbid);
     }
 }

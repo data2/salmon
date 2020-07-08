@@ -8,6 +8,7 @@ import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.io.Resources;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -31,9 +32,9 @@ public class SqlConfigCache implements ExecuteSqlCache {
             return cache.get(key, () -> {
                 String sql = null;
                 try {
-                    String contents = (String) configCache.getSource(file);
-                    if (contents == null) {
-                        contents = Resources.toString(ConfigurationLoader.getClassLoader().getResource(key),
+                    String contents = configCache.getSource(file);
+                    if (StringUtils.isEmpty(contents)) {
+                        contents = Resources.toString(ConfigurationLoader.getClassLoader().getResource(file),
                                 Charsets.UTF_8);
                     }
                     sql = TextFunction.excute(contents, key);

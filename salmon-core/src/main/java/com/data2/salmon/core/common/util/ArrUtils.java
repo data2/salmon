@@ -6,8 +6,8 @@ package com.data2.salmon.core.common.util;
 public class ArrUtils {
 
     public static boolean inArray(String obj, String... objs) {
-        for (String o : objs) {
-            if (obj.equals(o)) {
+        for (String object : objs) {
+            if (obj.equals(object)) {
                 return true;
             }
         }

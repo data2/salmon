@@ -1,31 +1,44 @@
 package com.data2.salmon.core.engine.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
-import com.data2.salmon.core.engine.druid.Config;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
+
+import static com.data2.salmon.core.engine.enums.DataBase.JDBC;
 
 /**
  * @author leewow
  */
+@Slf4j
 @Data
 @Component
 @ConfigurationProperties(prefix = "spring.salmon.database.jdbc")
-public class JdbcConfig implements Config {
+@Configuration
+public class JdbcConfig {
     private String url;
     private String username;
     private String password;
 
-
-    @Override
-    public DruidDataSource builder(String dbid) {
+    @Bean(name = "jdbc")
+    public DruidDataSource builder() {
+        if (StringUtils.isEmpty(url) || StringUtils.isEmpty(username) || StringUtils.isEmpty(password)) {
+            log.info("jdbc config not right, url or username or passwd is null!");
+            return null;
+        }
+        if (!url.contains(JDBC.getCode())) {
+            log.info("jdbc url config not contain jdbc str!");
+            return null;
+        }
         DruidDataSource dataSource = new DruidDataSource();
         dataSource.setUrl(url);
         dataSource.setUsername(username);
         dataSource.setPassword(password);
-        // TODO
-        dataSource.setDriverClassName(url.contains("jdbc") ? "com.mysql.cj.jdbc.Driver" : "oracle.jdbc.driver.OracleDriver");
+        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
         return dataSource;
     }
 }
