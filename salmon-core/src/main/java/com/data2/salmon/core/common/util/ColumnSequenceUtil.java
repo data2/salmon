@@ -1,7 +1,7 @@
 package com.data2.salmon.core.common.util;
 
-import com.data2.salmon.core.ExecuteSql;
-import com.data2.salmon.core.SalmonException;
+import com.data2.salmon.core.engine.domain.ExecuteSql;
+import com.data2.salmon.core.engine.except.SalmonException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

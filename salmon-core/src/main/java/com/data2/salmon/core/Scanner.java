@@ -1,5 +1,7 @@
 package com.data2.salmon.core;
 
+import com.data2.salmon.core.engine.enums.DataBase;
+import com.data2.salmon.core.engine.inter.Mapper;
 import com.google.common.collect.Sets;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;

@@ -1,5 +1,8 @@
 package com.data2.salmon.core;
 
+import com.data2.salmon.core.engine.inter.BootSalmon;
+import com.data2.salmon.core.engine.inter.LinkService;
+import com.data2.salmon.core.engine.inter.QuickService;
 import org.springframework.context.annotation.ImportSelector;
 import org.springframework.core.annotation.AnnotationAttributes;
 import org.springframework.core.type.AnnotationMetadata;

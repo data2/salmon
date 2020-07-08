@@ -1,5 +1,6 @@
 package com.data2.salmon.core;
 
+import com.data2.salmon.core.engine.inter.Salmon;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;

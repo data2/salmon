@@ -10,9 +10,4 @@ public class Objects {
         return (T) (t != null ? t : t2);
     }
 
-    public void testName() throws Exception {
-        ClassLoader b = Objects.priorityUseFirst(Thread.currentThread().getContextClassLoader(),
-                ConfigurationLoader.class.getClassLoader());
-        System.out.println(b.getResourceAsStream("salman.properties"));
-    }
 }
