@@ -1,9 +1,8 @@
 package com.data2.salmon.core.engine.strategy;
 
-import com.data2.salmon.core.engine.config.PartitionConfig;
 import com.data2.salmon.core.engine.config.TableConfig;
 import com.data2.salmon.core.engine.config.TextFunction;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
@@ -12,15 +11,13 @@ import java.util.Map;
  * @author leewow
  */
 @Component
+@ConfigurationProperties(prefix = "spring.salmon.database.partition")
 public class Router {
-
-    @Autowired
-    public PartitionConfig partitionConfig;
+    private String table;
 
     public TableConfig config(String tableName) {
         TableConfig bean = new TableConfig();
-        String tabs = partitionConfig.getTable();
-        Map<?, ?> map = TextFunction.contain(tabs, tableName);
+        Map<?, ?> map = TextFunction.contain(table, tableName);
         bean.setPartionMethod(((String) map.get("Method")).trim());
         String[] tmp = (String[]) map.get("Ruler");
         String[] params = new String[tmp.length - 2];

@@ -5,7 +5,7 @@ import com.data2.salmon.core.common.util.ArrUtils;
 import com.data2.salmon.core.engine.config.Parser;
 import com.data2.salmon.core.engine.config.TableConfig;
 import com.data2.salmon.core.engine.domain.ExecuteSql;
-import com.data2.salmon.core.engine.druid.DataSourceLooker;
+import com.data2.salmon.core.engine.domain.Looker;
 import com.data2.salmon.core.engine.enums.DataBase;
 import com.data2.salmon.core.engine.enums.OperationKeys;
 import com.data2.salmon.core.engine.enums.Pair;
@@ -61,7 +61,7 @@ public class BuildFactory {
             dbId = Parser.parse(currSql.getRuler(), params);
         }
         // create connection && prepared sql param.
-        connectFactory.setSql(currSql).makeConnect(new DataSourceLooker(dbase, dbId)).preparedStmt(params);
+        connectFactory.setSql(currSql).makeConnect(new Looker(dbase, dbId)).preparedStmt(params);
 
     }
 

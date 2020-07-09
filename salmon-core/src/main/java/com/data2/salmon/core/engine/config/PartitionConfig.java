@@ -1,7 +1,6 @@
 package com.data2.salmon.core.engine.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
-import com.data2.salmon.core.engine.druid.Config;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;

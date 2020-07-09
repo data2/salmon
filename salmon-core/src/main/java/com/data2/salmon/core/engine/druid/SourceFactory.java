@@ -1,6 +1,7 @@
 package com.data2.salmon.core.engine.druid;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import com.data2.salmon.core.engine.domain.Looker;
 import org.springframework.beans.factory.InitializingBean;
 
 import java.util.concurrent.ExecutionException;
@@ -9,5 +10,5 @@ import java.util.concurrent.ExecutionException;
  * @author leewow
  */
 public interface SourceFactory extends InitializingBean {
-    DruidDataSource getSource(DataSourceLooker looker) throws ExecutionException;
+    DruidDataSource getSource(Looker looker) throws ExecutionException;
 }

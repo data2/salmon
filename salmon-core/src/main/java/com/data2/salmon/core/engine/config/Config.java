@@ -1,4 +1,4 @@
-package com.data2.salmon.core.engine.druid;
+package com.data2.salmon.core.engine.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
 

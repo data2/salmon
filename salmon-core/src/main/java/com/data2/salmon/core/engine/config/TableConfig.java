@@ -1,15 +1,13 @@
 package com.data2.salmon.core.engine.config;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  * @author leewow
  */
-@Getter
-@Setter
+@Data
 public class TableConfig {
     public String name;
     public String column;

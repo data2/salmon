@@ -50,20 +50,6 @@ public class ColumnSequenceUtil {
         return keylist;
     }
 
-    public static void main(String[] args) {
-        java.util.regex.Matcher m = p.matcher("hhskldfk #hHS#SDHF#_s# ");
-        List<String> keylist = new ArrayList<String>();
-        String tmp;
-        while (m.find()) {
-            tmp = m.group();
-            System.out.println(tmp);
-            if (tmp != null) {
-                keylist.add(tmp);
-            }
-        }
-        System.out.println(m.groupCount());
-    }
-
     /**
      * preparedstmt set values.
      *

@@ -3,7 +3,7 @@ package com.data2.salmon.core.engine.domain;
 import com.data2.salmon.core.engine.config.TableConfig;
 import com.data2.salmon.core.engine.enums.OperationKeys;
 import com.data2.salmon.core.engine.enums.Pair;
-import com.data2.salmon.core.engine.factory.SqlFactory;
+import com.data2.salmon.core.engine.factory.ReturnFactory;
 import lombok.Data;
 
 import java.sql.Connection;
@@ -46,7 +46,7 @@ public class ExecuteSql {
                 break;
             case SELECT:
                 res = executor.executeQuery();
-                res = SqlFactory.turnRsToMap((ResultSet) res);
+                res = ReturnFactory.turnRsToMap((ResultSet) res);
                 break;
             default:
                 break;

@@ -7,7 +7,7 @@ import java.util.Map;
 /**
  * @author leewow
  */
-public class SqlFactory {
+public class ReturnFactory {
 
     public static Map<String, Object> turnRsToMap(ResultSet res) throws SQLException {
         try {

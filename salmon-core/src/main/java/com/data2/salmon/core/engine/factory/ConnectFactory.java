@@ -3,8 +3,8 @@ package com.data2.salmon.core.engine.factory;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.data2.salmon.core.common.util.ColumnSequenceUtil;
 import com.data2.salmon.core.engine.domain.ExecuteSql;
+import com.data2.salmon.core.engine.domain.Looker;
 import com.data2.salmon.core.engine.druid.DataSourceFactory;
-import com.data2.salmon.core.engine.druid.DataSourceLooker;
 import com.data2.salmon.core.engine.except.SalmonException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -24,7 +24,7 @@ public class ConnectFactory {
     public DataSourceFactory dataSourceFactory;
     private ExecuteSql executeSql;
 
-    public ConnectFactory makeConnect(DataSourceLooker looker) {
+    public ConnectFactory makeConnect(Looker looker) {
         try {
             DruidDataSource druidDataSource = dataSourceFactory.getSource(looker);
             Connection con = druidDataSource.getConnection();

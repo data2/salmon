@@ -3,6 +3,7 @@ package com.data2.salmon.core.engine.druid;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.data2.salmon.core.engine.config.ConfigurationLoader;
 import com.data2.salmon.core.engine.config.PartitionConfig;
+import com.data2.salmon.core.engine.domain.Looker;
 import com.google.common.base.Charsets;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
@@ -37,22 +38,21 @@ public class DataSourceFactory implements SourceFactory {
 
     @Override
     public void afterPropertiesSet() {
-
     }
 
     /**
      * when use databse, then build it, except easy config,eg jdbc or oracle
      *
-     * @param dataSourceLooker
+     * @param looker
      * @return
      * @throws ExecutionException
      */
     @Override
-    public DruidDataSource getSource(final DataSourceLooker dataSourceLooker) throws ExecutionException {
-        return dataSourceCache.get(dataSourceLooker.toString(), () -> {
-            switch (dataSourceLooker.dbase) {
+    public DruidDataSource getSource(final Looker looker) throws ExecutionException {
+        return dataSourceCache.get(looker.toString(), () -> {
+            switch (looker.getDbase()) {
                 case PARTITION:
-                    return partitionConfig.builder(dataSourceLooker.dbid);
+                    return partitionConfig.builder(looker.getIndex());
                 case JDBC:
                     return jdbcConfig;
                 case ORACLE:
@@ -77,6 +77,5 @@ public class DataSourceFactory implements SourceFactory {
             e.printStackTrace();
         }
     }
-
 
 }
