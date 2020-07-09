@@ -3,7 +3,10 @@
     select 1 from dual
 
 --<single>
-   select * from tm_article_info where articleID = #articleID#
+   select * from test where articleID = #articleID#
 
 --<single2>
-   select * from tm_article_info where articleID = ##
+   select * from test where articleID = ##
+
+--<partitioninsert>
+   insert into test values(#id#,#name#)

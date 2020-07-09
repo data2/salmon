@@ -45,7 +45,7 @@ public class PartitionConfig implements Config {
             tmp = sub.split(":");
             if (tmp.length == 2) {
                 if (tmp[0].equals("db" + dbId)) {
-                    url = url.replace("XXX", tmp[1]);
+                    url = url.replace("#", tmp[1]);
                     break;
                 }
             }

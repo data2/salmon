@@ -2,6 +2,7 @@ package com.data2.salmon.core.engine.strategy;
 
 import com.data2.salmon.core.engine.config.TableConfig;
 import com.data2.salmon.core.engine.config.TextFunction;
+import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
@@ -11,6 +12,7 @@ import java.util.Map;
  * @author leewow
  */
 @Component
+@Data
 @ConfigurationProperties(prefix = "spring.salmon.database.partition")
 public class Router {
     private String table;

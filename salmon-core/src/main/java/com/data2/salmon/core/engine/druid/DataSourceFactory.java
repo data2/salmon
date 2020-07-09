@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 
 import static com.data2.salmon.core.engine.enums.DataBase.JDBC;
 import static com.data2.salmon.core.engine.enums.DataBase.ORACLE;
@@ -34,7 +35,10 @@ public class DataSourceFactory implements SourceFactory {
     @Qualifier("oracle")
     public DruidDataSource oracleConfig;
 
-    private Cache<String, DruidDataSource> dataSourceCache = CacheBuilder.newBuilder().build();
+    private Cache<String, DruidDataSource> dataSourceCache = CacheBuilder.newBuilder()
+            .expireAfterWrite(1, TimeUnit.MINUTES)
+            .maximumSize(20)
+            .build();
 
     @Override
     public void afterPropertiesSet() {
