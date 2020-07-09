@@ -4,8 +4,6 @@ import com.data2.salmon.core.engine.enums.DataBase;
 import com.data2.salmon.core.engine.inter.Mapper;
 import com.google.common.collect.Sets;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
@@ -26,7 +24,6 @@ import java.util.HashSet;
 @Component
 public class Scanner {
     protected static final String DEFAULT_RESOURCE_PATTERN = "**/*.class";
-    private static final Logger log = LoggerFactory.getLogger(Scanner.class);
 
     public static HashSet<Inner> loadCheckClassMethods(String scanPackages) {
         HashSet<Inner> set = Sets.newHashSet();

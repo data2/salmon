@@ -1,8 +1,7 @@
 package com.data2.salmon.core.engine.spring;
 
 import com.data2.salmon.core.Salmon;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.stereotype.Component;
@@ -10,9 +9,9 @@ import org.springframework.stereotype.Component;
 /**
  * @author leewow
  */
+@Slf4j
 @Component
 public class ShowDynamicBeanProcessor implements BeanPostProcessor {
-    private static final Logger log = LoggerFactory.getLogger(ShowDynamicBeanProcessor.class);
 
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
