@@ -9,7 +9,7 @@ import com.data2.salmon.core.engine.strategy.RouteStrategyMaster;
  */
 public class Parser {
 
-    private static Object newObject(@SuppressWarnings("rawtypes") Class cls) {
+    private static Object newObject(Class cls) {
         try {
             return cls.newInstance();
         } catch (Exception e) {

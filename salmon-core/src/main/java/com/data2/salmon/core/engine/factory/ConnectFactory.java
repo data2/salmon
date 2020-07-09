@@ -38,9 +38,10 @@ public class ConnectFactory {
         return this;
     }
 
-    public void preparedStmt(Object params) throws SalmonException {
-        List<Object> sortParms = ColumnSequenceUtil.sort(executeSql, params);
-        ColumnSequenceUtil.setValue(executeSql, sortParms);
+    public ExecuteSql preparedStmt(Object params) throws SalmonException {
+        List<Object> sortParams = ColumnSequenceUtil.sort(executeSql, params);
+        ColumnSequenceUtil.setValue(executeSql, sortParams);
+        return executeSql;
     }
 
     public ConnectFactory setSql(ExecuteSql currSql) {

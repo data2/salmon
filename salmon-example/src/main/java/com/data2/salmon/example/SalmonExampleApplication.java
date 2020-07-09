@@ -25,30 +25,28 @@ public class SalmonExampleApplication {
 
     @Autowired(required = false)
     @Mapper(file = "mapper", database = DataBase.PARTITION, name = "salman_partition_dao")
-    public Salmon salmon2;
+    public Salmon salmon3;
 
     public static void main(String[] args) {
         SpringApplication.run(SalmonExampleApplication.class, args);
     }
 
     @RequestMapping("/easy")
-    public void testEasy() {
-        Object obj = salmon.select("easy").execute();
-        System.out.println(obj);
+    public Object testEasy() {
+        return salmon.select("easy").execute();
     }
 
     @RequestMapping("/single")
     public Object testSingle() {
-        Map map = (Map) salmon.select("single").param(Collections.singletonMap("articleID", "243992049376706560")).execute();
+        Map map = (Map) salmon.select("single").execute(Collections.singletonMap("articleID", "243992049376706560"));
         return map;
     }
 
     @RequestMapping("/single2")
     public Object testSingle2() {
-        Map map = (Map) salmon.select("single2").param("243992049376706560").execute();
+        Map map = (Map) salmon.select("single2").execute("243992049376706560");
         return map;
     }
-
 
 
 }

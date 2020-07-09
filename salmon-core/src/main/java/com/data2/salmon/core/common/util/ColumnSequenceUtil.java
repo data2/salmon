@@ -29,6 +29,9 @@ public class ColumnSequenceUtil {
      */
     public static List<Object> sort(ExecuteSql currSql, Object params) throws SalmonException {
         List<Object> keylist = new ArrayList<>();
+        if (params == null) {
+            return keylist;
+        }
         if (params instanceof Map) {
             Map paramMap = (Map) params;
             String sql = currSql.getSql();
@@ -65,8 +68,10 @@ public class ColumnSequenceUtil {
             java.util.regex.Matcher m = p2.matcher(sql);
             int count = 1;
             while (m.find()) {
-                Object obj = sortParms.get(count - 1);
-                executor.setObject(count++, obj);
+                if (sortParms.size() > 0) {
+                    Object obj = sortParms.get(count - 1);
+                    executor.setObject(count++, obj);
+                }
             }
             currSql.setExecutor(executor);
         } catch (SQLException e) {

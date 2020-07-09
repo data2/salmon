@@ -11,13 +11,17 @@ import com.data2.salmon.core.engine.enums.OperationKeys;
 import com.data2.salmon.core.engine.enums.Pair;
 import com.data2.salmon.core.engine.except.SalmonException;
 import com.data2.salmon.core.engine.strategy.Router;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
+import java.sql.SQLException;
+
 /**
  * @author leewow
  */
+@Slf4j
 @Component
 public class BuildFactory {
 
@@ -61,14 +65,17 @@ public class BuildFactory {
      * @param params
      * @throws SalmonException
      */
-    public void build(DataBase dbase, ExecuteSql currSql, Object params) throws SalmonException {
+    public Object build(DataBase dbase, ExecuteSql currSql, Object params) throws SalmonException, SQLException {
         currSql.setTableName(calcuTabnameFromSqlStr(currSql.getSql()));
         String dbId = null;
         if (dbase == DataBase.PARTITION) {
             loadFromConfig(currSql);
+            if (params == null) {
+                log.error("partition need value not null");
+            }
             dbId = Parser.parse(currSql.getRuler(), params);
         }
-        connectFactory.setSql(currSql).makeConnect(new Looker(dbase, dbId)).preparedStmt(params);
+        return connectFactory.setSql(currSql).makeConnect(new Looker(dbase, dbId)).preparedStmt(params).exec();
 
     }
 

@@ -18,11 +18,18 @@ public class SingleWorker extends QuickService {
     private ParseConfig parseConfig;
 
     @Override
+    public Object execute(Object object) {
+        return handle(object);
+    }
+
+    @Override
     public Object execute() {
+        return handle(null);
+    }
+
+    public Object handle(Object object) {
         try {
-            buildFactory.build(database, currSql.setSql(parseConfig.parse(file, currSql)), currParams);
-            sqlArr.add(currSql);
-            return currSql.exec();
+            return buildFactory.build(database, currSql.setSql(parseConfig.parse(file, currSql)), object);
         } catch (Exception e) {
             e.printStackTrace();
             log.error("execute err,{}", e.getMessage());

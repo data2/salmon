@@ -20,6 +20,8 @@ public interface OriginOperation {
 
     OriginOperation param(Object obj);
 
+    Object execute(Object object);
+
     Object execute();
 
     String returnInfo();

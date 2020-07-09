@@ -7,5 +7,5 @@ public interface Executor {
     /**
      * @return
      */
-    Object execute();
+    Object execute(Object object);
 }
