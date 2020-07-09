@@ -1,4 +1,4 @@
-package com.data2.salmon.core.engine.inter;
+package com.data2.salmon.core;
 
 import java.lang.annotation.*;
 

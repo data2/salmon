@@ -1,4 +1,4 @@
-package com.data2.salmon.core;
+package com.data2.salmon.core.engine.spring;
 
 import com.data2.salmon.core.engine.enums.DataBase;
 import com.data2.salmon.core.engine.inter.Mapper;

@@ -1,7 +1,6 @@
-package com.data2.salmon.core;
+package com.data2.salmon.core.engine.factory;
 
 import com.data2.salmon.core.engine.config.ParseConfig;
-import com.data2.salmon.core.engine.factory.BuildFactory;
 import com.data2.salmon.core.engine.inter.QuickService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +25,10 @@ public class SingleWorker extends QuickService {
             return currSql.exec();
         } catch (Exception e) {
             e.printStackTrace();
+            log.error("execute err,{}", e.getMessage());
             exception = true;
             return null;
         }
     }
+
 }

@@ -1,4 +1,4 @@
-package com.data2.salmon.core;
+package com.data2.salmon.core.engine.config;
 
 import java.util.ArrayList;
 import java.util.List;

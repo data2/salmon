@@ -1,8 +1,8 @@
 package com.data2.salmon.example;
 
+import com.data2.salmon.core.Salmon;
 import com.data2.salmon.core.engine.enums.DataBase;
 import com.data2.salmon.core.engine.inter.Mapper;
-import com.data2.salmon.core.engine.inter.Salmon;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

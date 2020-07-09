@@ -1,8 +1,8 @@
 package com.data2.salmon.core.engine.factory;
 
-import com.data2.salmon.core.PatternMatcherUnit;
 import com.data2.salmon.core.common.util.ArrUtils;
 import com.data2.salmon.core.engine.config.Parser;
+import com.data2.salmon.core.engine.config.PatternMatcherUnit;
 import com.data2.salmon.core.engine.config.TableConfig;
 import com.data2.salmon.core.engine.domain.ExecuteSql;
 import com.data2.salmon.core.engine.domain.Looker;

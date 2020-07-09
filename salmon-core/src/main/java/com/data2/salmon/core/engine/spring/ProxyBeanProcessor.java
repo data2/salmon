@@ -1,6 +1,7 @@
-package com.data2.salmon.core;
+package com.data2.salmon.core.engine.spring;
 
 import com.data2.salmon.core.common.util.ScanUtil;
+import com.data2.salmon.core.engine.factory.SingleWorker;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,7 +1,5 @@
 package com.data2.salmon.core.engine.config;
 
-import com.data2.salmon.core.Objects;
-
 import java.io.InputStream;
 
 /**
