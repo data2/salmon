@@ -74,7 +74,7 @@ public class Scanner {
             for (Field field : clz.getFields()) {
                 if (field.isAnnotationPresent(Mapper.class)) {
                     Mapper m = field.getAnnotation(Mapper.class);
-                    set.add(new Inner().setDatabase(m.database()).setFile(m.file()).setName(field.getName()));
+                    set.add(new Inner().setDatabase(m.database()).setFile(m.file()).setName(m.name()));
                 }
             }
         } catch (Exception e) {

@@ -5,6 +5,7 @@ import com.data2.salmon.core.engine.enums.DataBase;
 import com.data2.salmon.core.engine.inter.Mapper;
 import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,28 +20,28 @@ import java.util.Map;
 @RestController
 public class PartitionController {
     @Autowired(required = false)
-    @Mapper(file = "mapper", database = DataBase.PARTITION, name = "salman_partition_dao")
-    public Salmon salmon2;
+    @Qualifier("partitionDao")
+    @Mapper(file = "mapper", database = DataBase.PARTITION, name = "partitionDao")
+    public Salmon salmon;
 
     @RequestMapping("/partitioninsert")
     public Object partitioninsert() {
         Map map = Maps.newConcurrentMap();
         map.put("id", "123");
         map.put("name", "王磊");
-        Object res = salmon2.insert("partitioninsert").execute(map);
+        Object res = salmon.insert("partitioninsert").execute(map);
         return res;
     }
 
-
     @RequestMapping("/partitionquery")
     public Object partitionquery() {
-        Object res = salmon2.select("partitionquery").execute("123");
+        Object res = salmon.select("partitionquery").execute("123");
         return res;
     }
 
     @RequestMapping("/partitionquery2")
     public Object partitionquery2() {
-        Object res = salmon2.select("partitionquery2").execute(Collections.singletonMap("id", "123"));
+        Object res = salmon.select("partitionquery2").execute(Collections.singletonMap("id", "123"));
         return res;
     }
 }
