@@ -1,6 +1,6 @@
 package com.data2.salmon.core.engine.intercept;
 
-import com.data2.salmon.core.engine.except.SalmonException;
+import lombok.extern.slf4j.Slf4j;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -8,17 +8,12 @@ import java.util.Date;
 /**
  * @author leewow
  */
+@Slf4j
 public class ParamsInterceptor implements CutPointInterceptor {
 
     @Override
-    public void execute(Object obj) throws SalmonException {
-//        BootDico col = (BootDico) obj;
-//        InputStream colFile = DicoClassLoader.getContextLoader().getResourceAsStream(col.getClassloaderFile());
-//        if (colFile == null) {
-//            throw new SalmonException("col file not exist.");
-//        }
-        System.out.println("[" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) + "]"
-                + "{execute sql start.}");
+    public void execute(Object obj) {
+        log.info("[{}] execute sql start.", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
     }
 
 }

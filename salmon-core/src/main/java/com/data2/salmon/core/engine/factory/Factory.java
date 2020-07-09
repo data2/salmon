@@ -1,18 +1,15 @@
 package com.data2.salmon.core.engine.factory;
 
 import com.data2.salmon.core.engine.inter.Salmon;
-import com.data2.salmon.core.engine.intercept.RunColInvocationHandler;
+import com.data2.salmon.core.engine.intercept.RunColInvocationHandlerProxy;
 
 import java.lang.reflect.Proxy;
 
-/**
- * impl of co add proxy.
- */
 public class Factory {
 
-    public static Salmon getSource(Object impl) {
+    public static Salmon getSource(Object obj) {
         return (Salmon) Proxy.newProxyInstance(Salmon.class.getClassLoader(), new Class<?>[]{Salmon.class},
-                new RunColInvocationHandler(impl));
+                new RunColInvocationHandlerProxy(obj));
     }
 
 }

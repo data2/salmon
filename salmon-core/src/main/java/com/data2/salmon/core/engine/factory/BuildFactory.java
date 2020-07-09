@@ -51,16 +51,23 @@ public class BuildFactory {
         return null;
     }
 
+    /**
+     * if partition
+     * loading ruler.
+     * calcu ruler for where data goes.
+     *
+     * @param dbase
+     * @param currSql
+     * @param params
+     * @throws SalmonException
+     */
     public void build(DataBase dbase, ExecuteSql currSql, Object params) throws SalmonException {
         currSql.setTableName(calcuTabnameFromSqlStr(currSql.getSql()));
         String dbId = null;
         if (dbase == DataBase.PARTITION) {
-            // loading ruler.
             loadFromConfig(currSql);
-            // calcu ruler for where data goes.
             dbId = Parser.parse(currSql.getRuler(), params);
         }
-        // create connection && prepared sql param.
         connectFactory.setSql(currSql).makeConnect(new Looker(dbase, dbId)).preparedStmt(params);
 
     }

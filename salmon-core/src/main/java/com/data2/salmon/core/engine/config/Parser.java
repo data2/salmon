@@ -17,7 +17,6 @@ public class Parser {
         return null;
     }
 
-    @SuppressWarnings("unchecked")
     public static String parse(TableConfig rule, Object params) throws SalmonException {
         Class<? extends RouteStrategyMaster> cls = (Class<? extends RouteStrategyMaster>) PartitionSet
                 .getParseClass(rule.getPartionMethod());

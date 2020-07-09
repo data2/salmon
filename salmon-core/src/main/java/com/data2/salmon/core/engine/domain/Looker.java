@@ -2,7 +2,6 @@ package com.data2.salmon.core.engine.domain;
 
 import com.data2.salmon.core.engine.enums.DataBase;
 import lombok.Data;
-import org.springframework.util.StringUtils;
 
 /**
  * @author leewow
@@ -21,6 +20,10 @@ public class Looker {
 
     @Override
     public String toString() {
-        return dbase.getCode().concat(StringUtils.isEmpty(index) ? "" : index);
+        if (index == null) {
+            return dbase.getCode();
+        } else {
+            return dbase.getCode().concat(index);
+        }
     }
 }

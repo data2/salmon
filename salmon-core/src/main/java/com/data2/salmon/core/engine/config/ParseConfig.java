@@ -2,15 +2,15 @@ package com.data2.salmon.core.engine.config;
 
 import com.data2.salmon.core.engine.cache.impl.SqlConfigCache;
 import com.data2.salmon.core.engine.domain.ExecuteSql;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.io.File;
 
 /**
  * @author leewow
  */
 @Component
+@Slf4j
 public class ParseConfig {
 
     @Autowired
@@ -18,7 +18,6 @@ public class ParseConfig {
 
     public String parse(String file, ExecuteSql executeSql) {
         String mapperFile = "mapper/".concat(file).concat(".salmon");
-        System.out.println(new File(mapperFile).exists());
         return (String) sqlConfigCache.getSource(mapperFile, executeSql.getSqlId());
     }
 

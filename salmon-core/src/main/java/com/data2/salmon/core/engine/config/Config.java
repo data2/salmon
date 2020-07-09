@@ -8,9 +8,9 @@ import com.alibaba.druid.pool.DruidDataSource;
 public interface Config {
 
     /**
-     * @param dbid
+     * @param index
      * @return
      */
-    DruidDataSource builder(String dbid);
+    DruidDataSource builder(String index);
 
 }

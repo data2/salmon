@@ -61,7 +61,6 @@ public class SqlConfigCache implements ExecuteSqlCache {
     public void removeAll() {
         if (cache != null) {
             cache.invalidateAll();
-            ;
         }
     }
 

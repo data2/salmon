@@ -9,7 +9,7 @@ import java.util.Map;
  */
 public class ReturnFactory {
 
-    public static Map<String, Object> turnRsToMap(ResultSet res) throws SQLException {
+    public static Map<String, Object> turnRsToMap(ResultSet res) {
         try {
             return getResultMap(res);
         } catch (Exception e) {
