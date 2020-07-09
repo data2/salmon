@@ -8,5 +8,13 @@
 --<single2>
    select * from test where articleID = ##
 
+
+
 --<partitioninsert>
    insert into test values(#id#,#name#)
+
+--<partitionquery>
+    select * from test where id = ##
+
+--<partitionquery2>
+   select * from test where id = #id#

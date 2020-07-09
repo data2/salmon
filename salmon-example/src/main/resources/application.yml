@@ -15,5 +15,5 @@ spring:
         url: jdbc:mysql://#?characterEncoding=UTF-8
         username: root
         password: QAZwdv123
-        mapping: db0:127.0.0.1:3306/talkmovie,db1:127.0.0.1:3306/talkmovie2
+        mapping: db0>127.0.0.1:3306/talkmovie,db1>127.0.0.1:3306/talkmovie2
         table: hash(test, id, 0, 2, 2)

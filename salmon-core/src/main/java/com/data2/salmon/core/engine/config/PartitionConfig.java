@@ -42,7 +42,7 @@ public class PartitionConfig implements Config {
     private String doURL(String dbId) {
         String[] tmp;
         for (String sub : mapping.split(",")) {
-            tmp = sub.split(":");
+            tmp = sub.split(">");
             if (tmp.length == 2) {
                 if (tmp[0].equals("db" + dbId)) {
                     url = url.replace("#", tmp[1]);
