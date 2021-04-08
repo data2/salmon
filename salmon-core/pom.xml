@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.data2</groupId>
         <artifactId>salmon</artifactId>
-        <version>2.6.0</version>
+        <version>1.0.0</version>
     </parent>
     <artifactId>salmon-core</artifactId>
     <name>salmon-core</name>
@@ -19,11 +19,14 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
+            <version>2.0.6.RELEASE</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <version>2.0.6.RELEASE</version>
+
             <scope>test</scope>
             <exclusions>
                 <exclusion>
