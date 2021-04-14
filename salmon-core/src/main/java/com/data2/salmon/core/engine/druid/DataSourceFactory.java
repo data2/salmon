@@ -17,6 +17,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
 import static com.data2.salmon.core.engine.enums.DataBase.JDBC;
+import static com.data2.salmon.core.engine.enums.DataBase.ORACLE;
 
 /**
  * @author leewow
@@ -47,9 +48,9 @@ public class DataSourceFactory implements SourceFactory {
             if (config.contains(JDBC.name().toLowerCase())) {
                 Class.forName("com.mysql.cj.jdbc.Driver");
             }
-//            if (config.contains(ORACLE.name().toLowerCase())) {
-//                Class.forName("oracle.jdbc.driver.OracleDriver");
-//            }
+            if (config.contains(ORACLE.name().toLowerCase())) {
+                Class.forName("oracle.jdbc.driver.OracleDriver");
+            }
         } catch (Exception e) {
             e.printStackTrace();
             log.info("loading class exception, exception: {}", e.getMessage());
