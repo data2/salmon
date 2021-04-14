@@ -8,7 +8,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import static com.data2.salmon.core.engine.enums.DataBase.ORACLE;
+import static com.data2.salmon.core.engine.enums.DataBase.oracle;
 
 /**
  * @author leewow
@@ -24,11 +24,14 @@ public class OracleConfig {
 
     @Bean(name = "oracle")
     public DruidDataSource builder() {
-        if (StringUtils.isEmpty(url) || StringUtils.isEmpty(username) || StringUtils.isEmpty(password)) {
+        if (StringUtils.isAllBlank(url, username, password)) {
+            return null;
+        }
+        if (StringUtils.isAnyEmpty(url, username, password)) {
             log.info("oracle config not right, url or username or passwd is null!");
             return null;
         }
-        if (!url.contains(ORACLE.name().toLowerCase())) {
+        if (!url.contains(oracle.name())) {
             log.info("oracle url config not contain jdbc str!");
             return null;
         }

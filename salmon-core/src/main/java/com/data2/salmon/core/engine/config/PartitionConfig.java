@@ -4,10 +4,11 @@ import com.alibaba.druid.pool.DruidDataSource;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
-import static com.data2.salmon.core.engine.enums.DataBase.JDBC;
+import static com.data2.salmon.core.engine.enums.DataBase.jdbc;
 
 /**
  * @author leewow
@@ -16,6 +17,7 @@ import static com.data2.salmon.core.engine.enums.DataBase.JDBC;
 @Data
 @Component
 @ConfigurationProperties(prefix = "spring.salmon.database.partition")
+@ConditionalOnExpression("!T(org.springframework.util.StringUtils).isEmpty('${spring.salmon.database.partition.url:}')")
 public class PartitionConfig implements Config {
     private String url;
     private String username;
@@ -34,7 +36,7 @@ public class PartitionConfig implements Config {
         dataSource.setUrl(doURL(dbId));
         dataSource.setUsername(username);
         dataSource.setPassword(password);
-        dataSource.setDriverClassName(url.contains(JDBC.name().toLowerCase()) ? "com.mysql.cj.jdbc.Driver" : "oracle.jdbc.driver.OracleDriver");
+        dataSource.setDriverClassName(url.contains(jdbc.name()) ? "com.mysql.cj.jdbc.Driver" : "oracle.jdbc.driver.OracleDriver");
         dataSource.setInitialSize(5);
         return dataSource;
     }
@@ -51,7 +53,6 @@ public class PartitionConfig implements Config {
             }
         }
         return url;
-
     }
 
 }

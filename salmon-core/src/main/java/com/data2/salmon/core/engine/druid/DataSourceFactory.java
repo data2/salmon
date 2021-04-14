@@ -1,23 +1,18 @@
 package com.data2.salmon.core.engine.druid;
 
 import com.alibaba.druid.pool.DruidDataSource;
-import com.data2.salmon.core.engine.config.ConfigurationLoader;
 import com.data2.salmon.core.engine.config.PartitionConfig;
 import com.data2.salmon.core.engine.domain.Looker;
-import com.google.common.base.Charsets;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
-import com.google.common.io.Resources;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
+import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
-
-import static com.data2.salmon.core.engine.enums.DataBase.JDBC;
-import static com.data2.salmon.core.engine.enums.DataBase.ORACLE;
 
 /**
  * @author leewow
@@ -26,7 +21,7 @@ import static com.data2.salmon.core.engine.enums.DataBase.ORACLE;
 @Slf4j
 public class DataSourceFactory implements SourceFactory {
 
-    @Autowired
+    @Autowired(required = false)
     public PartitionConfig partitionConfig;
     @Autowired(required = false)
     @Qualifier("jdbc")
@@ -43,12 +38,10 @@ public class DataSourceFactory implements SourceFactory {
     @Override
     public void afterPropertiesSet() {
         try {
-            String config = Resources.toString(ConfigurationLoader.getClassLoader().getResource("application.yml"),
-                    Charsets.UTF_8);
-            if (config.contains(JDBC.name().toLowerCase())) {
+            if (Objects.nonNull(jdbcConfig) || Objects.nonNull(partitionConfig)) {
                 Class.forName("com.mysql.cj.jdbc.Driver");
             }
-            if (config.contains(ORACLE.name().toLowerCase())) {
+            if (Objects.nonNull(oracleConfig)) {
                 Class.forName("oracle.jdbc.driver.OracleDriver");
             }
         } catch (Exception e) {
@@ -68,11 +61,11 @@ public class DataSourceFactory implements SourceFactory {
     public DruidDataSource getSource(final Looker looker) throws ExecutionException {
         return dataSourceCache.get(looker.toString(), () -> {
             switch (looker.getDbase()) {
-                case PARTITION:
+                case partition:
                     return partitionConfig.builder(looker.getIndex());
-                case JDBC:
+                case jdbc:
                     return jdbcConfig;
-                case ORACLE:
+                case oracle:
                     return oracleConfig;
                 default:
                     return null;

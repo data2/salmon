@@ -68,7 +68,7 @@ public class BuildFactory {
     public Object build(DataBase dbase, ExecuteSql currSql, Object params) throws SalmonException, SQLException {
         currSql.setTableName(calcuTabnameFromSqlStr(currSql.getSql()));
         String dbId = null;
-        if (dbase == DataBase.PARTITION) {
+        if (dbase == DataBase.partition) {
             loadFromConfig(currSql);
             if (params == null) {
                 log.error("partition need value not null");

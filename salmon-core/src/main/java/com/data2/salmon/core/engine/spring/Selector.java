@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ImportSelector;
 import org.springframework.core.annotation.AnnotationAttributes;
 import org.springframework.core.type.AnnotationMetadata;
 
-import static com.data2.salmon.core.engine.enums.DataBase.JDBC;
+import static com.data2.salmon.core.engine.enums.DataBase.jdbc;
 
 /**
  * @author leewow
@@ -15,7 +15,7 @@ import static com.data2.salmon.core.engine.enums.DataBase.JDBC;
 public class Selector implements ImportSelector {
     @Override
     public String[] selectImports(AnnotationMetadata annotationMetadata) {
-        return new String[]{JDBC.name().toLowerCase().equals(AnnotationAttributes.fromMap(annotationMetadata.getAnnotationAttributes(
+        return new String[]{jdbc.name().equals(AnnotationAttributes.fromMap(annotationMetadata.getAnnotationAttributes(
                 BootSalmon.class.getName(), false)).getString("type")) ? QuickService.class.getName() : LinkService.class.getName()};
     }
 }

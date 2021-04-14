@@ -8,7 +8,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import static com.data2.salmon.core.engine.enums.DataBase.JDBC;
+import static com.data2.salmon.core.engine.enums.DataBase.jdbc;
 
 /**
  * @author leewow
@@ -24,11 +24,14 @@ public class JdbcConfig {
 
     @Bean(name = "jdbc")
     public DruidDataSource builder() {
-        if (StringUtils.isEmpty(url) || StringUtils.isEmpty(username) || StringUtils.isEmpty(password)) {
+        if (StringUtils.isAllBlank(url, username, password)) {
+            return null;
+        }
+        if (StringUtils.isAnyEmpty(url, username, password)) {
             log.info("jdbc config not right, url or username or passwd is null!");
             return null;
         }
-        if (!url.contains(JDBC.name().toLowerCase())) {
+        if (!url.contains(jdbc.name())) {
             log.info("jdbc url config not contain jdbc str!");
             return null;
         }

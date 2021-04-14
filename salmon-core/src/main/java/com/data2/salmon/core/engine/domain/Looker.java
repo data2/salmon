@@ -18,9 +18,9 @@ public class Looker {
     @Override
     public String toString() {
         if (index == null) {
-            return dbase.name().toLowerCase();
+            return dbase.name();
         } else {
-            return dbase.name().toLowerCase().concat(index);
+            return dbase.name().concat(index);
         }
     }
 }

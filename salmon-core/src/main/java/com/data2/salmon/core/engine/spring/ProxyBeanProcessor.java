@@ -14,8 +14,8 @@ import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.stereotype.Component;
 
-import static com.data2.salmon.core.engine.enums.DataBase.JDBC;
-import static com.data2.salmon.core.engine.enums.DataBase.PARTITION;
+import static com.data2.salmon.core.engine.enums.DataBase.jdbc;
+import static com.data2.salmon.core.engine.enums.DataBase.partition;
 
 /**
  * @author leewow
@@ -34,7 +34,7 @@ public class ProxyBeanProcessor implements BeanFactoryPostProcessor {
             return;
         }
         for (Scanner.Inner inner : Scanner.loadCheckClassMethods(pack)) {
-            if (!ArrUtils.inArray(inner.database, JDBC, PARTITION)) {
+            if (!ArrUtils.inArray(inner.database, jdbc, partition)) {
                 continue;
             }
             BeanDefinitionBuilder beanDefinitionBuilder = BeanDefinitionBuilder.genericBeanDefinition(SingleWorker.class);
