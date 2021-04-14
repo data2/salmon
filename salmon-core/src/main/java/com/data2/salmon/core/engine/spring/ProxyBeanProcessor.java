@@ -1,6 +1,7 @@
 package com.data2.salmon.core.engine.spring;
 
-import com.data2.salmon.core.common.util.ScanUtil;
+import com.data2.salmon.core.common.util.ArrUtils;
+import com.data2.salmon.core.engine.config.ScannerPackage;
 import com.data2.salmon.core.engine.factory.SingleWorker;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -27,24 +28,24 @@ public class ProxyBeanProcessor implements BeanFactoryPostProcessor {
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
         DefaultListableBeanFactory defaultListableBeanFactory
                 = (DefaultListableBeanFactory) beanFactory;
-        String pack = ScanUtil.achieveScan();
-        if (StringUtils.isNotEmpty(pack)) {
-            for (Scanner.Inner inner : Scanner.loadCheckClassMethods(pack)) {
-                if (PARTITION == inner.database || JDBC == inner.database) {
-                    BeanDefinitionBuilder beanDefinitionBuilder = BeanDefinitionBuilder.genericBeanDefinition(SingleWorker.class);
-                    beanDefinitionBuilder.addPropertyValue("name", inner.name);
-                    beanDefinitionBuilder.addPropertyValue("database", inner.database);
-                    beanDefinitionBuilder.addPropertyValue("file", inner.file);
-                    AbstractBeanDefinition abstractBeanDefinition = beanDefinitionBuilder.getBeanDefinition();
-                    abstractBeanDefinition.addQualifier(new AutowireCandidateQualifier(inner.name));
-                    abstractBeanDefinition.setScope("prototype");
-                    defaultListableBeanFactory.registerBeanDefinition(inner.name, abstractBeanDefinition);
-                    log.info("register salmon success : {}", inner.toString());
-                }
-
+        String pack = ScannerPackage.achieveScan();
+        if (StringUtils.isEmpty(pack)) {
+            log.warn("spring.salman.scan is null, noting todo");
+            return;
+        }
+        for (Scanner.Inner inner : Scanner.loadCheckClassMethods(pack)) {
+            if (!ArrUtils.inArray(inner.database, JDBC, PARTITION)) {
+                continue;
             }
-        } else {
-            log.error("spring.salman.scan is null ,please configure in spring");
+            BeanDefinitionBuilder beanDefinitionBuilder = BeanDefinitionBuilder.genericBeanDefinition(SingleWorker.class);
+            beanDefinitionBuilder.addPropertyValue("name", inner.name);
+            beanDefinitionBuilder.addPropertyValue("database", inner.database);
+            beanDefinitionBuilder.addPropertyValue("file", inner.file);
+            AbstractBeanDefinition abstractBeanDefinition = beanDefinitionBuilder.getBeanDefinition();
+            abstractBeanDefinition.addQualifier(new AutowireCandidateQualifier(inner.name));
+            abstractBeanDefinition.setScope("prototype");
+            defaultListableBeanFactory.registerBeanDefinition(inner.name, abstractBeanDefinition);
+            log.info("register salmon success : {}", inner.toString());
 
         }
 

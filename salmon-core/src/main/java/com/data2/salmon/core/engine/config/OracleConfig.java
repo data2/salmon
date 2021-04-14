@@ -7,7 +7,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
 
 import static com.data2.salmon.core.engine.enums.DataBase.ORACLE;
 
@@ -16,7 +15,6 @@ import static com.data2.salmon.core.engine.enums.DataBase.ORACLE;
  */
 @Data
 @Slf4j
-@Component
 @ConfigurationProperties(prefix = "spring.salmon.database.oracle")
 @Configuration
 public class OracleConfig {
@@ -30,7 +28,7 @@ public class OracleConfig {
             log.info("oracle config not right, url or username or passwd is null!");
             return null;
         }
-        if (!url.contains(ORACLE.getCode())) {
+        if (!url.contains(ORACLE.name().toLowerCase())) {
             log.info("oracle url config not contain jdbc str!");
             return null;
         }

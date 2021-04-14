@@ -4,16 +4,16 @@ spring:
     scan: com.data2.salmon.example
     database:
       jdbc:
-        url: jdbc:mysql://localhost:3306/talkmovie?characterEncoding=UTF-8
+        url: jdbc:mysql://20.26.103.91:13306/dqbusi?characterEncoding=UTF-8
         username: root
-        password: QAZwdv123
-      oracle:
-        url: jdbc:oracle:thin:@//<host>:<port>/<service_name>
-        username: root
-        password: QAZwdv123
-      partition:
-        url: jdbc:mysql://#?characterEncoding=UTF-8
-        username: root
-        password: QAZwdv123
-        mapping: db0>127.0.0.1:3306/talkmovie,db1>127.0.0.1:3306/talkmovie2
-        table: hash(test, id, 0, 2, 2)
+        password: root
+#      oracle:
+#        url: jdbc:oracle:thin:@//<host>:<port>/<service_name>
+#        username: root
+#        password: QAZwdv123
+#      partition:
+#        url: jdbc:mysql://#?characterEncoding=UTF-8
+#        username: root
+#        password: QAZwdv123
+#        mapping: db0>127.0.0.1:3306/talkmovie,db1>127.0.0.1:3306/talkmovie2
+#        table: hash(test, id, 0, 2, 2)

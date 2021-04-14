@@ -1,8 +1,8 @@
 package com.data2.salmon.example;
 
-import com.data2.salmon.core.Salmon;
 import com.data2.salmon.core.engine.enums.DataBase;
 import com.data2.salmon.core.engine.inter.Mapper;
+import com.data2.salmon.core.engine.inter.Salmon;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,13 +41,13 @@ public class SalmonExampleApplication {
 
     @RequestMapping("/single")
     public Object testSingle() {
-        Map map = (Map) salmon.select("single").execute(Collections.singletonMap("articleID", "243992049376706560"));
+        Map map = (Map) salmon.select("single").execute(Collections.singletonMap("code", "cityCode"));
         return map;
     }
 
     @RequestMapping("/single2")
     public Object testSingle2() {
-        Map map = (Map) salmon.select("single2").execute("243992049376706560");
+        Map map = (Map) salmon.select("single2").execute("cityCode");
         return map;
     }
 

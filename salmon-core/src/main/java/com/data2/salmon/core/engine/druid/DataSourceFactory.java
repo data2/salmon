@@ -17,7 +17,6 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
 import static com.data2.salmon.core.engine.enums.DataBase.JDBC;
-import static com.data2.salmon.core.engine.enums.DataBase.ORACLE;
 
 /**
  * @author leewow
@@ -42,6 +41,19 @@ public class DataSourceFactory implements SourceFactory {
 
     @Override
     public void afterPropertiesSet() {
+        try {
+            String config = Resources.toString(ConfigurationLoader.getClassLoader().getResource("application.yml"),
+                    Charsets.UTF_8);
+            if (config.contains(JDBC.name().toLowerCase())) {
+                Class.forName("com.mysql.cj.jdbc.Driver");
+            }
+//            if (config.contains(ORACLE.name().toLowerCase())) {
+//                Class.forName("oracle.jdbc.driver.OracleDriver");
+//            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.info("loading class exception, exception: {}", e.getMessage());
+        }
     }
 
     /**
@@ -65,21 +77,6 @@ public class DataSourceFactory implements SourceFactory {
                     return null;
             }
         });
-    }
-
-    static {
-        try {
-            String config = Resources.toString(ConfigurationLoader.getClassLoader().getResource("application.yml"),
-                    Charsets.UTF_8);
-            if (config.contains(JDBC.getCode())) {
-                Class.forName("com.mysql.cj.jdbc.Driver");
-            }
-            if (config.contains(ORACLE.getCode())) {
-                Class.forName("oracle.jdbc.driver.OracleDriver");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
 }

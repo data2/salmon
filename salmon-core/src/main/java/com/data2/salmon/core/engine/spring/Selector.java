@@ -15,14 +15,7 @@ import static com.data2.salmon.core.engine.enums.DataBase.JDBC;
 public class Selector implements ImportSelector {
     @Override
     public String[] selectImports(AnnotationMetadata annotationMetadata) {
-        Class<?> annotationType = BootSalmon.class;
-        AnnotationAttributes attributes = AnnotationAttributes.fromMap(annotationMetadata.getAnnotationAttributes(
-                annotationType.getName(), false));
-        String type = attributes.getString("type");
-        if (JDBC.getCode().equals(type)) {
-            return new String[]{QuickService.class.getName()};
-        } else {
-            return new String[]{LinkService.class.getName()};
-        }
+        return new String[]{JDBC.name().toLowerCase().equals(AnnotationAttributes.fromMap(annotationMetadata.getAnnotationAttributes(
+                BootSalmon.class.getName(), false)).getString("type")) ? QuickService.class.getName() : LinkService.class.getName()};
     }
 }

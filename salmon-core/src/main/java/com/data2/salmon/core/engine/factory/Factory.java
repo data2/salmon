@@ -1,6 +1,6 @@
 package com.data2.salmon.core.engine.factory;
 
-import com.data2.salmon.core.Salmon;
+import com.data2.salmon.core.engine.inter.Salmon;
 import com.data2.salmon.core.engine.intercept.RunColInvocationHandlerProxy;
 
 import java.lang.reflect.Proxy;

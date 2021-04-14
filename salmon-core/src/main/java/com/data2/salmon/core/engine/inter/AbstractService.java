@@ -1,6 +1,5 @@
 package com.data2.salmon.core.engine.inter;
 
-import com.data2.salmon.core.Salmon;
 import org.springframework.beans.factory.InitializingBean;
 
 /**

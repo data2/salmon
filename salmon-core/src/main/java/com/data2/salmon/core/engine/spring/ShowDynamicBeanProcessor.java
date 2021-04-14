@@ -1,6 +1,6 @@
 package com.data2.salmon.core.engine.spring;
 
-import com.data2.salmon.core.Salmon;
+import com.data2.salmon.core.engine.inter.Salmon;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;

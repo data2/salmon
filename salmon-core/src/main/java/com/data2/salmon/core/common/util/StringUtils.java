@@ -6,10 +6,10 @@ package com.data2.salmon.core.common.util;
 public class StringUtils {
 
     public static boolean containAllcharIgnoreCase(String tmp, char[] chars) {
+        String str;
         for (char c : chars) {
-            if (tmp.contains(c + "") || tmp.toUpperCase().contains(c + "")) {
-                continue;
-            } else {
+            str = String.valueOf(c);
+            if (!tmp.contains(str) && !tmp.toUpperCase().contains(str)) {
                 return false;
             }
         }

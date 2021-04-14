@@ -23,7 +23,7 @@ import java.util.HashSet;
  */
 @Component
 public class Scanner {
-    protected static final String DEFAULT_RESOURCE_PATTERN = "**/*.class";
+    public static final String DEFAULT_RESOURCE_PATTERN = "**/*.class";
 
     public static HashSet<Inner> loadCheckClassMethods(String scanPackages) {
         HashSet<Inner> set = Sets.newHashSet();

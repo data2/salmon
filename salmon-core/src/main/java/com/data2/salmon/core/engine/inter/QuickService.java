@@ -18,13 +18,12 @@ import java.util.Map;
 @Data
 public abstract class QuickService extends LinkService {
 
-    protected SalmonTrans coTrans;
-    protected List<ExecuteSql> sqlArr = new ArrayList<>();
+    private SalmonTrans coTrans;
+    private List<ExecuteSql> sqlArr = new ArrayList<>();
     protected ExecuteSql currSql;
-    protected Object currParams;
-    protected Map<String, Object> context;
+    private Object currParams;
+    private Map<String, Object> context;
     protected boolean exception = false;
-
 
     private void initContext() {
         context = Maps.newConcurrentMap();

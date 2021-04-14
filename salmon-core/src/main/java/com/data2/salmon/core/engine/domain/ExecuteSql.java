@@ -4,7 +4,6 @@ import com.data2.salmon.core.engine.config.TableConfig;
 import com.data2.salmon.core.engine.enums.OperationKeys;
 import com.data2.salmon.core.engine.enums.Pair;
 import com.data2.salmon.core.engine.factory.ReturnFactory;
-import lombok.Data;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,7 +13,6 @@ import java.sql.SQLException;
 /**
  * @author leewow
  */
-@Data
 public class ExecuteSql {
 
     private Connection conn;
@@ -61,5 +59,50 @@ public class ExecuteSql {
         this.sql = sql;
         return this;
     }
+
+    public String getSql() {
+        return sql;
+    }
+
+    public void setRuler(TableConfig ruler) {
+        this.ruler = ruler;
+    }
+
+    public TableConfig getRuler() {
+        return ruler;
+    }
+
+    public void setTableName(String tableName) {
+        this.tableName = tableName;
+    }
+
+    public String getTableName() {
+        return tableName;
+    }
+
+    public String getSqlId() {
+        return sqlId;
+    }
+
+    public void setSqlId(String sqlId) {
+        this.sqlId = sqlId;
+    }
+
+    public Connection getConn() {
+        return conn;
+    }
+
+    public void setConn(Connection conn) {
+        this.conn = conn;
+    }
+
+    public void setExecutor(PreparedStatement executor) {
+        this.executor = executor;
+    }
+
+    public void setPartionKey(Pair partionKey) {
+        this.partionKey = partionKey;
+    }
+
 
 }

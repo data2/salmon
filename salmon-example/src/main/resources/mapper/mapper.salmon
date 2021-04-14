@@ -3,10 +3,10 @@
     select 1 from dual
 
 --<single>
-   select * from test where articleID = #articleID#
+   select * from TD_DICTIONARY where code = #code#
 
 --<single2>
-   select * from test where articleID = ##
+   select * from TD_DICTIONARY where code = ##
 
 
 

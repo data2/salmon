@@ -7,7 +7,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
 
 import static com.data2.salmon.core.engine.enums.DataBase.JDBC;
 
@@ -16,7 +15,6 @@ import static com.data2.salmon.core.engine.enums.DataBase.JDBC;
  */
 @Slf4j
 @Data
-@Component
 @ConfigurationProperties(prefix = "spring.salmon.database.jdbc")
 @Configuration
 public class JdbcConfig {
@@ -30,7 +28,7 @@ public class JdbcConfig {
             log.info("jdbc config not right, url or username or passwd is null!");
             return null;
         }
-        if (!url.contains(JDBC.getCode())) {
+        if (!url.contains(JDBC.name().toLowerCase())) {
             log.info("jdbc url config not contain jdbc str!");
             return null;
         }

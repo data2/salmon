@@ -10,7 +10,7 @@ import java.util.Map;
  * @author leewow
  */
 public class TextFunction {
-    private static String blank = " ";
+    private static final String BLANK = " ";
 
     public static String excute(String contents, String key) {
         Iterable<String> lines = Splitter.on('\n').trimResults().split(contents);
@@ -29,7 +29,7 @@ public class TextFunction {
                 tag = false;
             }
             if (tag) {
-                res.append(blank + line.trim());
+                res.append(BLANK + line.trim());
             }
         }
 

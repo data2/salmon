@@ -1,6 +1,7 @@
 package com.data2.salmon.core.engine.config;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -8,15 +9,14 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * @author leewow
  */
 @Data
+@NoArgsConstructor
 public class TableConfig {
-    public String name;
-    public String column;
-    public String val;
-    public String partionMethod;
-    public String[] params;
+    private String name;
+    private String column;
+    private String val;
+    private String partionMethod;
+    private String[] params;
 
-    public TableConfig() {
-    }
 
     @Override
     public String toString() {

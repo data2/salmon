@@ -22,6 +22,7 @@ public class PropertiesUtil {
             properties.load(in);
         } catch (IOException e) {
             e.printStackTrace();
+            log.info("load properties exception, occur with reason {}", e.getMessage());
         }
     }
 
@@ -32,7 +33,6 @@ public class PropertiesUtil {
             URL url = PropertiesUtil.class.getClassLoader().getResource(file);
             if (url != null) {
                 maps = (Map) yaml.load(new FileInputStream(url.getFile()));
-                System.out.println(maps);
             }
 
         } catch (Exception e) {
