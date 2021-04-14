@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Consumer;
 
 /**
  * @author leewow
@@ -73,4 +74,23 @@ public class DataSourceFactory implements SourceFactory {
         });
     }
 
+    @Override
+    public void destroy() throws Exception {
+        try {
+            close();
+        } catch (Exception e) {
+        }
+    }
+
+    private void close(Object... objs) {
+        dataSourceCache.asMap().values().forEach(new Consumer<DruidDataSource>() {
+            @Override
+            public void accept(DruidDataSource druidDataSource) {
+                try {
+                    druidDataSource.close();
+                } catch (Exception e) {
+                }
+            }
+        });
+    }
 }
