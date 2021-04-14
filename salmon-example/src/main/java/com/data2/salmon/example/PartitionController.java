@@ -21,7 +21,7 @@ import java.util.Map;
 public class PartitionController {
     @Autowired(required = false)
     @Qualifier("partitionDao")
-    @Mapper(file = "mapper", database = DataBase.PARTITION, name = "partitionDao")
+    @Mapper(file = "mapper", database = DataBase.partition, name = "partitionDao")
     public Salmon salmon;
 
     @RequestMapping("/partitioninsert")

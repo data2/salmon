@@ -27,7 +27,7 @@ public class SalmonExampleApplication {
      * @Mapper(file = "mapper", database = DataBase.JDBC, name = "simpleDap")
      */
     @Resource(name = "simpleDao")
-    @Mapper(file = "mapper", database = DataBase.JDBC, name = "simpleDao")
+    @Mapper(file = "mapper", database = DataBase.jdbc, name = "simpleDao")
     public Salmon salmon;
 
     public static void main(String[] args) {
