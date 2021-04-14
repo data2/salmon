@@ -1,10 +1,8 @@
 package com.data2.salmon.core.engine.cache.impl;
 
-import com.data2.salmon.core.engine.cache.FileConfigCache;
+import com.data2.salmon.core.engine.cache.AbstractFileConfigCache;
 import com.data2.salmon.core.engine.config.ConfigurationLoader;
 import com.google.common.base.Charsets;
-import com.google.common.cache.Cache;
-import com.google.common.cache.CacheBuilder;
 import com.google.common.io.Resources;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -16,12 +14,10 @@ import java.util.concurrent.ExecutionException;
  */
 @Component
 @Slf4j
-public class ConfigCache implements FileConfigCache {
-
-    private Cache<String, String> cache = CacheBuilder.newBuilder().build();
+public class ConfigCache extends AbstractFileConfigCache {
 
     @Override
-    public String getSource(final String key) {
+    public String getSource(String key) {
         try {
             return cache.get(key, () -> {
                 try {
@@ -54,4 +50,9 @@ public class ConfigCache implements FileConfigCache {
         }
     }
 
+    @Override
+    public void destroy() throws Exception {
+        removeAll();
+
+    }
 }

@@ -1,11 +1,9 @@
 package com.data2.salmon.core.engine.cache.impl;
 
-import com.data2.salmon.core.engine.cache.ExecuteSqlCache;
+import com.data2.salmon.core.engine.cache.AbstractExecuteSqlCache;
 import com.data2.salmon.core.engine.config.ConfigurationLoader;
 import com.data2.salmon.core.engine.config.TextFunction;
 import com.google.common.base.Charsets;
-import com.google.common.cache.Cache;
-import com.google.common.cache.CacheBuilder;
 import com.google.common.io.Resources;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -19,15 +17,13 @@ import java.util.concurrent.ExecutionException;
  */
 @Component
 @Slf4j
-public class SqlConfigCache implements ExecuteSqlCache {
-
-    private Cache<String, Object> cache = CacheBuilder.newBuilder().build();
+public class SqlConfigCache extends AbstractExecuteSqlCache {
 
     @Autowired
     private ConfigCache configCache;
 
     @Override
-    public Object getSource(final String file, final String key) {
+    public String getSource(String file, String key) {
         try {
             return cache.get(key, () -> {
                 String sql = null;
@@ -62,6 +58,11 @@ public class SqlConfigCache implements ExecuteSqlCache {
         if (cache != null) {
             cache.invalidateAll();
         }
+    }
+
+    @Override
+    public void destroy() throws Exception {
+        removeAll();
     }
 
 }
