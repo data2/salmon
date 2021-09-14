@@ -3,7 +3,7 @@ package com.data2.salmon.core;
 import java.lang.annotation.*;
 
 /**
- * @author leewow
+ * @author data2
  */
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)

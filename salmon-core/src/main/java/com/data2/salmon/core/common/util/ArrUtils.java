@@ -3,7 +3,7 @@ package com.data2.salmon.core.common.util;
 import java.util.Objects;
 
 /**
- * @author leewow
+ * @author data2
  */
 public class ArrUtils {
 

@@ -5,7 +5,7 @@ import com.data2.salmon.core.engine.strategy.PartitionSet;
 import com.data2.salmon.core.engine.strategy.RouteStrategyMaster;
 
 /**
- * @author leewow
+ * @author data2
  */
 public class Parser {
 

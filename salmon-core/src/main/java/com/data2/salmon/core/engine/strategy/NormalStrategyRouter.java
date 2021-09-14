@@ -5,7 +5,7 @@ import com.data2.salmon.core.engine.except.SalmonException;
 import org.springframework.util.StringUtils;
 
 /**
- * @author leewow
+ * @author data2
  */
 public class NormalStrategyRouter extends RouteStrategy {
     private int start;

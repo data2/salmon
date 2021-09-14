@@ -6,7 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * @author leewow
+ * @author data2
  */
 public class PatternMatcherUnit {
 

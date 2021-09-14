@@ -1,7 +1,7 @@
 package com.data2.salmon.core.engine.enums;
 
 /**
- * @author leewow
+ * @author data2
  */
 public class DBaseKeys {
 

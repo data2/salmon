@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.regex.Pattern;
 
 /**
- * @author leewow
+ * @author data2
  */
 public class ColumnSequenceUtil {
 

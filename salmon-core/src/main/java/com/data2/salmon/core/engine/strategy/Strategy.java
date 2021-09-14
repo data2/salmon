@@ -1,7 +1,7 @@
 package com.data2.salmon.core.engine.strategy;
 
 /**
- * @author leewow
+ * @author data2
  */
 
 public enum Strategy {

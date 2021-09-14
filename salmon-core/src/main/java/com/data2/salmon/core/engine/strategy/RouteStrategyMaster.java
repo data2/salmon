@@ -4,7 +4,7 @@ import com.data2.salmon.core.engine.config.TableConfig;
 import com.data2.salmon.core.engine.except.SalmonException;
 
 /**
- * @author leewow
+ * @author data2
  */
 public interface RouteStrategyMaster {
 

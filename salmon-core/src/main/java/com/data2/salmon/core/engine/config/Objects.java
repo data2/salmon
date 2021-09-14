@@ -2,7 +2,7 @@ package com.data2.salmon.core.engine.config;
 
 
 /**
- * @author leewow
+ * @author data2
  */
 public class Objects {
 

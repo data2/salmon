@@ -1,7 +1,7 @@
 package com.data2.salmon.core.engine.inter;
 
 /**
- * @author leewow
+ * @author data2
  */
 public interface Salmon extends OriginOperation {
 }

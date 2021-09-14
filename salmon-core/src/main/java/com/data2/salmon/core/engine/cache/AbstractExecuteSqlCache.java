@@ -1,7 +1,7 @@
 package com.data2.salmon.core.engine.cache;
 
 /**
- * @author leewow
+ * @author data2
  */
 public abstract class AbstractExecuteSqlCache extends AbstractCache {
 

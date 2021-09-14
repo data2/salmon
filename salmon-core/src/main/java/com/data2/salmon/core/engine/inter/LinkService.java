@@ -4,7 +4,7 @@ import com.data2.salmon.core.engine.enums.DataBase;
 import lombok.Data;
 
 /**
- * @author leewow
+ * @author data2
  */
 @Data
 public abstract class LinkService implements AbstractService {

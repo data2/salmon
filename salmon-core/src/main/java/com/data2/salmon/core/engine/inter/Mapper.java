@@ -5,7 +5,7 @@ import com.data2.salmon.core.engine.enums.DataBase;
 import java.lang.annotation.*;
 
 /**
- * @author leewow
+ * @author data2
  */
 @Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)

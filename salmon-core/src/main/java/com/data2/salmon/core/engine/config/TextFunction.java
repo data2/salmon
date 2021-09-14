@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author leewow
+ * @author data2
  */
 public class TextFunction {
     private static final String BLANK = " ";

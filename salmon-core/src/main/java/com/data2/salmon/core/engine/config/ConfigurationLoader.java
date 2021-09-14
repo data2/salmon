@@ -3,7 +3,7 @@ package com.data2.salmon.core.engine.config;
 import java.io.InputStream;
 
 /**
- * @author leewow
+ * @author data2
  */
 public class ConfigurationLoader {
 

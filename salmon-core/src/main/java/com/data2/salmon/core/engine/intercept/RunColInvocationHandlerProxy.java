@@ -4,7 +4,7 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
 /**
- * @author leewow
+ * @author data2
  */
 public class RunColInvocationHandlerProxy implements InvocationHandler {
 

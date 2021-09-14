@@ -5,7 +5,7 @@ import com.data2.salmon.core.common.util.PropertiesUtil;
 import java.util.LinkedHashMap;
 
 /**
- * @author leewow
+ * @author data2
  */
 public class ScannerPackage {
 

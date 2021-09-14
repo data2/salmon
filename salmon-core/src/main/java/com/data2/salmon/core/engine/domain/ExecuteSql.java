@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * @author leewow
+ * @author data2
  */
 public class ExecuteSql {
 

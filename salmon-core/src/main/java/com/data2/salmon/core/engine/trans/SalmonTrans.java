@@ -1,7 +1,7 @@
 package com.data2.salmon.core.engine.trans;
 
 /**
- * @author leewow
+ * @author data2
  */
 public class SalmonTrans implements Transaction {
 

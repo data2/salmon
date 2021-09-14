@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * @author leewow
+ * @author data2
  */
 @Slf4j
 public class ResultOutputInterceptor implements CutPointInterceptor {

@@ -1,7 +1,7 @@
 package com.data2.salmon.core.common.util;
 
 /**
- * @author leewow
+ * @author data2
  */
 public class StringUtils {
 

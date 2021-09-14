@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author leewow
+ * @author data2
  */
 @Data
 public abstract class QuickService extends LinkService {

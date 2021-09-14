@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import static com.data2.salmon.core.engine.enums.DataBase.oracle;
 
 /**
- * @author leewow
+ * @author data2
  */
 @Data
 @Slf4j

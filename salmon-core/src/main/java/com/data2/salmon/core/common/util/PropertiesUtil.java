@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.Properties;
 
 /**
- * @author leewow
+ * @author data2
  */
 @Slf4j
 public class PropertiesUtil {

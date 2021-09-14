@@ -10,7 +10,7 @@ import org.springframework.core.type.AnnotationMetadata;
 import static com.data2.salmon.core.engine.enums.DataBase.jdbc;
 
 /**
- * @author leewow
+ * @author data2
  */
 public class Selector implements ImportSelector {
     @Override

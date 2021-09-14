@@ -8,7 +8,7 @@ import org.springframework.beans.factory.InitializingBean;
 import java.util.concurrent.ExecutionException;
 
 /**
- * @author leewow
+ * @author data2
  */
 public interface SourceFactory extends InitializingBean, DisposableBean {
     DruidDataSource getSource(Looker looker) throws ExecutionException;

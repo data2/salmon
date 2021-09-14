@@ -5,7 +5,7 @@ import com.google.common.collect.Maps;
 import java.util.HashMap;
 
 /**
- * @author leewow
+ * @author data2
  */
 public class PartitionSet {
 

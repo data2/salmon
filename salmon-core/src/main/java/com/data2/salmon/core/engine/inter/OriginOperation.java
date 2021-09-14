@@ -3,7 +3,7 @@ package com.data2.salmon.core.engine.inter;
 import java.util.Map;
 
 /**
- * @author leewow
+ * @author data2
  */
 public interface OriginOperation {
     void getTrans();
