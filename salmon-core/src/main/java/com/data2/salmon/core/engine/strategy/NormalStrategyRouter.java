@@ -4,6 +4,8 @@ import com.data2.salmon.core.engine.config.TableConfig;
 import com.data2.salmon.core.engine.except.SalmonException;
 import org.springframework.util.StringUtils;
 
+import static com.data2.salmon.core.engine.strategy.StrategyConst.PARAM_LEN_THREE;
+
 /**
  * @author data2
  */
@@ -42,7 +44,7 @@ public class NormalStrategyRouter extends RouteStrategy {
     @Override
     public NormalStrategyRouter config(TableConfig rule) throws SalmonException {
         String[] params = rule.getParams();
-        if (params.length != 3) {
+        if (params.length != PARAM_LEN_THREE) {
             throw new SalmonException("back hash partion route needs three param");
         }
         this.start = Integer.parseInt(isNullThrowEX(params[0]));
