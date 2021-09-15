@@ -5,7 +5,7 @@ package com.data2.salmon.core.engine.trans;
  */
 public interface Transaction {
 
-    void start();
+    void startTrans();
 
-    void commit();
+    void commitTrans();
 }
