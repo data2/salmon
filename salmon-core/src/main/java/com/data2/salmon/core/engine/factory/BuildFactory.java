@@ -61,22 +61,41 @@ public class BuildFactory {
      * calcu ruler for where data goes.
      *
      * @param dbase
-     * @param currSql
+     * @param sql
      * @param params
      * @throws SalmonException
      */
-    public Object build(DataBase dbase, ExecuteSql currSql, Object params) throws SalmonException, SQLException {
-        currSql.setTableName(calcuTabnameFromSqlStr(currSql.getSql()));
-        String dbId = null;
+    public void build(DataBase dbase, ExecuteSql sql, Object params) throws SalmonException {
+        setTabName(sql);
+        sql.setLooker(new Looker(dbase, target(dbase, sql, params)));
+    }
+
+    public ExecuteSql giveSource(ExecuteSql sql) throws SalmonException {
+        return connectFactory.makeConnect(sql);
+    }
+
+    public void copySource(ExecuteSql sourceSql, ExecuteSql sql) throws SalmonException {
+        sql.setConn(sourceSql.getConn());
+    }
+
+    public Object run(ExecuteSql sql, Object params) throws SalmonException, SQLException {
+        return connectFactory.preparedStmt(sql, params).exec();
+    }
+
+
+    private void setTabName(ExecuteSql sql){
+        sql.setTableName(calcuTabnameFromSqlStr(sql.getSql()));
+    }
+
+    private String target(DataBase dbase, ExecuteSql sql, Object params) throws SalmonException {
         if (dbase == DataBase.partition) {
-            loadFromConfig(currSql);
+            loadFromConfig(sql);
             if (params == null) {
                 log.error("partition need value not null");
             }
-            dbId = Parser.parse(currSql.getRuler(), params);
+            return Parser.parse(sql.getRuler(), params);
         }
-        return connectFactory.setSql(currSql).makeConnect(new Looker(dbase, dbId)).preparedStmt(params).exec();
-
+        return null;
     }
 
     /**
@@ -89,5 +108,6 @@ public class BuildFactory {
         currSql.setRuler(tabRuler);
         currSql.setPartionKey(new Pair(tabRuler.getColumn(), null));
     }
+
 
 }
