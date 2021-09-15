@@ -3,7 +3,6 @@ package com.data2.salmon.core.engine.factory;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.data2.salmon.core.common.util.ColumnSequenceUtil;
 import com.data2.salmon.core.engine.domain.ExecuteSql;
-import com.data2.salmon.core.engine.domain.Looker;
 import com.data2.salmon.core.engine.druid.DataSourceFactory;
 import com.data2.salmon.core.engine.except.SalmonException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,30 +21,26 @@ public class ConnectFactory {
 
     @Autowired
     public DataSourceFactory dataSourceFactory;
-    private ExecuteSql executeSql;
 
-    public ConnectFactory makeConnect(Looker looker) {
+    public ExecuteSql makeConnect(ExecuteSql sql) {
         try {
-            DruidDataSource druidDataSource = dataSourceFactory.getSource(looker);
+            DruidDataSource druidDataSource = dataSourceFactory.getSource(sql.getLooker());
             Connection con = druidDataSource.getConnection();
             con.setAutoCommit(false);
-            executeSql.setConn(con);
+            sql.setConn(con);
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-        return this;
+        return sql;
     }
 
-    public ExecuteSql preparedStmt(Object params) throws SalmonException {
-        List<Object> sortParams = ColumnSequenceUtil.sort(executeSql, params);
-        ColumnSequenceUtil.setValue(executeSql, sortParams);
-        return executeSql;
+    public ExecuteSql preparedStmt(ExecuteSql sql, Object params) throws SalmonException {
+        List<Object> sortParams = ColumnSequenceUtil.sort(sql, params);
+        ColumnSequenceUtil.setValue(sql, sortParams);
+        return sql;
     }
 
-    public ConnectFactory setSql(ExecuteSql currSql) {
-        this.executeSql = currSql;
-        return this;
-    }
+
 }
