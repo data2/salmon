@@ -1,12 +1,11 @@
-
 spring:
   salmon:
     scan: com.data2.salmon.example
     database:
       jdbc:
-        url: jdbc:mysql://20.26.103.91:13306/dqbusi?characterEncoding=UTF-8
+        url: jdbc:mysql://localhost:3306/test?characterEncoding=UTF-8
         username: root
-        password: root
+        password: 123456
 #      oracle:
 #        url: jdbc:oracle:thin:@//<host>:<port>/<service_name>
 #        username: root
