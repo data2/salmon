@@ -17,7 +17,7 @@ public class ParseConfig {
     private SqlConfigCache sqlConfigCache;
 
     public String parse(String file, ExecuteSql executeSql) {
-        String mapperFile = "mapper/".concat(file).concat(".salmon");
+        String mapperFile = "mapper/".concat(file).concat(".xml");
         return (String) sqlConfigCache.getSource(mapperFile, executeSql.getSqlId());
     }
 
