@@ -5,6 +5,9 @@ import com.data2.salmon.core.engine.intercept.RunColInvocationHandlerProxy;
 
 import java.lang.reflect.Proxy;
 
+/**
+ * @author data2
+ */
 public class Factory {
 
     public static Salmon getSource(Object obj) {
