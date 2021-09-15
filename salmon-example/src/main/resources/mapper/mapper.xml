@@ -1,13 +1,12 @@
 
 --<easy>
     select 1 from dual
-
---<single>
-   select * from TD_DICTIONARY where code = #code#
-
---<single2>
-   select * from TD_DICTIONARY where code = ##
-
+--<query>
+    select * from records where id = #id#
+--<query2>
+    select * from records where id = ##
+--<insert>
+    insert into records values(#id#,#namespace#,#path#,#value#)
 
 
 --<partitioninsert>

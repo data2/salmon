@@ -24,10 +24,19 @@ public class ExecuteSql {
     private Pair partionKey;
     private Object res;
     private TableConfig ruler;
+    private boolean trans = false;
+    private Looker looker;
+    private boolean except;
 
     public ExecuteSql(OperationKeys operation, String sqlID) {
         this.operation = operation;
         this.sqlId = sqlID;
+    }
+
+    public ExecuteSql(OperationKeys operation, String sqlID, boolean trans) {
+        this.operation = operation;
+        this.sqlId = sqlID;
+        this.trans = trans;
     }
 
     public Object exec() throws SQLException {
@@ -49,10 +58,18 @@ public class ExecuteSql {
             default:
                 break;
         }
-        conn.commit();
-        executor.close();
-        conn.close();
+        if (!trans) {
+            conn.commit();
+            executor.close();
+            conn.close();
+        } else {
+            executor.close();
+        }
         return res;
+    }
+
+    public String getSql() {
+        return sql;
     }
 
     public ExecuteSql setSql(String sql) {
@@ -60,24 +77,20 @@ public class ExecuteSql {
         return this;
     }
 
-    public String getSql() {
-        return sql;
+    public TableConfig getRuler() {
+        return ruler;
     }
 
     public void setRuler(TableConfig ruler) {
         this.ruler = ruler;
     }
 
-    public TableConfig getRuler() {
-        return ruler;
+    public String getTableName() {
+        return tableName;
     }
 
     public void setTableName(String tableName) {
         this.tableName = tableName;
-    }
-
-    public String getTableName() {
-        return tableName;
     }
 
     public String getSqlId() {
@@ -104,5 +117,24 @@ public class ExecuteSql {
         this.partionKey = partionKey;
     }
 
+    public void setLooker(Looker looker) {
+        this.looker = looker;
+    }
+
+    public Looker getLooker() {
+        return looker;
+    }
+
+    public boolean isTrans() {
+        return trans;
+    }
+
+    public void setExcept(boolean except) {
+        this.except = except;
+    }
+
+    public boolean isExcept() {
+        return except;
+    }
 
 }
