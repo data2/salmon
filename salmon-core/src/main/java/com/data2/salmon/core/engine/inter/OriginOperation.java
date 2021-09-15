@@ -1,12 +1,15 @@
 package com.data2.salmon.core.engine.inter;
 
+import com.data2.salmon.core.engine.except.SalmonException;
+import com.data2.salmon.core.engine.trans.Transaction;
+
+import java.sql.SQLException;
 import java.util.Map;
 
 /**
  * @author data2
  */
-public interface OriginOperation {
-    void getTrans();
+public interface OriginOperation extends Transaction {
 
     OriginOperation select(String id);
 
@@ -16,13 +19,21 @@ public interface OriginOperation {
 
     OriginOperation delete(String id);
 
+    OriginOperation selectTrans(String id);
+
+    OriginOperation insertTrans(String id);
+
+    OriginOperation updateTrans(String id);
+
+    OriginOperation deleteTrans(String id);
+
     OriginOperation param(Map<String, Object> obj);
 
     OriginOperation param(Object obj);
 
-    Object execute(Object object);
+    Object execute(Object object) throws SalmonException, SQLException;
 
-    Object execute();
+    Object execute() throws SalmonException, SQLException;
 
     String returnInfo();
 
