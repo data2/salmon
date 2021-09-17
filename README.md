@@ -5,6 +5,9 @@ Salmon
 [![Coverage Status](https://coveralls.io/repos/github/data2/salmon/badge.svg)](https://coveralls.io/github/data2/salmon)
 
 Salmon , an easy framework which support distributed db system.
+
+自研可控的分布式数据库框架，简化dao层开发，比mybatis更可控更灵活，支持常规事务、基于二阶段协议提交以及重试机制的跨库事务，支持多种策略分库分表，支持jdbc、oracle等主流数据库，无缝对接spring，欢迎试用。
+
 ```java
 @Autowired
 @Mapper(file = "mapper1", database = DataBase.JDBC)
