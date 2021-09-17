@@ -63,6 +63,8 @@ salmon.insertTrans("insert").execute(param2);
 
 salmon.commitTrans();
 
+```
+
 ### Configuration
 
 ```
