@@ -4,34 +4,34 @@ Salmon
 [![Build Status](https://travis-ci.org/data2/salmon.svg?branch=master)](https://travis-ci.org/data2/salmon)
 [![Coverage Status](https://coveralls.io/repos/github/data2/salmon/badge.svg)](https://coveralls.io/github/data2/salmon)
 
-Salmon , an easy framework which support distributed db system.
+Salmon, an easy framework which support distributed db system.
 
-自研可控的分布式数据库框架
-+ 简化dao层开发，比mybatis更可控更灵活
-+ 支持常规事务、基于二阶段协议提交以及重试机制的跨库事务
-+ 支持多种策略分库分表
-+ 支持jdbc、oracle等主流数据库
-+ 无缝对接spring
+Self-developed and controllable distributed database framework
++ Simplify dao layer development, more controllable and flexible than mybatis
++ Support regular transactions, cross-database transactions based on two-phase protocol commit and retry mechanism
++ Support multiple strategies for sub-database sub-table
++ Support mainstream databases such as jdbc and oracle
++ Seamless connection with spring
 
-### 查询 
+### Inquire 
 
 ```java
 @Autowired
 @Mapper(file = "mapper1", database = DataBase.JDBC)
 public Salmon salmon;
 
-//查询
+//Inquire
 Map map = (Map) salmon.select("query2").execute("101a7cb6-0aff-11ec-b26b-88e9fe840b9a");
 
-//查询
+//Inquire
 Map map = (Map) salmon.select("query").execute(Collections.singletonMap("id", "101a7cb6-0aff-11ec-b26b-88e9fe840b9a"));
 
 ```
 
-### 插入
+### Insert
 
 ```
-// 插入
+// insert
 Map param3 = Maps.newConcurrentMap();
 param3.put("id", UUID.randomUUID().toString());
 param3.put("namespace", "test");
@@ -41,10 +41,10 @@ salmon.insert("insert").execute(param);
 
 ```
 
-### 事务
+### Affairs
 
 ```
-//开启事务
+//Open the transaction
 
 salmon.startTrans();
 Map param = Maps.newConcurrentMap();
@@ -62,11 +62,10 @@ param2.put("value", "9092");
 salmon.insertTrans("insert").execute(param2);
 
 salmon.commitTrans();
+
+### Configuration
+
 ```
-
-### 配置
-
-```        
     spring:
       salmon:
         scan:package
