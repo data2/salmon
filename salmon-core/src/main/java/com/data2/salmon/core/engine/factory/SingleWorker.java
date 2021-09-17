@@ -3,6 +3,7 @@ package com.data2.salmon.core.engine.factory;
 import com.data2.salmon.core.engine.config.ParseConfig;
 import com.data2.salmon.core.engine.except.SalmonException;
 import com.data2.salmon.core.engine.inter.QuickService;
+import com.data2.salmon.core.engine.manager.Cooperator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -19,6 +20,10 @@ public class SingleWorker extends QuickService {
     public BuildFactory buildFactory;
     @Autowired
     private ParseConfig parseConfig;
+
+    SingleWorker(Cooperator cooperator) {
+        super.cooperator = cooperator;
+    }
 
     @Override
     public Object execute(Object object) throws SalmonException, SQLException {
@@ -37,11 +42,11 @@ public class SingleWorker extends QuickService {
             if (!currSql.isTrans()) {
                 buildFactory.giveSource(currSql);
             } else {
-                if (sqlQueue.get().size() == 1) {
+                if (cooperator.sqls().size() == 1) {
                     buildFactory.giveSource(currSql);
                 } else {
-                    if (currSql.getLooker().toString().equals(sqlQueue.get().get(0).getLooker().toString())) {
-                        buildFactory.copySource(sqlQueue.get().get(0), currSql);
+                    if (currSql.getLooker().toString().equals(cooperator.sqls().get(0).getLooker().toString())) {
+                        buildFactory.copySource(cooperator.sqls().get(0), currSql);
                     } else {
                         buildFactory.giveSource(currSql);
                     }

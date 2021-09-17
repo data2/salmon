@@ -2,7 +2,7 @@ package com.data2.salmon.core.engine.inter;
 
 import com.data2.salmon.core.engine.domain.ExecuteSql;
 import com.data2.salmon.core.engine.enums.OperationKeys;
-import com.google.common.collect.Lists;
+import com.data2.salmon.core.engine.manager.Cooperator;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import lombok.Data;
@@ -12,7 +12,6 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -27,8 +26,7 @@ public abstract class QuickService extends LinkService {
 
     protected ExecuteSql currSql;
     protected boolean exception = false;
-    protected ThreadLocal<List<ExecuteSql>> sqlQueue = new ThreadLocal<>();
-    protected ThreadLocal<List<Object>> paramQueue = new ThreadLocal<>();
+    protected Cooperator cooperator;
     protected Object currParams;
     private Map<String, Object> context;
 
@@ -37,24 +35,17 @@ public abstract class QuickService extends LinkService {
         context.put("time", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
     }
 
-    private void clear() {
-        sqlQueue.remove();
-        paramQueue.remove();
-
-    }
-
     @Override
     public void startTrans() {
-        clear();
-        sqlQueue.set(Lists.newArrayList());
-        paramQueue.set(Lists.newArrayList());
+        cooperator.clear();
+        cooperator.init();
     }
 
     @Override
     public void commitTrans() {
         Set<Connection> connectionSet = Sets.newHashSet();
         AtomicBoolean except = new AtomicBoolean(false);
-        sqlQueue.get().forEach(executeSql -> {
+        cooperator.sqls().forEach(executeSql -> {
             if (executeSql.isExcept()) {
                 except.set(true);
             }
@@ -87,31 +78,31 @@ public abstract class QuickService extends LinkService {
             }
         }
 
-        clear();
+        cooperator.clear();
 
     }
 
     @Override
     public QuickService selectTrans(String sqlId) {
-        sqlQueue.get().add(currSql = new ExecuteSql(OperationKeys.SELECT, sqlId, true));
+        cooperator.sqls().add(currSql = new ExecuteSql(OperationKeys.SELECT, sqlId, true));
         return this;
     }
 
     @Override
     public QuickService insertTrans(String sqlId) {
-        sqlQueue.get().add(currSql = new ExecuteSql(OperationKeys.INSERT, sqlId, true));
+        cooperator.sqls().add(currSql = new ExecuteSql(OperationKeys.INSERT, sqlId, true));
         return this;
     }
 
     @Override
     public QuickService updateTrans(String sqlId) {
-        sqlQueue.get().add(currSql = new ExecuteSql(OperationKeys.UPDATE, sqlId, true));
+        cooperator.sqls().add(currSql = new ExecuteSql(OperationKeys.UPDATE, sqlId, true));
         return this;
     }
 
     @Override
     public QuickService deleteTrans(String sqlId) {
-        sqlQueue.get().add(currSql = new ExecuteSql(OperationKeys.DELETE, sqlId, true));
+        cooperator.sqls().add(currSql = new ExecuteSql(OperationKeys.DELETE, sqlId, true));
         return this;
     }
 
@@ -142,8 +133,8 @@ public abstract class QuickService extends LinkService {
     @Override
     public QuickService param(Map<String, Object> map) {
         this.currParams = map;
-        if (currSql.isTrans()){
-            paramQueue.get().add(map);
+        if (currSql.isTrans()) {
+            cooperator.params().add(map);
         }
         return this;
     }
@@ -151,8 +142,8 @@ public abstract class QuickService extends LinkService {
     @Override
     public QuickService param(Object object) {
         this.currParams = object;
-        if (currSql.isTrans()){
-            paramQueue.get().add(object);
+        if (currSql.isTrans()) {
+            cooperator.params().add(object);
         }
         return this;
     }
