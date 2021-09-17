@@ -117,24 +117,24 @@ public class ExecuteSql {
         this.partionKey = partionKey;
     }
 
-    public void setLooker(Looker looker) {
-        this.looker = looker;
-    }
-
     public Looker getLooker() {
         return looker;
+    }
+
+    public void setLooker(Looker looker) {
+        this.looker = looker;
     }
 
     public boolean isTrans() {
         return trans;
     }
 
-    public void setExcept(boolean except) {
-        this.except = except;
-    }
-
     public boolean isExcept() {
         return except;
+    }
+
+    public void setExcept(boolean except) {
+        this.except = except;
     }
 
 }

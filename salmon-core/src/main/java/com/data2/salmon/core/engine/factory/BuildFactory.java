@@ -83,7 +83,7 @@ public class BuildFactory {
     }
 
 
-    private void setTabName(ExecuteSql sql){
+    private void setTabName(ExecuteSql sql) {
         sql.setTableName(calcuTabnameFromSqlStr(sql.getSql()));
     }
 

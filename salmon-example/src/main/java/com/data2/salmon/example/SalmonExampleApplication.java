@@ -7,7 +7,6 @@ import com.data2.salmon.core.engine.inter.Salmon;
 import com.google.common.collect.Maps;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

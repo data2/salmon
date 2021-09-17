@@ -1,19 +1,25 @@
-
---<easy>
+--
+<easy>
     select 1 from dual
---<query>
-    select * from records where id = #id#
---<query2>
-    select * from records where id = ##
---<insert>
-    insert into records values(#id#,#namespace#,#path#,#value#)
+    --
+    <query>
+        select * from records where id = #id#
+        --
+        <query2>
+            select * from records where id = ##
+            --
+            <insert>
+                insert into records values(#id#,#namespace#,#path#,#value#)
 
 
---<partitioninsert>
-   insert into test values(#id#,#name#)
+                --
+                <partitioninsert>
+                    insert into test values(#id#,#name#)
 
---<partitionquery>
-    select * from test where id = ##
+                    --
+                    <partitionquery>
+                        select * from test where id = ##
 
---<partitionquery2>
-   select * from test where id = #id#
+                        --
+                        <partitionquery2>
+                            select * from test where id = #id#

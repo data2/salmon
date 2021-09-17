@@ -5,11 +5,13 @@ Salmon
 [![Coverage Status](https://coveralls.io/repos/github/data2/salmon/badge.svg)](https://coveralls.io/github/data2/salmon)
 
 Salmon , an easy framework which support distributed db system.
+
 ```java
 @Autowired
 @Mapper(file = "mapper1", database = DataBase.PARTITION)
 public Salmon salmon;
 ```        
+
     spring:
       salmon:
         scan:package
