@@ -27,6 +27,7 @@ public class ExecuteSql {
     private boolean trans = false;
     private Looker looker;
     private boolean except;
+    private Object currParams;
 
     public ExecuteSql(OperationKeys operation, String sqlID) {
         this.operation = operation;
@@ -135,6 +136,14 @@ public class ExecuteSql {
 
     public void setExcept(boolean except) {
         this.except = except;
+    }
+
+    public void setCurrParams(Object currParams) {
+        this.currParams = currParams;
+    }
+
+    public Object getCurrParams() {
+        return currParams;
     }
 
 }
