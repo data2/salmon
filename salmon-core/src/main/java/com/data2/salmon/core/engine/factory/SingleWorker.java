@@ -1,6 +1,7 @@
 package com.data2.salmon.core.engine.factory;
 
 import com.data2.salmon.core.engine.config.ParseConfig;
+import com.data2.salmon.core.engine.domain.ExecuteSql;
 import com.data2.salmon.core.engine.except.SalmonException;
 import com.data2.salmon.core.engine.inter.QuickService;
 import com.data2.salmon.core.engine.manager.Cooperator;
@@ -36,28 +37,52 @@ public class SingleWorker extends QuickService {
         return execute(null);
     }
 
-    private Object handle() throws SalmonException, SQLException {
+    @Override
+    public Object executeTrans(Object object) throws SalmonException, SQLException {
+        paramTrans(object);
+        return handleTrans();
+    }
+
+    @Override
+    public Object executeTrans() throws SalmonException, SQLException {
+        return executeTrans(null);
+    }
+
+    private Object handleTrans() throws SalmonException, SQLException {
+        ExecuteSql current = null;
         try {
-            buildFactory.build(database, currSql.setSql(parseConfig.parse(file, currSql)), currParams);
-            if (!currSql.isTrans()) {
-                buildFactory.giveSource(currSql);
+            current = cooperator.sqls().getLast();
+            buildFactory.build(database, current.setSql(parseConfig.parse(file, current)));
+            if (cooperator.sqls().size() == 1) {
+                buildFactory.giveSource(current);
             } else {
-                if (cooperator.sqls().size() == 1) {
-                    buildFactory.giveSource(currSql);
+                if (current.getLooker().toString().equals(cooperator.sqls().get(0).getLooker().toString())) {
+                    buildFactory.copySource(cooperator.sqls().get(0), current);
                 } else {
-                    if (currSql.getLooker().toString().equals(cooperator.sqls().get(0).getLooker().toString())) {
-                        buildFactory.copySource(cooperator.sqls().get(0), currSql);
-                    } else {
-                        buildFactory.giveSource(currSql);
-                    }
+                    buildFactory.giveSource(current);
                 }
             }
-            return buildFactory.run(currSql, currParams);
+            return buildFactory.run(current);
         } catch (Exception e) {
             e.printStackTrace();
             log.error("execute err,{}", e.getMessage());
-            currSql.setExcept(true);
+            current.setExcept(true);
             commitTrans();
+            throw e;
+        }
+
+    }
+
+
+    private Object handle() throws SalmonException, SQLException {
+        try {
+            buildFactory.build(database, currSql.get().setSql(parseConfig.parse(file, currSql.get())));
+            buildFactory.giveSource(currSql.get());
+            return buildFactory.run(currSql.get());
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("execute err,{}", e.getMessage());
+            currSql.get().setExcept(true);
             throw e;
         }
     }
