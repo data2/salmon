@@ -31,9 +31,17 @@ public interface OriginOperation extends Transaction {
 
     OriginOperation param(Object obj);
 
+    OriginOperation paramTrans(Map<String, Object> obj);
+
+    OriginOperation paramTrans(Object obj);
+
     Object execute(Object object) throws SalmonException, SQLException;
 
     Object execute() throws SalmonException, SQLException;
+
+    Object executeTrans(Object object) throws SalmonException, SQLException;
+
+    Object executeTrans() throws SalmonException, SQLException;
 
     String returnInfo();
 
