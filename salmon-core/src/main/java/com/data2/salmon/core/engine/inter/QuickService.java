@@ -7,12 +7,14 @@ import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.util.CollectionUtils;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Consumer;
@@ -24,10 +26,8 @@ import java.util.function.Consumer;
 @Slf4j
 public abstract class QuickService extends LinkService {
 
-    protected ExecuteSql currSql;
-    protected boolean exception = false;
+    protected ThreadLocal<ExecuteSql> currSql;
     protected Cooperator cooperator;
-    protected Object currParams;
     private Map<String, Object> context;
 
     private void initContext() {
@@ -45,7 +45,9 @@ public abstract class QuickService extends LinkService {
     public void commitTrans() {
         Set<Connection> connectionSet = Sets.newHashSet();
         AtomicBoolean except = new AtomicBoolean(false);
+        log.info(Thread.currentThread().getId() + "");
         cooperator.sqls().forEach(executeSql -> {
+            log.info(executeSql.getSql());
             if (executeSql.isExcept()) {
                 except.set(true);
             }
@@ -84,67 +86,74 @@ public abstract class QuickService extends LinkService {
 
     @Override
     public QuickService selectTrans(String sqlId) {
-        cooperator.sqls().add(currSql = new ExecuteSql(OperationKeys.SELECT, sqlId, true));
+        cooperator.sqls().add(new ExecuteSql(OperationKeys.SELECT, sqlId, true));
         return this;
     }
 
     @Override
     public QuickService insertTrans(String sqlId) {
-        cooperator.sqls().add(currSql = new ExecuteSql(OperationKeys.INSERT, sqlId, true));
+        cooperator.sqls().add(new ExecuteSql(OperationKeys.INSERT, sqlId, true));
         return this;
     }
 
     @Override
     public QuickService updateTrans(String sqlId) {
-        cooperator.sqls().add(currSql = new ExecuteSql(OperationKeys.UPDATE, sqlId, true));
+        cooperator.sqls().add(new ExecuteSql(OperationKeys.UPDATE, sqlId, true));
         return this;
     }
 
     @Override
     public QuickService deleteTrans(String sqlId) {
-        cooperator.sqls().add(currSql = new ExecuteSql(OperationKeys.DELETE, sqlId, true));
+        cooperator.sqls().add(new ExecuteSql(OperationKeys.DELETE, sqlId, true));
         return this;
     }
 
     @Override
     public QuickService select(String sqlId) {
-        this.currSql = new ExecuteSql(OperationKeys.SELECT, sqlId);
+        this.currSql.set(new ExecuteSql(OperationKeys.SELECT, sqlId));
         return this;
     }
 
     @Override
     public QuickService insert(String sqlId) {
-        this.currSql = new ExecuteSql(OperationKeys.INSERT, sqlId);
+        this.currSql.set(new ExecuteSql(OperationKeys.INSERT, sqlId));
         return this;
     }
 
     @Override
     public QuickService update(String sqlId) {
-        this.currSql = new ExecuteSql(OperationKeys.UPDATE, sqlId);
+        this.currSql.set(new ExecuteSql(OperationKeys.UPDATE, sqlId));
         return this;
     }
 
     @Override
     public QuickService delete(String sqlId) {
-        this.currSql = new ExecuteSql(OperationKeys.DELETE, sqlId);
+        this.currSql.set(new ExecuteSql(OperationKeys.DELETE, sqlId));
+        return this;
+    }
+
+    @Override
+    public QuickService paramTrans(Map<String, Object> map) {
+        return paramTrans(map);
+    }
+
+    @Override
+    public QuickService paramTrans(Object object) {
+        if (!CollectionUtils.isEmpty(cooperator.sqls()) && Objects.nonNull(cooperator.sqls().getLast())) {
+            cooperator.sqls().getLast().setCurrParams(object);
+        }
         return this;
     }
 
     @Override
     public QuickService param(Map<String, Object> map) {
-        this.currParams = map;
-        if (currSql.isTrans()) {
-            cooperator.params().add(map);
-        }
+        currSql.get().setCurrParams(map);
         return this;
     }
 
     @Override
     public QuickService param(Object object) {
-        this.currParams = object;
-        if (currSql.isTrans()) {
-            cooperator.params().add(object);
-        }
+        currSql.get().setCurrParams(object);
         return this;
     }
 
