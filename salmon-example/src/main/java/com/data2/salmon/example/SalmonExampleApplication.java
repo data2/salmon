@@ -67,20 +67,13 @@ public class SalmonExampleApplication {
         salmon.insertTrans("insert").execute(param);
 
         Map param2 = Maps.newConcurrentMap();
-//        param2.put("id", UUID.randomUUID().toString());
+        param2.put("id", UUID.randomUUID().toString());
         param2.put("namespace", "test");
         param2.put("path", "spring.port");
         param2.put("value", "9092");
         salmon.insertTrans("insert").execute(param2);
 
         salmon.commitTrans();
-
-        Map param3 = Maps.newConcurrentMap();
-        param3.put("id", UUID.randomUUID().toString());
-        param3.put("namespace", "test");
-        param3.put("path", "spring.port");
-        param3.put("value", "9093");
-        salmon.insert("insert").execute(param);
 
 
     }
