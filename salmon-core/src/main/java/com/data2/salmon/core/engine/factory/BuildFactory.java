@@ -65,9 +65,9 @@ public class BuildFactory {
      * @param params
      * @throws SalmonException
      */
-    public void build(DataBase dbase, ExecuteSql sql, Object params) throws SalmonException {
+    public void build(DataBase dbase, ExecuteSql sql) throws SalmonException {
         setTabName(sql);
-        sql.setLooker(new Looker(dbase, target(dbase, sql, params)));
+        sql.setLooker(new Looker(dbase, target(dbase, sql)));
     }
 
     public ExecuteSql giveSource(ExecuteSql sql) throws SalmonException {
@@ -78,8 +78,8 @@ public class BuildFactory {
         sql.setConn(sourceSql.getConn());
     }
 
-    public Object run(ExecuteSql sql, Object params) throws SalmonException, SQLException {
-        return connectFactory.preparedStmt(sql, params).exec();
+    public Object run(ExecuteSql sql) throws SalmonException, SQLException {
+        return connectFactory.preparedStmt(sql).exec();
     }
 
 
@@ -87,13 +87,13 @@ public class BuildFactory {
         sql.setTableName(calcuTabnameFromSqlStr(sql.getSql()));
     }
 
-    private String target(DataBase dbase, ExecuteSql sql, Object params) throws SalmonException {
+    private String target(DataBase dbase, ExecuteSql sql) throws SalmonException {
         if (dbase == DataBase.partition) {
             loadFromConfig(sql);
-            if (params == null) {
+            if (sql.getCurrParams() == null) {
                 log.error("partition need value not null");
             }
-            return Parser.parse(sql.getRuler(), params);
+            return Parser.parse(sql.getRuler(), sql.getCurrParams());
         }
         return null;
     }
