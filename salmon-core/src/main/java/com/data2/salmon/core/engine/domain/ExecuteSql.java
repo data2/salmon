@@ -114,6 +114,10 @@ public class ExecuteSql {
         this.executor = executor;
     }
 
+    public PreparedStatement getExecutor() {
+        return executor;
+    }
+
     public void setPartionKey(Pair partionKey) {
         this.partionKey = partionKey;
     }
