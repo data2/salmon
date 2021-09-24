@@ -8,7 +8,7 @@ import lombok.Data;
  * @author data2
  */
 @Data
-public abstract class LinkService implements AbstractService, Transaction {
+public abstract class LinkService extends CloseSource implements AbstractService, Transaction {
     public String name;
     public DataBase database;
     public String file;
