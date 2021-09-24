@@ -29,25 +29,24 @@ public class TestSafeTransaction {
     public Salmon salmon;
 
     @Test
-    public void test() throws SalmonException, SQLException {
+    public void test() throws SalmonException, SQLException, InterruptedException {
 
-        ThreadPoolExecutor threads = new ThreadPoolExecutor(5, 5, 60, TimeUnit.SECONDS, new ArrayBlockingQueue(10));
+        ThreadPoolExecutor threads = new ThreadPoolExecutor(10, 10, 60, TimeUnit.SECONDS, new ArrayBlockingQueue(10));
+        for (int i = 0; i < 10; i++) {
+            threads.execute(new Run(salmon, i));//异步线程
+        }
+        new Run(salmon,100).run();// 当前线程
 
-//        System.out.println(salmon);
-//        for (int i = 0; i < 2; i++) {
-//            threads.execute(new Run(salmon));
-//        }
-
-        threads.execute(new Run(salmon));//异步线程
-
-        new Run(salmon).run();// 当前线程
+        Thread.sleep(400000);
     }
 
     static class Run implements Runnable {
         Salmon salmon;
+        int random;
 
-        Run(Salmon salmon) {
+        Run(Salmon salmon, int random) {
             this.salmon = salmon;
+            this.random = random;
         }
 
         @SneakyThrows
@@ -57,17 +56,17 @@ public class TestSafeTransaction {
             param.put("id", UUID.randomUUID().toString());
             param.put("namespace", "test");
             param.put("path", "spring.port");
-            param.put("value", "8888" + Thread.currentThread().getId());
-            salmon.insertTrans("insert").execute(param);
+            param.put("value", random);
+            salmon.insertTrans("insert").executeTrans(param);
 
-            Thread.sleep(4000);
+            Thread.sleep(2000);
 
             Map param2 = Maps.newConcurrentMap();
             param2.put("id", UUID.randomUUID().toString());
             param2.put("namespace", "test");
             param2.put("path", "spring.port");
-            param2.put("value", "8888" + Thread.currentThread().getId());
-            salmon.insertTrans("insert").execute(param2);
+            param2.put("value", random);
+            salmon.insertTrans("insert").executeTrans(param2);
 
             salmon.commitTrans();
         }
