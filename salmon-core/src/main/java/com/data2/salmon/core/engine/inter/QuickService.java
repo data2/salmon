@@ -17,7 +17,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.function.Consumer;
 
 /**
  * @author data2
@@ -43,45 +42,54 @@ public abstract class QuickService extends LinkService {
 
     @Override
     public void commitTrans() {
-        Set<Connection> connectionSet = Sets.newHashSet();
-        AtomicBoolean except = new AtomicBoolean(false);
-        log.info(Thread.currentThread().getId() + "");
-        cooperator.sqls().forEach(executeSql -> {
-            log.info(executeSql.getSql());
-            if (executeSql.isExcept()) {
-                except.set(true);
-            }
-            connectionSet.add(executeSql.getConn());
-        });
+        try {
+            Set<Connection> connectionSet = Sets.newHashSet();
+            AtomicBoolean except = new AtomicBoolean(false);
+            cooperator.sqls().forEach(executeSql -> {
+                if (executeSql.isExcept()) {
+                    except.set(true);
+                }
+                connectionSet.add(executeSql.getConn());
+            });
 
-        connectionSet.forEach(new Consumer<Connection>() {
-            @Override
-            public void accept(Connection connection) {
+            connectionSet.forEach(connection -> {
                 try {
-                    if (except.get()) {
-                        connection.rollback();
-                    } else {
-                        connection.commit();
+                    execResult(except.get(), connection);
+                } catch (SQLException e1) {
+                    try{
+                        execResult(except.get(), connection);
+                    }catch (SQLException e2){
+                        e2.printStackTrace();
+                        log.info("rollback or commit except");
                     }
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                    log.info("rollback or commit except");
+                }
+            });
+
+            if (except.get()) {
+                log.info("transaction fail.");
+            } else {
+                if (connectionSet.size() == 1) {
+                    log.info("transaction commit success!");
+                } else {
+                    log.info("not same transaction! but all commit!");
                 }
             }
-        });
 
-        if (except.get()) {
-            log.info("transaction fail.");
-        } else {
-            if (connectionSet.size() == 1) {
-                log.info("transaction commit success!");
-            } else {
-                log.info("not same transaction! but all commit!");
-            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("transaction commit except:{}", e.getMessage());
+        } finally {
+            cooperator.clear();
         }
 
-        cooperator.clear();
+    }
 
+    private void execResult(boolean b, Connection connection) throws SQLException {
+        if (b) {
+            connection.rollback();
+        } else {
+            connection.commit();
+        }
     }
 
     @Override
@@ -167,4 +175,5 @@ public abstract class QuickService extends LinkService {
     public String returnInfo() {
         return name + database + file;
     }
+
 }
