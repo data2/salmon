@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.sql.SQLException;
+import java.util.Objects;
 
 /**
  * @author data2
@@ -56,36 +57,45 @@ public class SingleWorker extends QuickService {
             if (cooperator.sqls().size() == 1) {
                 buildFactory.giveSource(current);
             } else {
-                if (current.getLooker().toString().equals(cooperator.sqls().get(0).getLooker().toString())) {
+                if (current.getLooker().equals(cooperator.sqls().get(0).getLooker())) {
                     buildFactory.copySource(cooperator.sqls().get(0), current);
                 } else {
                     buildFactory.giveSource(current);
                 }
             }
-            return buildFactory.run(current);
+            Object result = buildFactory.run(current);
+            log.info("execute sql:{} success, result:{}, thread:{}", current.getSql(), result, Thread.currentThread().getId());
+            return result;
         } catch (Exception e) {
             e.printStackTrace();
-            log.error("execute err,{}", e.getMessage());
+            log.error("execute sql:{} fail, err:{}, thread:{}", current.getSql(), e.getMessage(), Thread.currentThread().getId());
             current.setExcept(true);
             commitTrans();
             throw e;
         }
-
     }
 
-
     private Object handle() throws SalmonException, SQLException {
+        ExecuteSql current = null;
         try {
-            buildFactory.build(database, currSql.get().setSql(parseConfig.parse(file, currSql.get())));
-            buildFactory.giveSource(currSql.get());
-            return buildFactory.run(currSql.get());
+            current = currSql.get();
+            if (Objects.isNull(current)) {
+                throw new SalmonException("execute error");
+            }
+            buildFactory.build(database, current.setSql(parseConfig.parse(file, current)));
+            buildFactory.giveSource(current);
+
+            Object result = buildFactory.run(current);
+            log.info("execute sql:{} success, result:{}, thread:{}", current.getSql(), result, Thread.currentThread().getId());
+            return result;
         } catch (Exception e) {
             e.printStackTrace();
-            log.error("execute err,{}", e.getMessage());
-            currSql.get().setExcept(true);
+            log.error("execute sql:{} fail, err:{}, thread:{}", current.getSql(), e.getMessage(), Thread.currentThread().getId());
+            if (Objects.nonNull(current)) {
+                current.setExcept(true);
+                close(current);
+            }
             throw e;
         }
     }
-
-
 }
