@@ -59,14 +59,14 @@ public class TestCommonOperation {
         param.put("namespace", "test");
         param.put("path", "spring.port");
         param.put("value", "9091");
-        salmon.insertTrans("insert").execute(param);
+        salmon.insertTrans("insert").executeTrans(param);
 
         Map param2 = Maps.newConcurrentMap();
         param2.put("id", UUID.randomUUID().toString());
         param2.put("namespace", "test");
         param2.put("path", "spring.port");
         param2.put("value", "9092");
-        salmon.insertTrans("insert").execute(param2);
+        salmon.insertTrans("insert").executeTrans(param2);
 
         salmon.commitTrans();
 
