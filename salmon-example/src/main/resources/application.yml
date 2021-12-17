@@ -1,4 +1,4 @@
-spring:
+easy:
   salmon:
     scan: com.data2.salmon.example
     database:
@@ -6,13 +6,13 @@ spring:
         url: jdbc:mysql://localhost:3306/test?characterEncoding=UTF-8
         username: root
         password: 123456
-#      oracle:
-#        url: jdbc:oracle:thin:@//<host>:<port>/<service_name>
-#        username: root
-#        password: QAZwdv123
-#      partition:
-#        url: jdbc:mysql://#?characterEncoding=UTF-8
-#        username: root
-#        password: QAZwdv123
-#        mapping: db0>127.0.0.1:3306/talkmovie,db1>127.0.0.1:3306/talkmovie2
-#        table: hash(test, id, 0, 2, 2)
+      oracle:
+        url: jdbc:oracle:thin:@//<host>:<port>/<service_name>
+        username: root
+        password: QAZwdv123
+      partition:
+        url: jdbc:mysql://#?characterEncoding=UTF-8
+        username: root
+        password: QAZwdv123
+        mapping: db0>127.0.0.1:3306/talkmovie,db1>127.0.0.1:3306/talkmovie2
+        table: hash(test, id, 0, 2, 2)

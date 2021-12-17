@@ -62,7 +62,6 @@ public class BuildFactory {
      *
      * @param dbase
      * @param sql
-     * @param params
      * @throws SalmonException
      */
     public void build(DataBase dbase, ExecuteSql sql) throws SalmonException {

@@ -15,7 +15,7 @@ import static com.data2.salmon.core.engine.enums.DataBase.oracle;
  */
 @Data
 @Slf4j
-@ConfigurationProperties(prefix = "spring.salmon.database.oracle")
+@ConfigurationProperties(prefix = "easy.salmon.database.oracle")
 @Configuration
 public class OracleConfig {
     private String url;

@@ -10,7 +10,7 @@ import java.util.LinkedHashMap;
 public class ScannerPackage {
 
     public static String achieveScan() {
-        return (String) getMap(getMap((LinkedHashMap) PropertiesUtil.yaml("application.yml"), "spring"), "salmon").get("scan");
+        return (String) getMap(getMap((LinkedHashMap) PropertiesUtil.yaml("application.yml"), "easy"), "salmon").get("scan");
     }
 
     private static LinkedHashMap getMap(LinkedHashMap map, String key) {

@@ -66,12 +66,12 @@ public abstract class QuickService extends LinkService {
             });
 
             if (except.get()) {
-                log.info("transaction fail.");
+                log.info("transaction commit fail.");
             } else {
                 if (connectionSet.size() == 1) {
                     log.info("transaction commit success!");
                 } else {
-                    log.info("not same transaction! but all commit!");
+                    log.info("fake transaction all commit!");
                 }
             }
 
@@ -85,6 +85,9 @@ public abstract class QuickService extends LinkService {
     }
 
     private void execResult(boolean b, Connection connection) throws SQLException {
+        if (connection == null || connection.isClosed()){
+            return;
+        }
         if (b) {
             connection.rollback();
         } else {

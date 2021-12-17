@@ -1,4 +1,4 @@
-spring:
+easy:
   salmon:
     scan: com.data2.example
     database:

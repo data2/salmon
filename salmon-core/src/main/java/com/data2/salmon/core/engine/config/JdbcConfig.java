@@ -15,7 +15,7 @@ import static com.data2.salmon.core.engine.enums.DataBase.jdbc;
  */
 @Slf4j
 @Data
-@ConfigurationProperties(prefix = "spring.salmon.database.jdbc")
+@ConfigurationProperties(prefix = "easy.salmon.database.jdbc")
 @Configuration
 public class JdbcConfig {
     private String url;

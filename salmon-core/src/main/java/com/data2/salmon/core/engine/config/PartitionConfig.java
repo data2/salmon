@@ -16,7 +16,7 @@ import static com.data2.salmon.core.engine.enums.DataBase.jdbc;
 @Slf4j
 @Data
 @Component
-@ConfigurationProperties(prefix = "spring.salmon.database.partition")
+@ConfigurationProperties(prefix = "easy.salmon.database.partition")
 @ConditionalOnExpression("!T(org.springframework.util.StringUtils).isEmpty('${spring.salmon.database.partition.url:}')")
 public class PartitionConfig implements Config {
     private String url;
